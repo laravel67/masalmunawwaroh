@@ -20,5 +20,6 @@
                 <p class="text-center">Data tidak tersedia.</p>
             @endforelse
         </div>
+        
     </div>
 </x-content>

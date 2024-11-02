@@ -45,8 +45,9 @@ Route::prefix('/akademik')->controller(AkademikController::class)->group(functio
     Route::get('/kurikulum', 'kurikulum')->name('kurikulum');
     Route::get('/daftar-prestasi', 'prestasi')->name('prestasi.aliyah');
     Route::get('/sarpras', 'sarana')->name('sarana');
-    Route::get('/sarpras/detail/{slug}', 'saranaDetail')->name('sarana.detail');
+    Route::get('/sarpras/{slug}', 'saranaDetail')->name('sarana.detail');
     Route::get('/biografi', 'biografi')->name('biografi');
+    Route::get('/biografi/{slug}', 'guruDetail')->name('guru.detail');
 });
 // Achievment/Prestasi
 Route::prefix('/prestasi')->controller(AchievmentController::class)->group(function () {
@@ -57,8 +58,10 @@ Route::prefix('/prestasi')->controller(AchievmentController::class)->group(funct
 // Kesiswaan
 Route::prefix('/kesiswaan')->controller(KesiswaanController::class)->group(function () {
     Route::get('/ekstrakulikuler', 'lifeskill')->name('lifeskill');
-    Route::get('/persada', 'persada')->name('persada');
+    Route::get('/ekstrakulikuler/{slug}', 'lifeskillDetail')->name('lifeskill.detail');
+    Route::get('/bem', 'bem')->name('bem');
     Route::get('/album', 'album')->name('album');
+    Route::get('/album/{slug}', 'albumDetail')->name('album.detail');
 });
 // Pendaftaran PPDB
 Route::prefix('/ppdb')->controller(PpdbController::class)->group(function () {

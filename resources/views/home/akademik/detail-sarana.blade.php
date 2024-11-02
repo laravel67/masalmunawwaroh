@@ -42,5 +42,6 @@
                 @endif
             </div>
         </div>
+        <x-btn-back/>
     </div>
 </x-content>

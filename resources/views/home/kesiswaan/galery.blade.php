@@ -1,27 +1,22 @@
 <x-content>
-    <x-profile-header />
-    <div class="card mt-3 mb-1" data-aos="fade-up" data-aos-duration="500">
-        <div class="card-body">
-            <div class="container">
-                <div class="row">
-                    @forelse ( $posts as $post )
-                    <div class="col-md-4 mb-3">
-                        <div class="card">
-                            <img class="card-img-top" src="{{ asset('storage/'.$post->image) }}"
-                                style="height: 225px; width: 100%; display: block;">
-                        </div>
+   <div class="container my-5">
+        <div class="row g-4 mb-5">
+            @forelse ($galeries as $galery)
+            <div class="col-lg-3 col-md-4 wow fadeInUp" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
+                <a href="{{ route('album.detail', $galery->slug) }}">
+                    <div class="service-item text-center">
+                        <img src="{{ $galery->category=='foto' ? asset('img/galery-thumbnail.png') : asset('img/video-thumbnail.png') }}" class="img-fluid" width="100">
+                        <h6 class="mb-3">{{ $galery->title }}</h6>
+                        <span>{{ $galery->created_at->translatedFormat('d F Y') }}</span>
                     </div>
-                    @empty
-                    <div class="col text-center">
-                        <img src="{{ asset('frontend/img/clipboard.png') }}" alt="" srcset="" class="img-fluid" width="400">
-                    </div>
-                    @endforelse
-                </div>
+                </a>
             </div>
+            @empty
+            <p>{{ __('Tidak ada data') }}</p>
+            @endforelse
         </div>
-    </div>
-    <small class="d-flex align-items-center justify-content-end m-3" style="overflow: hidden">
-        {{ $posts->links('pagination::bootstrap-4') }}
-    </small>
-    </div>
+        <d class="d-flex my-5 justify-content-center">
+            {{ $galeries->links() }}
+        </d>
+   </div>
 </x-content>

@@ -1,89 +1,39 @@
 <x-content>
-    <x-profile-header />
-    <div class="my-3 p-3 bg-white rounded box-shadow" data-aos="fade-up" data-aos-duration="500">
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="fisik-tab" data-toggle="tab" data-target="#fisik" type="button"
-                    role="tab" aria-controls="fisik" aria-selected="true">
-                    <small>Fisik</small>
-                </button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="nonfisik-tab" data-toggle="tab" data-target="#nonfisik" type="button"
-                    role="tab" aria-controls="nonfisik" aria-selected="true">
-                    <small>Non Fisik</small>
-                </button>
-            </li>
-        </ul>
-        <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="fisik" role="tabpanel" aria-labelledby="fisik-tab">
-                @forelse ( $fisik as $post )
-                <div class="mb-2 border-bottom p-2">
-                    <div class="row">
-                        <div class="col-md-4">
-                            @if ($post->image)
-                            <img src="{{ asset('storage/'.$post->image) }}" alt="" width="300" height="300"
-                                class="img-fluid">
-                            @else
-                            <img src="https://placehold.co/400" alt="" width="300" height="300" class="img-fluid">
-                            @endif
-                        </div>
-                        <div class="col-md-6">
-                            <article>
-                                <h3>{{ $post->name }}</h3>
-                                <p align='justify'>
-                                    {!! $post->deskripsi !!}
-                                </p>
-                            </article>
-                            <small class="text-muted">
-                                <i class="fa-solid fa-calendar-days"></i>
-                                {{
-                                \Carbon\Carbon::parse($post->created_at)->locale('id')->translatedFormat('d F
-                                Y')}}
-                            </small>
-                        </div>
-                    </div>
+
+    <div class="container my-5">
+        <x-liner title="Fisik"/>
+        <div class="row">
+            @forelse ($fisik as $row)
+            <div class="col-lg-4 col-md-4 mb-4 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="service-item">
+                    <img src="{{ $row->image ? asset('storage/'.$row->image) : 'https://placehold.jp/400x350.png' }}" alt="{{ $row->name }}" class="img-fluid w-100 mb-4">
+                    <h3 class="mb-3 text-start">{{ $row->name }}</h3> 
+                    <a href="{{ route('lifeskill.detail', $row->slug) }}" class="btn btn-light btn-sm">
+                        <i class="fas fa-folder"></i>
+                        {{ __('Detail') }}
+                    </a>
                 </div>
-                @empty
-                <p class="text-muted">
-                    Belum ada ekstra kulikuler.
-                </p>
-                @endforelse
             </div>
-            <div class="tab-pane fade" id="nonfisik" role="tabpanel" aria-labelledby="nonfisik-tab">
-                @forelse ( $nonfisik as $post )
-                <div class="mb-2 border-bottom p-2">
-                    <div class="row">
-                        <div class="col-md-4">
-                            @if ($post->image)
-                            <img src="{{ asset('storage/'.$post->image) }}" alt="" width="300" height="300"
-                                class="img-fluid">
-                            @else
-                            <img src="https://placehold.co/400" alt="" width="300" height="300" class="img-fluid">
-                            @endif
-                        </div>
-                        <div class="col-md-6">
-                            <article>
-                                <h3>{{ $post->name }}</h3>
-                                <p align='justify'>
-                                    {!! $post->deskripsi !!}
-                                </p>
-                            </article>
-                            <small class="text-muted">
-                                <i class="fa-solid fa-calendar-days"></i>
-                                {{
-                                \Carbon\Carbon::parse($post->created_at)->locale('id')->translatedFormat('d F
-                                Y')}}
-                            </small>
-                        </div>
-                    </div>
+            @empty
+                <p class="text-center">Data tidak tersedia.</p>
+            @endforelse
+        </div>
+        <x-liner title="Non Fisik"/>
+        <div class="row">
+            @forelse ($nonfisik as $row)
+            <div class="col-lg-4 col-md-4 mb-4 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="service-item">
+                    <img src="{{ $row->image ? asset('storage/'.$row->image) : 'https://placehold.jp/400x350.png' }}" alt="{{ $row->name }}" class="img-fluid w-100 mb-4">
+                    <h3 class="mb-3 text-start">{{ $row->name }}</h3> 
+                    <a href="{{ route('lifeskill.detail', $row->slug) }}" class="btn btn-light btn-sm">
+                        <i class="fas fa-folder"></i>
+                        {{ __('Detail') }}
+                    </a>
                 </div>
-                @empty
-                <p class="text-muted">
-                    Belum ada ekstra kulikuler.
-                </p>
-                @endforelse
             </div>
+            @empty
+                <p class="text-center">Data tidak tersedia.</p>
+            @endforelse
         </div>
     </div>
 </x-content>

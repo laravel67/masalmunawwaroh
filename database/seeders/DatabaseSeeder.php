@@ -14,7 +14,9 @@ use App\Models\Daftar;
 use App\Models\Jabatan;
 use App\Models\Student;
 use App\Models\Category;
+use App\Models\Galeri;
 use App\Models\Identity;
+use App\Models\Lifeskill;
 use App\Models\Register;
 use App\Models\Sambutan;
 use Illuminate\Database\Seeder;
@@ -41,9 +43,17 @@ class DatabaseSeeder extends Seeder
             Category::factory(5)->create();
         });
 
-        // DB::transaction(function () {
-        //     Guru::factory(20)->create();
-        // });
+        DB::transaction(function () {
+            Guru::factory(10)->create();
+        });
+
+        DB::transaction(function(){
+            Lifeskill::factory(10)->create();
+        });
+
+        DB::transaction(function(){
+            Galeri::factory(30)->create();
+        });
 
         // DB::transaction(function () {
         //     Mapel::factory(10)->create();

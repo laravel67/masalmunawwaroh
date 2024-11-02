@@ -17,23 +17,41 @@ class KesiswaanController extends Controller
         return view('home.kesiswaan.lifeskill', compact('fisik', 'nonfisik'));
     }
 
-    public function persada()
+    public function lifeskillDetail($slug){
+        $lifeskill = Lifeskill::where('slug', $slug)->firstOrFail();
+        view()->share('title', $lifeskill->name);
+        return view('home.kesiswaan.lifeskill-detail', ['lifeskill' => $lifeskill]);
+    }
+
+    public function bem()
     {
         $pa = Persada::where('category', 'PA')->latest()->first();
         $pi = Persada::where('category', 'PI')->latest()->first();
         if (!$pa && !$pi) {
-            $priode = 'N/A'; // Or any default value you want
+            $priode = '-'; // Or any default value you want
         } else {
             $priode = $pa->priode ?? $pi->priode;
         }
-        view()->share('title', 'Struktur Organisasi Santri Depati Agung ' . $priode);
-        return view('home.kesiswaan.persada', compact('pa', 'pi'));
+        view()->share('title', 'BEM Masa Bakti ' . $priode);
+        return view('home.kesiswaan.bem', compact('pa', 'pi'));
     }
 
     public function album()
     {
-        view()->share('title', 'Album Foto');
-        $posts = Galeri::orderBy('id', 'desc')->paginate(12);
-        return view('home.kesiswaan.galery', compact('posts'));
+        view()->share('title', 'Album Foto dan Video');
+        $galeries  = Galeri::latest()->paginate(12);
+        return view('home.kesiswaan.galery', compact('galeries'));
+    }
+
+    public function albumDetail($slug){
+        $galery=Galeri::where('slug', $slug)->firstOrFail();
+        $title='';
+        if($galery->category =="foto"){
+            $title='Album Foto';
+        }else{
+            $title='Album Video';
+        }
+        view()->share('title', $title);
+        return view('home.kesiswaan.galery-detail', compact('galery'));
     }
 }

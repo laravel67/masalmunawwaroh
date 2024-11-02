@@ -9,4 +9,18 @@ class Galeri extends Model
 {
     use HasFactory;
     protected $guarded = [''];
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
 }

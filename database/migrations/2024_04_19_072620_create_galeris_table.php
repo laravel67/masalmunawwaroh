@@ -13,7 +13,12 @@ return new class extends Migration
     {
         Schema::create('galeris', function (Blueprint $table) {
             $table->id();
-            $table->string('image');
+            $table->string('title');
+            $table->string('slug')->unique();
+            $table->enum('category', ['foto', 'video']);
+            $table->string('link_video')->nullable();
+            $table->string('images')->nullable();
+            $table->text('body')->nullable();
             $table->timestamps();
         });
     }

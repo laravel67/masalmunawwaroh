@@ -1,32 +1,24 @@
 <x-content>
-    <div class="container">
-        <div class="row justify-content-center align-items-center text-center">
+    <div class="container my-5">
+        <div class="row  g-4">
             @forelse ($gurus as $guru)
-            <div class="col-lg-4 col-6" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom"
-                data-aos-duration="1000">
-                @if ($guru->image)
-                <img src="{{ asset('storage/'.$guru->image) }}" class="bd-placeholder-img rounded-circle" width="150"
-                    height="150">
-                @else
-                <svg class="bd-placeholder-img rounded-circle" width="150" height="150"
-                    xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 150x150"
-                    preserveAspectRatio="xMidYMid slice" focusable="false">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777"
-                        dy=".3em">140x140</text>
-                </svg>
-                @endif
-                <h5>
-                    {{ $guru->name }}</h5>
-                <p>
-                    <a class="btn btn-outline-success btn-sm" href="#exampleModalLong{{ $guru->id }}"
-                        data-toggle="modal">Detail</a>
-                </p>
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInUp;">
+                <div class="team-item">
+                    <div class="position-relative overflow-hidden">
+                        <img class="img-fluid w-100" src="{{ asset('mas/img/foto-guru.png') }}" alt="">
+                        <div class="team-social">
+                            <a class="btn btn-light" href="{{ route('guru.detail', $guru->slug) }}">{{ __('Lihat Biografi') }}</a>
+                        </div>
+                    </div>
+                    <div class="text-center p-4">
+                        <h5 class="mb-1">{{ $guru->name }}n</h5>
+                        <span>{{ __("Al-qu'an Hadits") }}</span>
+                    </div>
+                </div>
             </div>
             @empty
             <p>Tidak ada</p>
             @endforelse 
         </div>
     </div>
-@include('home.akademik.modal-detail-biografi')
 </x-content>

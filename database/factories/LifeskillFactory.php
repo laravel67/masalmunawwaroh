@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,13 @@ class LifeskillFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->word,
+            'slug' => Str::slug($this->faker->name),
+            'category' => $this->faker->randomElement(['fisik', 'nonfisik']),
+            'image' => '',
+            'body' => implode("\n\n", $this->faker->paragraphs(10)),
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }

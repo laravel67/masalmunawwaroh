@@ -1,11 +1,7 @@
 <x-content>
     <div class="container my-5">
         <div class="mb-5">
-            <div class="d-flex justify-content-around align-items-center mb-2">
-                <div class="flex-grow-1 border-bottom" style="height: 2px;"></div>
-                <h3 class="text-uppercase mx-3 text-success">{{ __('VISI') }}</h3>
-                <div class="flex-grow-1 border-bottom" style="height: 2px;"></div>
-            </div>
+            <x-liner title="VISI"/>
             <article class="card-text text-capitalize text-dark" style="line-height: 2">
                 <ol>
                     <li>
@@ -18,11 +14,7 @@
             </article>
         </div>
         <div class="mb-5">
-            <div class="d-flex justify-content-around align-items-center mb-2">
-                <div class="flex-grow-1 border-bottom" style="height: 2px;"></div>
-                <h3 class="text-uppercase mx-3 text-success">{{ __('MISI') }}</h3>
-                <div class="flex-grow-1 border-bottom" style="height: 2px;"></div>
-            </div>
+            <x-liner title="MISI"/>
             <ol align="justify" class="card-text text-capitalize text-dark" style="line-height: 2">
                 <li>
                     <span>Menyelenggarakan Pendidikan Yang Modern dan Berkualitas.</span>
@@ -43,11 +35,7 @@
         </div>
 
         <div class="mb-5">
-            <div class="d-flex justify-content-around align-items-center mb-2">
-                <div class="flex-grow-1 border-bottom" style="height: 2px;"></div>
-                <h3 class="text-uppercase mx-3 text-success">{{ __('MOTTO') }}</h3>
-                <div class="flex-grow-1 border-bottom" style="height: 2px;"></div>
-            </div>
+            <x-liner title="MOTTO"/>
             <h4 class="text-success">{{ __('"Mendidik dengan sepenuh hati"') }}</h4>
         </div>
     </div>

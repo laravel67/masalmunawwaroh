@@ -14,7 +14,9 @@ return new class extends Migration
         Schema::create('lifeskills', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('slug')->unique();
             $table->enum('category', ['fisik', 'nonfisik']);
+            $table->text('body');
             $table->string('image')->nullable();
             $table->timestamps();
         });

@@ -7,7 +7,7 @@
                 @if ($sambutan ? $sambutan->image:'')
                     <img class="img-fluid w-100" src="{{ asset('/storage/profiles/'.$sambutan->image) }}">
                 @else
-                    <img class="img-fluid w-100" src="{{ asset('img/Kepala Madrasah.jpeg') }}"> 
+                    <img class="img-fluid w-100" src="{{ asset('mas/img/foto-guru.png') }}"> 
                 @endif
             </div>
             <div class="col-md-6 wow fadeIn" data-wow-delay="0.5s">

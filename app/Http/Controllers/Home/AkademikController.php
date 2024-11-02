@@ -42,6 +42,12 @@ class AkademikController extends Controller
         ]);
     }
 
+    public function guruDetail($slug) {
+        $guru = Guru::where('slug', $slug)->firstOrFail();
+        view()->share('title', 'Biografi');
+        return view('home.akademik.detail-biografi', ['guru' => $guru]);
+    }  
+
     public function programUnggulan(){
         view()->share('title', 'Program Unggulan');
         $programs=Program::latest()->get();

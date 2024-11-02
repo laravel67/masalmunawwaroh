@@ -15,11 +15,11 @@
         <x-tbLink title="Prestasi" href="{{ route('prestasi.aliyah') }}" :active="Request::is('akedemik/identitas*')" />
         <x-tbLink title="Biografi Guru" href="{{ route('biografi') }}" :active="Request::is('akedemik/struktur_organisasi*')"/>
     </x-tbSubLink>
-    <x-tbSubLink title="Kesiswaan" :active="Request::is('profile*')">
-        <x-tbLink title="Ekstrakulikuler" href="{{ route('sambutan') }}" :active="Request::is('profile/sambutan*')"/>
-        <x-tbLink title="Organisasi Siswa" href="{{ route('sejarah') }}" :active="Request::is('profile/sejarah*')"/>
-        <x-tbLink title="Kegiatan Siswa" href="{{ route('identitas') }}" :active="Request::is('profile/identitas*')" />
-        <x-tbLink title="Galeri/Album" href="{{ route('struktur') }}" :active="Request::is('profile/struktur-organisasi*')"/>
+    <x-tbSubLink title="Kesiswaan" :active="Request::is('kesiswaan*')">
+        <x-tbLink title="Ekstrakulikuler" href="{{ route('lifeskill') }}" :active="Request::is('kesiswaan/ekstrakulikuler*')"/>
+        <x-tbLink title="Organisasi Siswa" href="{{ route('bem') }}" :active="Request::is('kesiswaan/bem*')"/>
+        <x-tbLink title="Kegiatan Siswa" href="{{ route('identitas') }}" :active="Request::is('kesiswaan/identitas*')" />
+        <x-tbLink title="Galeri/Album" href="{{ route('album') }}" :active="Request::is('kesiswaan/album*')"/>
     </x-tbSubLink>
     <x-tbSubLink title="Informasi Publik" :active="Request::is('profile*')">
         <x-tbLink title="Tentang" href="{{ route('sambutan') }}" :active="Request::is('profile/sambutan*')"/>
