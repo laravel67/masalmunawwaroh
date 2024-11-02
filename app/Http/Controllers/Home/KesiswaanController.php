@@ -54,4 +54,9 @@ class KesiswaanController extends Controller
         view()->share('title', $title);
         return view('home.kesiswaan.galery-detail', compact('galery'));
     }
+
+    public function kegiatan(){
+        view()->share('title', 'Kegiatan Rutinitas Siswa/Santri');
+        return view('home.kesiswaan.kegiatan');
+    }
 }

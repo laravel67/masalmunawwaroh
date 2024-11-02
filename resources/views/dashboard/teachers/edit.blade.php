@@ -17,40 +17,9 @@
                     <x-input title="Slug Nama" type="text" name="slug" value="{{ old('slug',$guru->slug) }}" readonly/>
                     <x-input title="Pendidikan" type="text" name="pendidikan" value="{{ old('pendidikan',$guru->pendidikan) }}"/>
                     <x-input title="Mulai Mengajar" type="date" name="mulai_mengajar" value="{{ old('mulai_mengajar',$guru->mulai_mengajar) }}"/>
-
-                        <div class="form-group">
-                            <label for="mapel_id">{{ __('Guru Mapel') }}</label>
-                            <select class="form-control mapels @error('mapel_id') is-invalid @enderror" name="mapel_id[]"
-                                id="mapel_id" multiple="multiple">
-                                @foreach ($mapels as $mapel)
-                                <option value="{{ $mapel->id }}" {{ in_array($mapel->id, old('mapel_id',
-                                    $guru->mapels->pluck('id')->toArray())) ? 'selected' : '' }}>
-                                    {{ $mapel->name }}
-                                </option>
-                                @endforeach
-                            </select>
-                            @error('mapel_id')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-        
-                        <div class="form-group">
-                            <label for="jabatan_id">{{ __('Jabatan') }}</label>
-                            <select class="form-control mapels @error('jabatan_id') is-invalid @enderror" name="jabatan_id[]" id="jabatan_id"
-                                multiple="multiple">
-                                @foreach ($jabatans as $jabatan)
-                                <option value="{{ $jabatan->id }}" {{ in_array($jabatan->id, old('jabatan_id',
-                                    $guru->jabatans->pluck('id')->toArray())) ? 'selected' : '' }}>
-                                    {{ $jabatan->name }}
-                                </option>
-                                @endforeach
-                            </select>
-                            @error('jabatan_id')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                    <x-input-text-area name="deskripsi" title="Biografi Singkat" value="{!! old('deskripsi', $guru->deskripsi) !!}" width="200"/>
+                    <x-input title="Guru Mata Pelajaran" type="text" name="guru_mapel" value="{{ old('guru_mapel',$guru->guru_mapel) }}"/>
+                    <x-input title="Jabatan" type="text" name="jabatan" value="{{ old('jabatan',$guru->jabatan) }}"/>
+                    <x-input-text-area name="biografi" title="Biografi Singkat" value="{!! old('biografi', $guru->biografi) !!}" width="200"/>
                     <x-input type="file" name="image" title="Unggah Foto" onchange="previewImage()" accept="image/*"/>
                     <x-btn-form/>
                     @if ($guru->image)

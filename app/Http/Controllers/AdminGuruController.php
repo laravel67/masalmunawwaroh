@@ -35,28 +35,18 @@ class AdminGuruController extends Controller
             'slug' => 'required|string|unique:gurus,slug|max:255',
             'pendidikan' => 'required|string|max:255',
             'mulai_mengajar' => 'required|date',
-            'mapel_id' => 'required|array',
-            'mapel_id.*' => 'integer',
-            'jabatan_id' => 'required|array',
-            'jabatan_id.*' => 'integer',
-            'deskripsi' => 'required',
+            'guru_mapel' => 'nullable|max:50',
+            'jabatan' => 'required|string|max:255',
+            'biografi' => 'required',
             'image' => 'nullable|image|max:1024|file',
         ]);
-        if ($request->file('image')) {
+        if ($request->hasFile('image')) {
             $validated['image'] = $request->file('image')->store('guru-images');
         }
-        $guru = Guru::create([
-            'name' => $validated['name'],
-            'slug' => $validated['slug'],
-            'pendidikan' => $validated['pendidikan'],
-            'mulai_mengajar' => $validated['mulai_mengajar'],
-            'deskripsi' => $validated['deskripsi'],
-            'image' => $validated['image'] ?? null,
-        ]);
-        $guru->mapels()->attach($validated['mapel_id']);
-        $guru->jabatans()->attach($validated['jabatan_id']);
-        return redirect(route('guru.index'))->with('success', 'Data guru berhasil ditambah!');
+        $guru = Guru::create($validated);
+        return redirect()->route('guru.index')->with('success', 'Data guru berhasil ditambah!');
     }
+
 
     public function show(Guru $guru)
     {
@@ -65,58 +55,35 @@ class AdminGuruController extends Controller
 
     public function edit(Guru $guru)
     {
-        $mapels = Mapel::all();
-        $jabatans = Jabatan::all();
-        return view('dashboard.teachers.edit', compact('mapels', 'guru', 'jabatans'));
+        return view('dashboard.teachers.edit', compact('guru'));
     }
 
     public function update(Request $request, Guru $guru)
     {
-        // Atur aturan validasi berdasarkan kondisi
         $rules = [
             'name' => 'required|string|max:255',
+            'slug' => 'required|string|unique:gurus,slug,' . $guru->id . '|max:255',
             'pendidikan' => 'required|string|max:255',
             'mulai_mengajar' => 'required|date',
-            'mapel_id' => 'required|array',
-            'mapel_id.*' => 'integer',
-            'jabatan_id' => 'required|array',
-            'jabatan_id.*' => 'integer',
-            'deskripsi' => 'required',
+            'guru_mapel' => 'nullable|max:50',
+            'jabatan' => 'required|string|max:255',
+            'biografi' => 'required',
             'image' => 'nullable|image|max:1024|file',
         ];
 
-        // Jika ada perubahan pada slug, tambahkan aturan validasi unik
-        if ($request->slug != $guru->slug) {
-            $rules['slug'] = 'required|string|unique:gurus,slug|max:255';
-        }
         $validated = $request->validate($rules);
-        if ($request->file('image')) {
+        if ($request->hasFile('image')) {
+            // Hapus image lama jika ada
             if ($guru->image) {
                 Storage::delete($guru->image);
             }
+            // Simpan image baru
             $validated['image'] = $request->file('image')->store('guru-images');
         }
-        $guru->update([
-            'name' => $validated['name'],
-            'slug' => $validated['slug'] ?? $guru->slug, // Pastikan slug tetap sama jika tidak berubah
-            'pendidikan' => $validated['pendidikan'],
-            'mulai_mengajar' => $validated['mulai_mengajar'],
-            'deskripsi' => $validated['deskripsi'],
-            'image' => $validated['image'] ?? $guru->image, // Pastikan gambar tetap sama jika tidak ada perubahan
-        ]);
-        $guru->mapels()->sync($validated['mapel_id']);
-        $guru->jabatans()->sync($validated['jabatan_id']);
-        return redirect(route('guru.index'))->with('success', 'Data guru berhasil diubah!');
-    }
+        $guru->update($validated);
 
-    // public function destroy(Guru $guru)
-    // {
-    //     if ($guru->image) {
-    //         Storage::delete($guru->image);
-    //     }
-    //     Guru::destroy($guru->id);
-    //     return back()->with('success', 'Sarana Prasarna has been deleted');
-    // }
+        return redirect()->route('guru.index')->with('success', 'Data guru berhasil diubah!');
+    }
 
     public function slugGuru(Request $request)
     {

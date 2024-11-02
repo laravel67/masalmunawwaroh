@@ -26,7 +26,6 @@
                     @endif
                 </form>
               </div>
-              <x-image-draw/>
             </div>
           </div>
         </div>

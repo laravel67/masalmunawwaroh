@@ -16,7 +16,6 @@
                 <th>{{ __('No') }}</th>
                 <th>{{ __('Gambar') }}</th>
                 <th>{{ __('Nama Program') }}</th>
-                <th>{{ __('Nama Alias') }}</th>
                 <th>{{ __('Aksi') }}</th>
               </tr>
             </thead>
@@ -28,7 +27,6 @@
                     <img width="100" class="img-fluid" src="{{ $program->image ? asset('storage/' . $program->image) : asset('backend/img/no-image.svg') }}" alt="{{ $program->name ?? 'No Image Available' }}" />
                   </td>
                   <td>{{ $program->name }}</td>
-                  <td>{{ $program->alias }}</td>
                   <td>
                     <x-btnAct>
                         <x-act title="Detail Program" href="{{ route('aprogram.show', $program->slug) }}" icon="book-open" />

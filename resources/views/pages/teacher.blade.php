@@ -37,7 +37,7 @@
                         @if ($guru->image)
                         <img src="{{ asset('storage/'.$guru->image) }}" class=" rounded-circle" width="50" height="50">
                         @else
-                        <img src="{{ asset('frontend/img/man-user.svg') }}" class=" rounded-circle" width="50" height="50">
+                        <img src="{{ asset('mas/img/foto-guru.png') }}" class=" rounded-circle" width="50" height="50">
                         @endif
                   </td>
                   <td>{{ $guru->name }}</td>

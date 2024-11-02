@@ -19,6 +19,7 @@ use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\Home\AkademikController;
 use App\Http\Controllers\Home\KesiswaanController;
 use App\Http\Controllers\AdminAchievmentController;
+use App\Http\Controllers\AdminKegiatanController;
 use App\Http\Controllers\AdminMasterdataController;
 use App\Http\Controllers\Home\AchievmentController;
 use App\Http\Controllers\AdminProfilemasController;
@@ -42,9 +43,9 @@ Route::prefix('/profile')->controller(ProfileController::class)->group(function 
 // Akademik
 Route::prefix('/akademik')->controller(AkademikController::class)->group(function () {
     Route::get('/program-unggulan','programUnggulan')->name('pronggul');
+    Route::get('/sarpras', 'sarana')->name('sarana');
     Route::get('/kurikulum', 'kurikulum')->name('kurikulum');
     Route::get('/daftar-prestasi', 'prestasi')->name('prestasi.aliyah');
-    Route::get('/sarpras', 'sarana')->name('sarana');
     Route::get('/sarpras/{slug}', 'saranaDetail')->name('sarana.detail');
     Route::get('/biografi', 'biografi')->name('biografi');
     Route::get('/biografi/{slug}', 'guruDetail')->name('guru.detail');
@@ -62,6 +63,7 @@ Route::prefix('/kesiswaan')->controller(KesiswaanController::class)->group(funct
     Route::get('/bem', 'bem')->name('bem');
     Route::get('/album', 'album')->name('album');
     Route::get('/album/{slug}', 'albumDetail')->name('album.detail');
+    Route::get('/kegiatan', 'Kegiatan')->name('kegiatan.siwa');
 });
 // Pendaftaran PPDB
 Route::prefix('/ppdb')->controller(PpdbController::class)->group(function () {
@@ -117,8 +119,9 @@ Route::prefix('/dashboard')->middleware(['auth', 'admin'])->group(function () {
         Route::get('/mars', 'mars')->name('profilemas.mars');
         Route::post('/mars/update', 'updateMars')->name('mars.update');
     });
+    Route::resource('/kesiswaan/kegiatan', AdminKegiatanController::class)->names('akegiatan');
 
-    Route::resource('/programs', AdminProgramController::class)->names('aprogram');
+    Route::resource('akademik/programs', AdminProgramController::class)->names('aprogram');
     Route::resource('/akademik/guru', AdminGuruController::class)->names('guru');
     Route::resource('/akademik/prestasi', AdminAchievmentController::class)->names('prestasi');
     Route::resource('/akademik/sarana', AdminSaranaController::class)->names('asarana');

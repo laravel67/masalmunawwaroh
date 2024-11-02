@@ -16,8 +16,6 @@
                                 
                                 <x-input type="text" title="Nama Program" name="name" value="{{ old('name', $program->name) }}" />
                                 <x-input type="text" title="Slug Program" name="slug" value="{{ old('slug', $program->slug) }}" readonly />
-                                <x-input type="text" title="Nama Alias Program" name="alias" value="{{ old('alias', $program->alias) }}" />
-                                {{-- <x-input-select title="Kategori" name="category_id" :options="$categories" /> --}}
                                 <x-input-text-area width="400" name="body" title="Deskripsi Program" value="{!! old('body', $program->body) !!}" />
                                 <x-input type="file" title="Image/Gambar" name="image" onchange="previewImage()" accept="image/*" />
                                 <x-btn-form></x-btn-form>
@@ -27,7 +25,6 @@
                                      alt="{{ $program->name ?? 'No Image Available' }}" />
                             </form>
                         </div>
-                        <x-image-draw/>
                     </div>
                 </div>
             </div>

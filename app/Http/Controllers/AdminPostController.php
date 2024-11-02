@@ -17,6 +17,7 @@ class AdminPostController extends Controller
     {
         return view()->share('title', 'Kelola Postingan');
     }
+    
     public function index()
     {
 

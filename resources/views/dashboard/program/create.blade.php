@@ -13,16 +13,13 @@
                 <form action="{{ route('aprogram.store') }}" method="POST" enctype="multipart/form-data">
                   @csrf
                   <x-input type="text" title="Nama Program" name="name" value="{{ old('name') }}" />
-                  <x-input type="text" title="Slug Program" name="slug" value="{{ old('slug') }}" readonly/>
-                  <x-input type="text" title="Nama Alias Program" name="alias" value="{{ old('alias') }}"/>
-                  {{-- <x-input-select title="Kategori" name="category_id" :options="$categories" /> --}}
+                  <x-input type="text" title="Slug Program" name="slug" value="{{ old('slug') }}" readonly/>                  {{-- <x-input-select title="Kategori" name="category_id" :options="$categories" /> --}}
                   <x-input-text-area width="400" name="body" title="Deskripsi Program"/>
                   <x-input type="file" title="Image/Gambar" name="image"  onchange="previewImage()" accept="image/*"/>
                   <x-btn-form></x-btn-form>
                   <img id="previewContainer" class="mt-3 img-fluid" width="300">
                 </form>
               </div>
-              <x-image-draw/>
             </div>
           </div>
         </div>

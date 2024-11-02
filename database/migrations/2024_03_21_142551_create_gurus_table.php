@@ -17,7 +17,9 @@ return new class extends Migration
             $table->string('slug');
             $table->string('pendidikan');
             $table->date('mulai_mengajar');
-            $table->text('deskripsi')->nullable();
+            $table->string('guru_mapel')->nullable();
+            $table->string('jabatan')->nullable();
+            $table->text('biografi')->nullable();
             $table->string('image')->nullable();
             $table->timestamps();
         });

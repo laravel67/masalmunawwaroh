@@ -25,7 +25,6 @@ class AdminProgramController extends Controller
         $validated = $request->validate([
             'name' => 'required|max:255|unique:programs,name',
             'slug' => 'required|unique:programs,slug',
-            'alias' => 'required|max:15',
             'body' => 'required',
             'image' => 'nullable|image|max:1024|file',
         ]);
@@ -51,7 +50,6 @@ class AdminProgramController extends Controller
         $validated = $request->validate([
             'name' => 'required|max:255|unique:programs,name,'.$program->id,
             'slug' => 'required|unique:programs,slug,'.$program->id,
-            'alias' => 'required|max:15',
             'body' => 'required',
             'image' => 'nullable|image|max:1024|file',
         ]);

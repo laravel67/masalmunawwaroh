@@ -16,7 +16,9 @@
                     <x-input title="Slug Nama" type="text" name="slug" value="{{ old('slug') }}" readonly/>
                     <x-input title="Pendidikan" type="text" name="pendidikan" value="{{ old('pendidikan') }}"/>
                     <x-input title="Mulai Mengajar" type="date" name="mulai_mengajar" value="{{ old('mulai_mengajar') }}"/>
-                    <div class="form-group">
+                    <x-input title="Guru Mata Pelajaran" type="text" name="guru_mapel" value="{{ old('guru_mapel') }}"/>
+                    <x-input title="Jabatan" type="text" name="jabatan" value="{{ old('jabatan') }}"/>
+                    {{-- <div class="form-group">
                         <label for="mapel_id">{{ __('Guru Mata Pelajaran') }}</label>
                         <select type="text" class="form-control mapels @error('mapel_id') is-invalid @enderror"
                             name="mapel_id[]" id="mapel_id" multiple="multiple">
@@ -29,8 +31,8 @@
                         @error('mapel_id')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
-                    </div>
-                    <div class="form-group">
+                    </div> --}}
+                    {{-- <div class="form-group">
                         <label for="jabatan_id">{{ __('Jabatan') }}</label>
                         <select type="text" class="form-control mapels @error('jabatan_id') is-invalid @enderror" name="jabatan_id[]"
                             id="jabatan_id" multiple="multiple">
@@ -43,8 +45,8 @@
                         @error('jabatan_id')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
-                    </div>
-                    <x-input-text-area name="deskripsi" title="Biografi Singkat" value="{{ old('deskripsi') }}" width="200"/>
+                    </div> --}}
+                    <x-input-text-area name="biografi" title="Biografi Singkat" value="{{ old('biografi') }}" width="200"/>
                     <x-input type="file" name="image" title="Unggah Foto" onchange="previewImage()" accept="image/*"/>
                     <x-btn-form/>
                     <img id="previewContainer" class="mt-3 img-fluid" width="300">

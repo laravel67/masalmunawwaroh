@@ -56,10 +56,6 @@ class DatabaseSeeder extends Seeder
         });
 
         // DB::transaction(function () {
-        //     Mapel::factory(10)->create();
-        // });
-
-        // DB::transaction(function () {
         //     Student::factory(10)->create();
         // });
 
@@ -75,17 +71,5 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('123'),
             'role' => 'admin',
         ]);
-
-        // $names = [
-        //     'YAYASAN', 'PIMPINAN', 'KABAG TU', 'BENDAHARA', 'PENGASUH PUTRA',
-        //     'PENGASUH PUTRI', 'KAMAD MAS', 'KAMAD MTS', 'BID PENDIDIKAN',
-        //     'BID PRASARANA', 'BID KESISWAAN', 'BID KESEHATAN'
-        // ];
-
-        // foreach ($names as $name) {
-        //     DB::transaction(function () use ($name) {
-        //         Jabatan::factory()->create(['name' => $name]);
-        //     });
-        // }
     }
 }

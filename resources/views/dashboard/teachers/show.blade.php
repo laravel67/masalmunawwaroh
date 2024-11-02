@@ -19,7 +19,7 @@
                             <img class=" img-fluid" src="{{ asset('storage/'.$guru->image)}}" alt="Generic placeholder image"
                                 width="340" height="340">
                             @else
-                            <img class=" img-fluid" src="{{ asset('frontend/img/man-user.svg')}}" alt="Generic placeholder image" width="340"
+                            <img class=" img-fluid" src="{{ asset('mas/img/foto-guru.png')}}" alt="Generic placeholder image" width="340"
                                 height="340">
                             @endif
                         </li>
@@ -30,16 +30,10 @@
                             Pendidikan Terahir : <strong>{{ $guru->pendidikan }}</strong>
                         </li>
                         <li class="list-group-item">
-                            Guru Mapel :
-                            @foreach ($guru->mapels as $mapel)
-                            <strong class="badge bg-success text-light rounded-0">{{ $mapel->name }}</strong>
-                            @endforeach
+                            Guru Mapel : <strong>{{ $guru->guru_mapel }}</strong>
                         </li>
                         <li class="list-group-item">
-                            Jabatan :
-                            @foreach ($guru->jabatans as $jabatan)
-                            <strong class="badge bg-danger text-light rounded-0">{{ $jabatan->name }}</strong>
-                            @endforeach
+                            Jabatan : <strong>{{ $guru->jabatan }}</strong>
                         </li>
                         <li class="list-group-item">
                             Mulai Mengajar : <strong>{{
@@ -53,7 +47,6 @@
                         </li>
                     </ul>
                 </div>
-                <x-image-draw/>
             </div>    
         </div>
         <div class="card-footer card-comments" style="display: block;">

@@ -19,10 +19,13 @@ class GuruFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
-            'slug' => Str::slug($this->faker->name), // Menambahkan pembuatan slug dari nama
-            'pendidikan' => $this->faker->sentence, // Menambahkan data pendidikan
-            'mulai_mengajar' => $this->faker->date(), // Menambahkan data mulai mengajar
-            'deskripsi' => $this->faker->paragraph,
+            'slug' => Str::slug($this->faker->unique()->name), // Slug unik untuk setiap nama
+            'pendidikan' => $this->faker->randomElement(['S1', 'S2', 'S3', 'D3', 'D4']),
+            'mulai_mengajar' => $this->faker->date(),
+            'guru_mapel' => $this->faker->optional()->word,
+            'jabatan' => $this->faker->optional()->jobTitle,
+            'biografi' => $this->faker->optional()->paragraph,
+            'image' => null,
         ];
     }
 }

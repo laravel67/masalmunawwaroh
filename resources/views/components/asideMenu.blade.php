@@ -6,10 +6,10 @@
         <x-linkSub title="Kategori" href="{{ route('category.index') }}" :active="request()->is('dashboard/categories*')"/>
     </x-asideSubMenu>
 
-    <x-asideSubMenu title="Master Data" icon="database" :active="request()->is('dashboard/masterdata*')">
+    {{-- <x-asideSubMenu title="Master Data" icon="database" :active="request()->is('dashboard/masterdata*')">
         <x-linkSub title="Jabatan" href="{{ route('admin.jabatan') }}" :active="request()->is('dashboard/masterdata/jabatan*')" />
         <x-linkSub title="Mata Pelajaran" href="{{ route('admin.mapel') }}" :active="request()->is('dashboard/masterdata/mapel*')" />
-    </x-asideSubMenu>
+    </x-asideSubMenu> --}}
 
     <x-asideSubMenu title="PPDB" icon="id-card" :active="request()->is('dashboard/ppdb*')">
         <x-linkSub title="Data PPDB" href="{{ route('appdb.index') }}" :active="request()->is('dashboard/ppdb/siswa-baru*')" />
@@ -22,18 +22,17 @@
         <x-linkSub title="Visi & Misi" href="{{ route('profilemas.visimisi') }}" :active="request()->is('dashboard/profile-madrasah/visi-misi*')" />
         <x-linkSub title="Mars" href="{{ route('profilemas.mars') }}" :active="request()->is('dashboard/profile-madrasah/mars*')" />
     </x-asideSubMenu>
-
-    <x-link href="{{ route('aprogram.index') }}" icon="star" title="Program Unggulan" :active="request()->is('dashboard/programs*')"/>
-
     <x-asideSubMenu title="Akademik" icon="book-reader" :active="request()->is('dashboard/akademik*')">
         <x-linkSub title="Data Guru" href="{{ route('guru.index') }}" :active="request()->is('dashboard/akademik/guru*')" />
         <x-linkSub title="Prestasi" href="{{ route('prestasi.index') }}" :active="request()->is('dashboard/akademik/prestasi*')" />
         <x-linkSub title="Sarana Prasarana" href="{{ route('asarana.index') }}" :active="request()->is('dashboard/akademik/sarana*')" />
+        <x-linkSub title="Program Unggulan" href="{{ route('aprogram.index') }}" :active="request()->is('dashboard/akademik/programs*')" />
     </x-asideSubMenu>
     <x-asideSubMenu title="Kesiswaan" icon="user-tie" :active="request()->is('dashboard/kesiswaan*')">
         <x-linkSub title="Ekstrakulikuler" href="{{ route('guru.index') }}" :active="request()->is('dashboard/kesiswaan/guru*')" />
         <x-linkSub title="Organisasi Santri" href="{{ route('prestasi.index') }}" :active="request()->is('dashboard/kesiswaan/prestasi*')" />
         <x-linkSub title="Tata Tertib" href="{{ route('asarana.index') }}" :active="request()->is('dashboard/kesiswaan/sarana*')" />
+        <x-linkSub title="Kegiatan" href="{{ route('akegiatan.index') }}" :active="request()->is('dashboard/kesiswaan/kegiatan*')" />
         <x-linkSub title="Album/Galeri" href="{{ route('asarana.index') }}" :active="request()->is('dashboard/kesiswaan/sarana*')" />
     </x-asideSubMenu>
 

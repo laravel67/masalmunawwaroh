@@ -25,7 +25,6 @@
                         {!! $program->body !!}
                     </article>
                 </div>
-                <x-image-draw/>
             </div>
         </div>
         <!-- /.card-body -->

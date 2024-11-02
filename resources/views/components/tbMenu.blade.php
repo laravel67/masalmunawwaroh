@@ -10,15 +10,15 @@
     <a href="{{ route('posts') }}" class="nav-item nav-link text-uppercase">{{ __('Berita') }}</a>
     <x-tbSubLink title="Akademik" :active="Request::is('akademik*')">
         <x-tbLink title="Program Unggulan" href="{{ route('pronggul') }}" :active="Request::is('akademik/program-unggulan*')"/>
-        <x-tbLink title="Sarana Prasarana" href="{{ route('sarana') }}" :active="Request::is('akedemik/sambutan*')"/>
-        <x-tbLink title="Kurikulum Madrasah" href="{{ route('kurikulum') }}" :active="Request::is('akedemik/sejarah*')"/>
-        <x-tbLink title="Prestasi" href="{{ route('prestasi.aliyah') }}" :active="Request::is('akedemik/identitas*')" />
-        <x-tbLink title="Biografi Guru" href="{{ route('biografi') }}" :active="Request::is('akedemik/struktur_organisasi*')"/>
+        <x-tbLink title="Sarana Prasarana" href="{{ route('sarana') }}" :active="Request::is('akademik/sarpras*')"/>
+        <x-tbLink title="Kurikulum Madrasah" href="{{ route('kurikulum') }}" :active="Request::is('akademik/kurikulum*')"/>
+        <x-tbLink title="Prestasi" href="{{ route('prestasi.aliyah') }}" :active="Request::is('akademik/daftar-prestasi*')" />
+        <x-tbLink title="Biografi Guru" href="{{ route('biografi') }}" :active="Request::is('akademik/biografi*')"/>
     </x-tbSubLink>
     <x-tbSubLink title="Kesiswaan" :active="Request::is('kesiswaan*')">
         <x-tbLink title="Ekstrakulikuler" href="{{ route('lifeskill') }}" :active="Request::is('kesiswaan/ekstrakulikuler*')"/>
         <x-tbLink title="Organisasi Siswa" href="{{ route('bem') }}" :active="Request::is('kesiswaan/bem*')"/>
-        <x-tbLink title="Kegiatan Siswa" href="{{ route('identitas') }}" :active="Request::is('kesiswaan/identitas*')" />
+        <x-tbLink title="Kegiatan Siswa" href="{{ route('kegiatan.siwa') }}" :active="Request::is('kesiswaan/kegiatan*')" />
         <x-tbLink title="Galeri/Album" href="{{ route('album') }}" :active="Request::is('kesiswaan/album*')"/>
     </x-tbSubLink>
     <x-tbSubLink title="Informasi Publik" :active="Request::is('profile*')">
