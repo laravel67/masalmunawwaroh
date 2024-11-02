@@ -1,36 +1,30 @@
-<ul class="navbar-nav">
-    <li class="nav-item mx-lg-2 {{ Request::is('/*') ? 'active':'' }}">
-        <a class="nav-link" href="{{ route('home') }}">{{ __('Beranda') }}</a>
-    </li>
-    <x-tbSubLink title="Profile" :active="Request::is('profile*')">
+<div class="navbar-nav">
+    <a href="/" class="nav-item nav-link text-uppercase">{{ __('Beranda') }}</a>
+    <x-tbSubLink title="Profile Madrasah" :active="Request::is('profile*')">
         <x-tbLink title="Sambutan" href="{{ route('sambutan') }}" :active="Request::is('profile/sambutan*')"/>
         <x-tbLink title="Sejarah" href="{{ route('sejarah') }}" :active="Request::is('profile/sejarah*')"/>
         <x-tbLink title="Identitas" href="{{ route('identitas') }}" :active="Request::is('profile/identitas*')" />
         <x-tbLink title="Struktur Organisasi" href="{{ route('struktur') }}" :active="Request::is('profile/struktur-organisasi*')"/>
         <x-tbLink title="Visi & Misi" href="{{ route('visi') }}" :active="Request::is('profile/visi-misi*')"/>
     </x-tbSubLink>
-    <x-tbSubLink title="Program Unggulan">
-        <x-tbLink title="Tahfidz Qur'an"/>
-        <x-tbLink title="Pramuka"/>
+    <a href="{{ route('posts') }}" class="nav-item nav-link text-uppercase">{{ __('Berita') }}</a>
+    <x-tbSubLink title="Akademik" :active="Request::is('akademik*')">
+        <x-tbLink title="Program Unggulan" href="{{ route('pronggul') }}" :active="Request::is('akademik/program-unggulan*')"/>
+        <x-tbLink title="Sarana Prasarana" href="{{ route('sarana') }}" :active="Request::is('akedemik/sambutan*')"/>
+        <x-tbLink title="Kurikulum Madrasah" href="{{ route('kurikulum') }}" :active="Request::is('akedemik/sejarah*')"/>
+        <x-tbLink title="Prestasi" href="{{ route('prestasi.aliyah') }}" :active="Request::is('akedemik/identitas*')" />
+        <x-tbLink title="Biografi Guru" href="{{ route('biografi') }}" :active="Request::is('akedemik/struktur_organisasi*')"/>
     </x-tbSubLink>
-    <x-tbSubLink title="Akademik">
-        <x-tbLink title="Kurikulum"/>
-        <x-tbLink title="Prestasi"/>
-        <x-tbLink title="Sarana Prasarana"/>
-        <x-tbLink title="Biografi Guru"/>
+    <x-tbSubLink title="Kesiswaan" :active="Request::is('profile*')">
+        <x-tbLink title="Ekstrakulikuler" href="{{ route('sambutan') }}" :active="Request::is('profile/sambutan*')"/>
+        <x-tbLink title="Organisasi Siswa" href="{{ route('sejarah') }}" :active="Request::is('profile/sejarah*')"/>
+        <x-tbLink title="Kegiatan Siswa" href="{{ route('identitas') }}" :active="Request::is('profile/identitas*')" />
+        <x-tbLink title="Galeri/Album" href="{{ route('struktur') }}" :active="Request::is('profile/struktur-organisasi*')"/>
     </x-tbSubLink>
-    <x-tbSubLink title="Kesiswaan">
-        <x-tbLink title="Ekstra Kulikuler"/>
-        <x-tbLink title="Organinasasi Santri"/>
-        <x-tbLink title="Tata Tertib"/>
-        <x-tbLink title="Album/Galeri"/>
+    <x-tbSubLink title="Informasi Publik" :active="Request::is('profile*')">
+        <x-tbLink title="Tentang" href="{{ route('sambutan') }}" :active="Request::is('profile/sambutan*')"/>
+        <x-tbLink title="Agenda" href="{{ route('sejarah') }}" :active="Request::is('profile/sejarah*')"/>
+        <x-tbLink title="Arsip" href="{{ route('identitas') }}" :active="Request::is('profile/identitas*')" />
+        <x-tbLink title="Pengumuman" href="{{ route('identitas') }}" :active="Request::is('profile/identitas*')" />
     </x-tbSubLink>
-    <x-tbSubLink title="Informasi">
-        <x-tbLink title="Berita/Artikel"/>
-        <x-tbLink title="Agenda"/>
-        <x-tbLink title="Pengumuman"/>
-    </x-tbSubLink>
-    <li class="nav-item mx-lg-2 {{ Request::is('/*') ? 'active':'' }}">
-        <a class="nav-link" href="{{ route('home') }}">{{ __('PSB') }}</a>
-    </li>
-</ul>
+</div>

@@ -41,8 +41,11 @@ Route::prefix('/profile')->controller(ProfileController::class)->group(function 
 });
 // Akademik
 Route::prefix('/akademik')->controller(AkademikController::class)->group(function () {
+    Route::get('/program-unggulan','programUnggulan')->name('pronggul');
     Route::get('/kurikulum', 'kurikulum')->name('kurikulum');
-    Route::get('/sarana-prasarana', 'sarana')->name('sarana');
+    Route::get('/daftar-prestasi', 'prestasi')->name('prestasi.aliyah');
+    Route::get('/sarpras', 'sarana')->name('sarana');
+    Route::get('/sarpras/detail/{slug}', 'saranaDetail')->name('sarana.detail');
     Route::get('/biografi', 'biografi')->name('biografi');
 });
 // Achievment/Prestasi

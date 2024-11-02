@@ -2,7 +2,7 @@
 
 <div class="form-group">
     <label for="{{ $name }}">{{ $title }}</label>
-    <textarea name="{{ $name }}" wire:model='{{ $name }}' id="summernote" {{ $attributes->merge(['class' => 'form-control ' . ($errors->has($name) ? 'is-invalid' : '')]) }}>{{ $value }}</textarea>
+    <textarea name="{{ $name }}" wire:model='{{ $name }}' id="summernote" {{ $attributes->merge(['class' => 'form-control ' . ($errors->has($name) ? 'is-invalid' : '')]) }} value="">{!! $value !!}</textarea>
     {{-- <input id="{{ $name }}" type="hidden" name="{{ $name }}" value="{{ old($name, $value) }}"
         class="{{ $errors->has($name) ? 'is-invalid' : '' }}">
     <trix-editor input="{{ $name }}"></trix-editor> --}}

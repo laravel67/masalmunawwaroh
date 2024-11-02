@@ -1,91 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="shortcut icon" href="{{ asset('frontend/img/logo-mas-almunawwaroh-removebg-preview.png') }}" type="image/x-icon">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('frontend/css/offcanvas.css') }}">
-    <link rel="stylesheet" href="{{ asset('style.css') }}">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    @stack('css')
     <title>{{ config('app.name') }}</title>
-    <style>
-        html {
-            scroll-behavior: smooth;
-        }
+    <link rel="icon" href="{{ asset('logoalm.png') }}">
 
-        #backToTopBtn {
-            position: fixed;
-            bottom: 10px;
-            right: 10px;
-            width: 50px;
-            height: 50px;
-            z-index: 999;
-            display: none;
-        }
-        div#social-button {
-            margin: 0 auto;
-            max-width: 500px;
-        }
-        div#social-button ul li {
-            display: inline-block;
-        }          
-        div#social-button ul li a {
-            padding: 20px;
-            border: 1px solid #ccc;
-            margin: 1px;
-            font-size: 30px;
-            color: #222;
-            background-color: #ccc;
-        }
-    </style>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Red+Rose:wght@600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheets -->
+    <link href="{{ asset('nas/lib/animate/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('mas/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+    
+    <!-- Main Stylesheets -->
+    <link href="{{ asset('mas/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('mas/css/styles.css') }}" rel="stylesheet">
 </head>
 
-<body class="bg-light">
-    <x-tbMain/>
-    <main role="main" class="container-md mb-5">
-        {{ $slot }}
-        <button class="btn btn-success rounded-circle" onclick="topFunction()" id="backToTopBtn" class="btn btn-primary"
-            title="Go to top"><i class="fa-solid fa-chevron-up"></i></button>
-    </main>
-    <x-footer/>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="{{ asset('frontend/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('frontend/js/offcanvas.js') }}"></script>
-    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-    <script>
-        AOS.init();
-    </script>
-    <script>
-        $(document).ready(function() {
-        $('.nav-item.dropdown').hover(function() {
-        $(this).find('.dropdown-menu').addClass('show');
-        }, function() {
-        $(this).find('.dropdown-menu').removeClass('show');
-        });
-        });
-    </script>
-    <script>
-    window.onscroll = function() {scrollFunction()};
+<body style="overflow-x: hidden;">
+    <x-tbMain />
+    <x-header />
     
-    function scrollFunction() {
-      var mybutton = document.getElementById("backToTopBtn");
-      if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-        mybutton.style.display = "block";
-      } else {
-        mybutton.style.display = "none";
-      }
-    }
-    function topFunction() {
-      document.body.scrollTop = 0; 
-      document.documentElement.scrollTop = 0;
-    }
-    </script>
-</body>
+    <!-- Main Content Slot -->
+    {{ $slot }}
+    
+    <x-footer />
+    
+    <!-- Back to Top Button -->
+    <a href="#" class="btn btn-lg btn-success btn-square rounded-circle back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
 
+    <!-- jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Libraries Scripts -->
+    <script src="{{ asset('mas/lib/wow/wow.min.js') }}"></script>
+    <script src="{{ asset('mas/lib/easing/easing.min.js') }}"></script>
+    <script src="{{ asset('mas/lib/waypoints/waypoints.min.js') }}"></script>
+    <script src="{{ asset('mas/lib/counterup/counterup.min.js') }}"></script>
+    <script src="{{ asset('mas/lib/owlcarousel/owl.carousel.min.js') }}"></script>
+    
+    <!-- Main Script -->
+    <script src="{{ asset('mas/js/main.js') }}"></script>
+</body>
 </html>

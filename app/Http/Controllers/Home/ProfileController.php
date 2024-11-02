@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Guru;
 use App\Models\Jabatan;
+use App\Models\Profile;
 
 class ProfileController extends Controller
 {
@@ -65,15 +66,14 @@ class ProfileController extends Controller
 
     public function visi()
     {
-        view()->share('title', 'Visi, Misi & Motto');
+        view()->share('title', 'Visi, Misi dan Motto');
         return view('home.profile.visi-misi');
     }
 
     public function sambutan()
     {
         view()->share('title', 'Sambutan Kepala Madrasah');
-        return view('home.profile.sambutan', [
-            'sambutan' => Sambutan::latest()->first()
-        ]);
+        $sambutan = Profile::latest()->first();
+        return view('home.profile.sambutan',compact('sambutan'));
     }
 }

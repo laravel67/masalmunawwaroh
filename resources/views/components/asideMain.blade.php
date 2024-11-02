@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <a href="{{ route('dashboard') }}" class="brand-link">
-      <img src="{{ asset('frontend/img/logo-mas-almunawwaroh-removebg-preview.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <img src="{{ asset('logoalm.png') }}" alt="SIMADAL" class="brand-image img-circle">
       <span class="brand-text font-weight-light">{{ __('SIMADAL') }}</span>
     </a>
     <div class="sidebar">

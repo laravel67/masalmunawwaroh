@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
+use App\Models\Achievment;
 use App\Models\Guru;
+use App\Models\Program;
 use App\Models\Sarana;
 use Illuminate\Http\Request;
 
@@ -24,6 +26,13 @@ class AkademikController extends Controller
         ]);
     }
 
+    public function saranaDetail($slug) {
+        $sarana = Sarana::where('slug', $slug)->firstOrFail();
+        view()->share('title', $sarana->name);
+        
+        return view('home.akademik.detail-sarana', ['sarana' => $sarana]);
+    }    
+
     public function biografi()
     {
         view()->share('title', 'Biografi Tenaga Pengajar');
@@ -32,4 +41,17 @@ class AkademikController extends Controller
             'gurus' => $gurus
         ]);
     }
+
+    public function programUnggulan(){
+        view()->share('title', 'Program Unggulan');
+        $programs=Program::latest()->get();
+        return view('home.akademik.program', compact('programs'));
+    }
+
+    public function prestasi(){
+        view()->share('title', 'Daftar Prestasi');
+        $prestasi=Achievment::latest()->get();
+        return view('home.akademik.prestasi', compact('prestasi'));
+    }
+
 }

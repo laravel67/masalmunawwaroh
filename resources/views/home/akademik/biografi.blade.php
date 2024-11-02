@@ -1,9 +1,7 @@
 <x-content>
-    <x-profile-header />
-<div class="card mt-3 mb-1" data-aos="fade-up" data-aos-duration="500">
-    <div class="card-body">
+    <div class="container">
         <div class="row justify-content-center align-items-center text-center">
-            @foreach ($gurus as $guru)
+            @forelse ($gurus as $guru)
             <div class="col-lg-4 col-6" data-aos="fade-up" data-aos-anchor-placement="bottom-bottom"
                 data-aos-duration="1000">
                 @if ($guru->image)
@@ -25,9 +23,10 @@
                         data-toggle="modal">Detail</a>
                 </p>
             </div>
-            @endforeach
+            @empty
+            <p>Tidak ada</p>
+            @endforelse 
         </div>
     </div>
-</div>
 @include('home.akademik.modal-detail-biografi')
 </x-content>

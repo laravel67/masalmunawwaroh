@@ -29,27 +29,18 @@ class PostController extends Controller
         }
         $posts = Post::latest()->filter(request(['search', 'category', 'author']))->paginate(7)->withQueryString();
         $categories = Category::latest()->get();
-        // $shareComponent = new Share();
-        // $shareComponent->page(
-        //     'http://webmas.test/berita',
-        // )->facebook()->twitter()->linkedin()->telegram()->whatsapp();
         $jadwal = Acara::where('status', false)->orderBy('id', 'desc')->get();
         return view('home.posts.posts', [
             'posts' => $posts,
             'subtitle' => $title,
             'categories' => $categories,
-            // 'shareComponent' => $shareComponent,
             'jadwals' => $jadwal
         ]);
     }
 
     public function show($slug)
     {
-        $shareComponent = new Share();
-        $url = str_replace('{slug}', $slug, 'https://depatiagung.my.id/berita/{slug}');
-        $shareComponent->page($url);
-        $shareComponent->facebook()->twitter()->linkedin()->telegram()->whatsapp();
         $post = Post::where('slug', $slug)->firstOrFail();
-        return view('home.posts.post', compact('post', 'shareComponent'));
+        return view('home.posts.post', compact('post'));
     }
 }

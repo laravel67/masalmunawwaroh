@@ -1,169 +1,95 @@
 <x-content>
-    <div data-aos="fade-up" data-aos-duration="500"> 
-    <header class="blog-header pt-5">
-        <div class="d-flex justify-content-end m-0 p-0 mt-2">
-            {{-- {!! $shareComponent !!} --}}
-        </div>
-    </header>
-    <div class="nav-scroller py-1 mb-2">
-        <nav class="nav d-flex justify-content-between bg-success">
-            <a class="p-2 text-light text-decoration-none" href="{{ route('posts') }}"><strong>Berita </strong> <small>{{
-                    $subtitle }}</small></a>
-            {{-- @foreach ($categories as $category)
-            <a class="p-2 text-light" href="{{ route('posts', ['category' => $category->slug]) }}">{{ $category->name
-                }}</a>
-            @endforeach --}}
-            <form class=" d-flex justify-content-end align-items-center" action="{{ route('posts') }}">
-                @if (request('category', 'author'))
-                <input type="hidden" name="category" value="{{ request('category',old('category')) }}">
-                <input type="hidden" name="author" value="{{ request('author') }}">
-                {{-- <input type="hidden" name="unit" value="{{ request('unit') }}"> --}}
-                @endif
-                <input class="form-control form-control-sm mx-md-1" type="search" name="search" placeholder="Pencarian..."
-                    value="{{ Request('search') }}">
-                <button class="btn btn-success btn-sm" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-            </form>
-        </nav>
+    <div class="d-md-flex align-item-center justify-content-around wow fadeInUp mb-5 px-2" data-wow-delay="0.1s">
+        @if (!$subtitle)
+            <h3>{{ __('Berita terbaru') }}</h3>
+        @else
+            <h3>{{ $subtitle }}</h3>
+        @endif
+        <form class="d-flex" action="{{ route('posts') }}">
+            @if (request('category', 'author'))
+            <input type="hidden" name="category" value="{{ request('category',old('category')) }}">
+            <input type="hidden" name="author" value="{{ request('author') }}">
+            @endif
+            <input class="form-control me-2" type="search" name="search" placeholder="Cari..." value="{{ Request('search') }}">
+            <button class="btn btn-success" type="submit"><i class="fas fa-search"></i></button>
+          </form>
     </div>
-    <div>
-        @if (!$posts->isEmpty())
-        <div class="card p-2 mb-4 shadow-0">
-            <div class="mb-4" data-aos="fade-up" data-aos-duration="500">
-                <div class="row">
-                    <div class="col-md-9">
+    <div class="container">
+        <div class="row wow fadeInUp mb-5" data-wow-delay="0.1s">
+            <div class="col-md-10">
+                @if (!$posts->isEmpty())
+                <div class="row g-5 align-items-center mb-1">
+                    <div class="col-md-6 wow fadeIn" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeIn;">
+                        <h3 class="mb-3">{{ $posts[0]->title }}</h3> 
                         @if ($posts[0]->image)
-                        <img class="card-img-top" src="{{ asset('storage/'.$posts[0]->image) }}"
-                            style="height: 400px; width: 100%; display: block;">
+                        <img class="img-fluid w-100" src="{{ asset('storage/'.$posts[0]->image) }}" alt="">
                         @else
-                        <img class="card-img-top" src="https://placehold.jp/1200x600.png"
-                            style="height: 400px; width: 100%; display: block;">
+                        <img class="img-fluid w-100" src="https://placehold.jp/1000x800.png" alt="">
                         @endif
-                        <div class="card-body">
-                            <h4 class="mb-0 text-dark font-weight-bold">{{ $posts[0]->title }}</h4>
-                            <p class="card-text text-dark">
-                                {{ $posts[0]->excerpt }}
-                                <a href="{{ route('post',$posts[0]->slug) }}">Selengkapnya</a>
-                            </p>
-                            <div class="d-flex align-items-center">
-                                <div>
-                                    @if($posts[0]->author)
-                                    <a href="{{ route('posts', ['author' => $posts[0]->author->username]) }}"
-                                        class="badge badge-light">
-                                        <i class="fa-solid fa-user-tie"></i> {{
-                                        $posts[0]->author->name }}
-                                    </a>
-                                    @endif
-                                    @if($posts[0]->category)
-                                    <a href="{{ route('posts', ['category' => $posts[0]->category->slug]) }}"
-                                        class="badge badge-light">
-                                        <i class="fa-solid fa-tag"></i> {{
-                                        $posts[0]->category->name }}
-                                    </a>
-                                    @endif
-                                    <small class="text-muted text-end">
-                                        <i class="fa-regular fa-clock"></i>
-                                        {{ $posts[0]->created_at->diffForHumans() }}
-                                    </small>
-                                </div>
-                            </div>
-                        </div>
+                        <x-shareMedsos/>
                     </div>
-                    <div class="col-md-3">
-                        <ul class="list-group">
-                            <li class="list-group-item active" aria-current="true">
-                                <i class="fa-solid fa-calendar"></i> Jadwal Acara
-                            </li>
-                            @forelse ($jadwals as $jadwal)
-                            <li class="list-group-item">
-                                <small>
-                                    <a href="" data-toggle="collapse" data-target="#colspan{{ $jadwal->id }}"
-                                        aria-expanded="false" aria-controls="{{ $jadwal->id }}">{{ $jadwal->name }}</a>
-                                </small>
-                                <div class="accordion" id="accordionExample">
-                                    <div id="colspan{{ $jadwal->id }}" class="collapse" aria-labelledby="headingOne"
-                                        data-parent="#accordionExample">
-                                        <div class="card-body mt-3">
-                                            <strong>{{ $jadwal->name }}</strong><br>
-                                            <small><i class="fa-solid fa-location"></i> {{ $jadwal->tempat }}</small><br>
-                                            <strong>
-                                                <i class="fa-solid fa-calendar"></i>
-                                                {{ \Carbon\Carbon::parse($jadwal->waktu)->locale('id')->translatedFormat('d
-                                                F Y H:i') }}
-                                            </strong>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            @empty
-                            <li class="list-group-item">Belum ada acara terbaru.</li>
-                            @endforelse
-                        </ul>
+                    <div class="col-md-6 wow fadeIn" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeIn;">
+                        <p class="mb-1">Oleh: {{ $posts[0]->author->name }}</p>
+                        <p class="mb-2">Diposting : {{ $posts[0]->created_at->diffForHumans() }}</p>
+                        <article align="justify" class="text-dark mb-3" style="overflow: hidden">
+                            {!! Str::limit($posts[0]->body, 600) !!}
+                            <a href="{{ route('post',$posts[0]->slug) }}">{{ __('selengkapnya') }}</a>
+                        </article>
                     </div>
                 </div>
+                @else
+                  <p>{{ __('Berita tidak ditemukan.') }}</p>  
+                @endif
+            </div>
+            <div class="col-md-2">
+                <div class="list-group">
+                    <div class="list-group-item list-group-item-action bg-success text-light fw-bold" aria-current="true">
+                      {{ __('Kategori Berita/Artikel') }}
+                    </div>
+                    @forelse ($categories as $category)
+                    <a href="{{ route('posts', ['category' => $category->slug]) }}" class="list-group-item">{{ $category->name }}</a>
+                    @empty
+                        <span>{{ __('Kategori tidak ditemukan.') }}</span>
+                    @endforelse
+                  </div>
             </div>
         </div>
-        <div class="row justify-content-center">
-            @foreach ($posts->skip(1) as $post)
-            <div class="col-md-4 mb-4" data-aos="zoom-out" data-aos-duration="1000">
-                <div class="card shadow-0">
-                    @if($post->category)
-                    <a href="{{ route('posts', ['category' => $post->category->slug]) }}"
-                        style="position: relative;background-color:rgba(0, 0, 0, 0.5)"
-                        class="w-100 py-1 text-white text-center text-decoration-none">
-                        {{$post->category->name }}
+        <div class="row">
+            <div class="d-flex justify-content-around align-items-center mb-5">
+                <div class="flex-grow-1 border-bottom" style="height: 2px;"></div>
+                <span class="text-uppercase mx-3">{{ __('Berita Lainnya') }}</span>
+                <div class="flex-grow-1 border-bottom" style="height: 2px;"></div>
+            </div>
+            
+            @foreach ($posts as $post)
+            <div class="col-lg-4 col-md-6 mb-4 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="service-item">
+                    <a class="btn btn-sm btn-dark" href="{{ route('posts', ['category' => $post->category->slug]) }}">
+                        <i class="fas fa-tag"></i></i>
+                        {{ $post->category->name }}
                     </a>
-                    @else
-                    <a href="{{ route('posts', ['category' => $post->category->slug]) }}"
-                        style="position: relative;background-color:rgba(0, 0, 0, 0.5)"
-                        class="w-100 py-1 text-white text-center text-decoration-none">
-                        Kategori tidak ada.
-                    </a>
-                    @endif
-                    <a href="{{ route('post',$post->slug) }}" class="text-decoration-none">
-                        <div class="mb-4 box-shadow">
-                            @if ($post->image)
-                            <img class="card-img-top" src="{{ asset('storage/'.$post->image) }}"
-                                style="height: 225px; width: 100%; display: block;">
-                            @else
-                            <img class="card-img-top" src="https://placehold.jp/300x400.png"
-                                style="height: 225px; width: 100%; display: block;">
-                            @endif
-                            <div class="card-body">
-                                <h6 class="mb-0 text-success font-weight-bold">{{ $post->title }}</h6>
-                                <p align='justify' class="card-text text-dark">{{ $post->excerpt }}</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div>
-                                        @if($post->author->id)
-                                        <a href="{{ route('posts', ['author' => $post->author->username]) }}"
-                                            class="badge badge-light">
-                                            <i class="fa-solid fa-user-tie"></i> {{
-                                            $post->author->name }}
-                                        </a>
-                                        @endif
-                                    </div>
-                                    <small class="text-muted">
-                                        <i class="fa-solid fa-calendar-days"></i>
-                                        {{
-                                        \Carbon\Carbon::parse($post->created_at)->locale('id')->translatedFormat('d F
-                                        Y')}}
-                                    </small>
-                                </div>
-                            </div>
+                    <img src="{{ $post->image ? asset('storage/'.$post->image) :'https://placehold.jp/400x350.png' }}" alt="{{ $post->image }}" class="img-fluid w-100 mb-4">
+                    <h5 class="mb-3 text-start">{{ $post->title }}</h4>
+                        <article align="justify" class="mb-4">
+                            {{ $post->excerpt}}
+                            <a href="{{ route('post',$post->slug) }}">{{ __('...Selengkapnya') }}</a>
+                        </article>
+                        <a class="btn btn-light btn-sm" href="{{ route('posts', ['author' => $post->author->username]) }}">
+                            <small>
+                                <i class="fas fa-user-tie"></i></i>
+                                {{ $post->author->name }}
+                            </small>
+                        </a>
+                        <div class="btn btn-light btn-sm">
+                            <i class="fas fa-clock"></i></i>
+                            {{ $post->created_at->diffForHumans() }}
                         </div>
-                    </a>
                 </div>
             </div>
             @endforeach
         </div>
-        <small class="d-flex align-items-center justify-content-md-end mt-3" style="overflow: hidden">
-            {{ $posts->links('pagination::bootstrap-4') }}
-        </small>
-        @else
-        <div class="col text-center">
-            <img src="{{ asset('frontend/img/clipboard.png') }}" alt="" srcset="" class="img-fluid" width="400">
+        <div class="d-flex justify-content-center mb-5">
+            {{ $posts->links() }}
         </div>
-        @endif
     </div>
-    </div>
-    
 </x-content>

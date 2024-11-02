@@ -18,6 +18,6 @@ class HomeController extends Controller
         $sambutan = Sambutan::latest()->first();
         $galeri = Galeri::orderBy('id', 'desc')->take(5)->get();
         $slides = Slide::orderBy('id', 'desc')->take(5)->get();
-        return view('home.index', compact('posts', 'sambutan', 'galeri', 'slides'));
+        return view('home.homepages.index', compact('posts', 'sambutan', 'galeri', 'slides'));
     }
 }

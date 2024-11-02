@@ -1,7 +1,7 @@
 @props(['active'=> '', 'title'=>''])
-<li {{ $attributes }} class="nav-item dropdown mx-lg-3 {{ $active ? 'active':'' }}">
-    <a class="nav-link" href="#" data-toggle="dropdown" aria-expanded="false">{{ $title }}</a>
-    <div class="dropdown-menu bg-green">
+<div class="nav-item dropdown">
+    <a href="#" class="nav-link dropdown-toggle text-uppercase  {{ $active ? 'text-success':'' }}" data-bs-toggle="dropdown">{{ $title }}</a>
+    <div class="dropdown-menu bg-light m-0">
         {{ $slot }}
     </div>
-</li>
+</div>

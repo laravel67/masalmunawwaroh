@@ -1,44 +1,44 @@
 <x-content>
-    <div class=" my-5 p-3 bg-white rounded shadow-sm " data-aos="fade-up" data-aos-duration="500">
-        <div class="d-flex justify-content-end m-0 p-0">
-            {!! $shareComponent !!}
-        </div>
-        <h5 class="mb-0 text-success">{{ $post->title }}</h5>
-        <div class="row">
-            <div class="col p-3">
-                @if ($post->image)
-                <img class="img-fluid w-100" src="{{ asset('storage/'.$post->image) }}">
-                @else
-                <img class="img-fluid w-100" src="https://placehold.jp/1200x600.png">
-                @endif
-                <div class="card-body">
-                    <div class="d-flex align-items-center">
-                        <div>
-                            @if($post->author)
-                            <a href="{{ route('posts', ['author' => $post->author->username]) }}" class="badge badge-light">
-                                <i class="fa-solid fa-user-tie"></i>
-                                {{$post->author->name }}
+    <div class="container">
+        <div class="row wow fadeInUp mb-5" data-wow-delay="0.1s">
+            <div class="col-md-12">
+                @if ($post)
+                <div class="row g-5 align-items-center justify-content-center mb-1">
+                    <div class="col-md-10 wow fadeIn" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeIn;">
+                        <h3 class="mb-3">{{ $post->title }}</h3> 
+                        <x-shareMedsos/>
+                        @if ($post->image)
+                        <img class="img-fluid w-100" src="{{ asset('storage/'.$post->image) }}" alt="">
+                        @else
+                        <img class="img-fluid w-100" src="https://placehold.jp/1000x800.png" alt="">
+                        @endif
+                        <div class="my-3">
+                            <a class="btn btn-light btn-sm" href="{{ route('posts', ['author' => $post->author->username]) }}">
+                                <small>
+                                    <i class="fas fa-user-tie"></i></i>
+                                    {{ $post->author->name }}
+                                </small>
                             </a>
-                            @endif
-                            @if($post->category)
-                            <a href="{{ route('posts', ['category' => $post->category->slug]) }}" class="badge badge-light">
-                                <i class="fa-solid fa-tag"></i>
-                                {{$post->category->name }}
+                            <a class="btn btn-light btn-sm" href="{{ route('posts', ['category' => $post->category->slug]) }}">
+                                <small>
+                                    <i class="fas fa-tag"></i></i>
+                                    {{ $post->category->name }}
+                                </small>
                             </a>
-                            @endif
-                            <small class="text-muted text-end">
-                                <i class="fa-solid fa-calendar-days"></i>
-                                {{
-                                \Carbon\Carbon::parse($post->created_at)->locale('id')->translatedFormat('d F
-                                Y')}}
-                            </small>
+                            <div class="btn btn-light btn-sm">
+                                <i class="fas fa-clock"></i></i>
+                                {{ $post->created_at->diffForHumans() }}
+                            </div>
                         </div>
+                        <article align="justify" class="text-dark mb-3" style="overflow: hidden">
+                            {!! $post->body !!}
+                        </article>
+                        <a href="{{ route('posts') }}" class="mb-1">Kembali</a>
                     </div>
-                    <article align='justify' class="card-text text-dark" style="overflow: hidden">
-                        {!! $post->body !!}
-                    </article>
-                    <x-btn-back></x-btn-back>
                 </div>
+                @else
+                  <p>{{ __('Berita tidak ditemukan.') }}</p>  
+                @endif
             </div>
         </div>
     </div>
