@@ -1,3 +1,3 @@
-<x-template>
+<x-main>
     <livewire:ppdb.data-register>
-</x-template>
+</x-main>

@@ -1,31 +1,31 @@
 <?php
 
+use App\Livewire\Psb\Fomulir\Main as formulirMain;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PpdbController;
 use App\Http\Controllers\AdminGuruController;
 use App\Http\Controllers\AdminPostController;
-use App\Http\Controllers\Home\HomeController;
-use App\Http\Controllers\Home\PostController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Home\HomeController;
+use App\Http\Controllers\Home\PostController;
 use App\Http\Controllers\AdminSaranaController;
 use App\Http\Controllers\AdminSetterController;
 use App\Http\Controllers\ImportExcelController;
 use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\AdminProgramController;
 use App\Http\Controllers\AdminStudentController;
 use App\Http\Controllers\Home\ProfileController;
 use App\Http\Controllers\AdminCategoryController;
+use App\Http\Controllers\AdminKegiatanController;
 use App\Http\Controllers\Home\AkademikController;
+use App\Http\Controllers\AdminKesiswaanController;
 use App\Http\Controllers\Home\KesiswaanController;
 use App\Http\Controllers\AdminAchievmentController;
-use App\Http\Controllers\AdminGaleryController;
-use App\Http\Controllers\AdminKegiatanController;
-use App\Http\Controllers\AdminKesiswaanController;
-use App\Http\Controllers\AdminMasterdataController;
-use App\Http\Controllers\Home\AchievmentController;
 use App\Http\Controllers\AdminProfilemasController;
-use App\Http\Controllers\AdminProgramController;
+use App\Http\Controllers\Home\AchievmentController;
+use App\Http\Controllers\PsbController;
 
 Auth::routes();
 Route::get('/ppdb/test', function(){
@@ -67,16 +67,21 @@ Route::prefix('/kesiswaan')->controller(KesiswaanController::class)->group(funct
     Route::get('/album/{slug}', 'albumDetail')->name('album.detail');
     Route::get('/kegiatan', 'Kegiatan')->name('kegiatan.siwa');
 });
+
 // Pendaftaran PPDB
+
+Route::get('/ppdb/formulir-pendaftaran', formulirMain::class)->name('formulir.psb')->middleware('guest');
+Route::get('/ppdb/biodata', \App\Livewire\Psb\Dashboard\Profile::class)->name('biodata')->middleware('auth');
+
+Route::prefix('/ppdb/dashboard/')->controller(PsbController::class)->middleware(['siswa'])->group(function () {
+    Route::get('/biodata', 'dashboard')->name('ppdb.profile');
+    Route::get('/download/formulir/{id}', 'downloadForm')->name('downloadForm');
+});
 Route::prefix('/ppdb')->controller(PpdbController::class)->group(function () {
     Route::get('/info-pendaftaran',  'home')->name('ppdb.home');
     Route::get('/formulir-pendaftaran/{tahun?}',  'daftar')->name('ppdb.daftar');
     Route::get('/downloads', 'download')->name('downloading');
     Route::get('/download/brosur/{id}', 'downloadBrosur')->name('downloadBrosur');
-    Route::middleware(['siswa'])->group(function () {
-        Route::get('/biodata', 'profileRegister')->name('ppdb.profile');
-        Route::get('/download/formulir/{id}', 'downloadForm')->name('downloadForm');
-    });
 });
 
 /** ROUTE BAGIAN DASHBOARD */
@@ -98,9 +103,11 @@ Route::prefix('/dashboard')->middleware(['middleware' => 'role'])->group(functio
 
 // Admin
 Route::prefix('/dashboard')->middleware(['auth', 'admin'])->group(function () {
+
     Route::resource('/categories', AdminCategoryController::class)->names('category');
     Route::resource('/users', AdminUserController::class)->names('user');
     Route::get('/ppdb/pengaturan',[AdminSetterController::class,'setDaftar'])->name('set.reg');
+
     Route::controller(DashboardController::class)->group(function () {
         Route::get('/ekstrakulikuler',  'lifeskill')->name('admin.lifeskill');
         Route::get('/struktural',  'struktur')->name('admin.struktur');
@@ -117,6 +124,7 @@ Route::prefix('/dashboard')->middleware(['auth', 'admin'])->group(function () {
         Route::get('/mars', 'mars')->name('profilemas.mars');
         Route::post('/mars/update', 'updateMars')->name('mars.update');
     });
+
     Route::prefix('/kesiswaan')->group(function(){
         Route::resource('/kegiatan', AdminKegiatanController::class)->names('akegiatan');
         Route::get('/album', [AdminKesiswaanController::class, 'album'])->name('galeri.index');
@@ -130,20 +138,16 @@ Route::prefix('/dashboard')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('/akademik/sarana', AdminSaranaController::class)->names('asarana');
 
     Route::prefix('/import')->controller(ImportExcelController::class)->group(function () {
-        Route::post('/jabatan',  'jabatan')->name('import.jabatan');
-        Route::post('/bidang',  'bidang')->name('import.bidang');
-        Route::post('/mapel',  'mapel')->name('import.mapel');
         Route::post('/guru',  'guru')->name('import.guru');
         Route::post('/sarana',  'sarana')->name('import.sarana');
         Route::post('/prestasi',  'prestasi')->name('import.prestasi');
-        Route::post('/lifeskill',  'lifeskill')->name('import.lifeskill');
+        Route::post('/ekskul',  'ekskul')->name('import.ekskul');
     });
 
 });
 
 Route::middleware(['middleware' => 'role'])->group(function(){
     Route::get('/category/slug', [AdminCategoryController::class, 'slug']);
-    Route::get('/mapels/slug', [AdminGuruController::class, 'slug']);
     Route::get('/program/slug', [AdminProgramController::class, 'slugProgram']);
     Route::get('/sarana/slug', [AdminSaranaController::class, 'slug']);
     Route::get('/post/slug', [AdminPostController::class, 'slug']);

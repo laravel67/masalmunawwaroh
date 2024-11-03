@@ -20,6 +20,6 @@ class GuestLayout extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('layouts.guest');
+        return view('layouts.psb');
     }
 }

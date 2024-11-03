@@ -55,7 +55,7 @@ return new class extends Migration
             $table->string('pekerjaan_ibu', 100);
             $table->string('no_hp_ibu', 15);
             $table->string('alamat_ibu', 255);
-            $table->string('photo', 255);
+            $table->string('photo', 255)->nullable();
             $table->timestamps();
         });
     }

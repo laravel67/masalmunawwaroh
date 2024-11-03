@@ -17,7 +17,7 @@ use Maatwebsite\Excel\Imports\HeadingRowFormatter;
 class ImportExcelController extends Controller
 {
 
-    public function lifeskill(Request $request)
+    public function ekskul(Request $request)
     {
         HeadingRowFormatter::default('none');
         $import = new EkskulImport;

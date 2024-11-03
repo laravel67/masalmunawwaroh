@@ -1,6 +1,6 @@
-<div class="step3 row">
+<div class="step3 row mt-2">
     <!-- Informasi Ayah -->
-    <h4 class="col-12">Informasi Ayah</h4>
+    <h4 class="col-12"> Data Ayah</h4>
 
     <div class="col-md-6">
         <x-input title="Nama Ayah" name="nama_ayah" placeholder="Masukkan Nama Ayah" wire:model="nama_ayah" />
@@ -27,7 +27,7 @@
     </div>
 
     <!-- Informasi Ibu -->
-    <h4 class="col-12">Informasi Ibu</h4>
+    <h4 class="col-12">Data Ibu</h4>
 
     <div class="col-md-6">
         <x-input title="Nama Ibu" name="nama_ibu" placeholder="Masukkan Nama Ibu" wire:model="nama_ibu" />

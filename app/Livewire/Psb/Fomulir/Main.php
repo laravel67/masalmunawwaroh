@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Form;
+namespace App\Livewire\Psb\Fomulir;
 
 use App\Models\Taj;
 use App\Models\User;
@@ -9,8 +9,10 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Livewire\Attributes\Title;
 
-class Psb extends Component
+#[Title('FORMULIR PENDAFTARAN PESERTA DIDIK BARU TAHUN AJARAN')]
+class Main extends Component
 {
     use WithFileUploads;
 
@@ -121,7 +123,7 @@ class Psb extends Component
         }
     }
 
-    // Method to mark step as validated
+   
     public function validateStep($step)
     {
         $this->validatedSteps[$step] = true;
@@ -148,7 +150,7 @@ class Psb extends Component
 
         switch ($this->step) {
             case 1:
-                sleep(3);
+                sleep(2);
                 $rules = array_intersect_key($this->rules, array_flip([
                     'nama_lengkap', 'nama_panggilan', 'tempat_lahir', 'tanggal_lahir', 'alamat_asal', 'nisn',
                     'jenis_kelamin', 'anak_ke', 'jumlah_saudara', 'penyakit_berat', 'berat_badan', 'tinggi_badan',
@@ -157,7 +159,7 @@ class Psb extends Component
                 $this->titleForm='Data Sekolah Asal';
                 break;
             case 2:
-                sleep(3);
+                sleep(2);
                 $rules = array_intersect_key($this->rules, array_flip([
                     'sekolah_asal', 'alamat_sekolah', 'npsn_sekolah', 'nsm_sekolah',
                     'nomor_ijazah', 'nomor_skhu', 'nomor_peserta_un', 'nilai_bahasa_indonesia',
@@ -166,7 +168,7 @@ class Psb extends Component
                 $this->titleForm='Data Orang Tua/Wali';
                 break;
                 case 3:
-                    sleep(3);
+                    sleep(2);
                     $rules = array_intersect_key($this->rules, array_flip([
                         'nama_ayah', 'tempat_lahir_ayah', 'pendidikan_ayah', 'pekerjaan_ayah', 'no_hp_ayah', 'alamat_ayah',
                         'nama_ibu', 'tempat_lahir_ibu', 'pendidikan_ibu', 'pekerjaan_ibu', 'no_hp_ibu', 'alamat_ibu'
@@ -174,7 +176,7 @@ class Psb extends Component
                 $this->titleForm='Buat Akun';
                     break;
                 case 4:
-                        sleep(3);
+                        sleep(2);
                         $rules = array_intersect_key($this->rules, array_flip([
                             'email','password','photo'
                         ]));
@@ -186,74 +188,66 @@ class Psb extends Component
     }
 
     public function storeNewStudent()
-{
-    // Create the user and store the resulting model instance
-    $user = User::create([
-        'name' => $this->nama_lengkap,
-        'email' => $this->email,
-        'password' => Hash::make($this->password),
-    ]);
+    {
+        $user = User::create([
+            'name' => $this->nama_lengkap,
+            'email' => $this->email,
+            'password' => Hash::make($this->password),
+        ]);
 
-    // Create the student record and associate it with the created user
-    $newStudent = [
-        'no_pendaftaran'=>$this->registrationNumber,
-        'user_id' => $user->id,
-        'nama_lengkap' => $this->nama_lengkap,
-        'nama_panggilan' => $this->nama_panggilan,
-        'tempat_lahir' => $this->tempat_lahir,
-        'tanggal_lahir' => $this->tanggal_lahir,
-        'alamat_asal' => $this->alamat_asal,
-        'nisn' => $this->nisn,
-        'jenis_kelamin' => $this->jenis_kelamin,
-        'anak_ke' => $this->anak_ke,
-        'jumlah_saudara' => $this->jumlah_saudara,
-        'penyakit_berat' => $this->penyakit_berat,
-        'berat_badan' => $this->berat_badan,
-        'tinggi_badan' => $this->tinggi_badan,
-        'golongan_darah' => $this->golongan_darah,
-        'hobi' => $this->hobi,
-        'cita_cita' => $this->cita_cita,
-        'program_pilihan' => $this->program_pilihan,
-        'sekolah_asal' => $this->sekolah_asal,
-        'alamat_sekolah' => $this->alamat_sekolah,
-        'npsn_sekolah' => $this->npsn_sekolah,
-        'nsm_sekolah' => $this->nsm_sekolah,
-        'nomor_ijazah' => $this->nomor_ijazah,
-        'nomor_skhu' => $this->nomor_skhu,
-        'nomor_peserta_un' => $this->nomor_peserta_un,
-        'nilai_bahasa_indonesia' => $this->nilai_bahasa_indonesia,
-        'nilai_matematika' => $this->nilai_matematika,
-        'nilai_ipa' => $this->nilai_ipa,
-        'nilai_bahasa_inggris' => $this->nilai_bahasa_inggris,
-        'nama_ayah' => $this->nama_ayah,
-        'tempat_lahir_ayah' => $this->tempat_lahir_ayah,
-        'pendidikan_ayah' => $this->pendidikan_ayah,
-        'pekerjaan_ayah' => $this->pekerjaan_ayah,
-        'no_hp_ayah' => $this->no_hp_ayah,
-        'alamat_ayah' => $this->alamat_ayah,
-        'nama_ibu' => $this->nama_ibu,
-        'tempat_lahir_ibu' => $this->tempat_lahir_ibu,
-        'pendidikan_ibu' => $this->pendidikan_ibu,
-        'pekerjaan_ibu' => $this->pekerjaan_ibu,
-        'no_hp_ibu' => $this->no_hp_ibu,
-        'alamat_ibu' => $this->alamat_ibu,
-        'ta_id' => $this->taId,
-        'photo' => 'ini pas photo',
-    ];
-
-    // Create the student record
-    Student::create($newStudent);
-
-    // Log in the new user
-    Auth::login($user);
-
-    // Redirect to the profile page with a success message
-    return redirect()->intended(route('ppdb.profile'))->with('success', 'Pendaftaran berhasil');
-}
-
+        $newStudent = [
+            'no_pendaftaran'=>$this->registrationNumber,
+            'user_id' => $user->id,
+            'nama_lengkap' => $this->nama_lengkap,
+            'nama_panggilan' => $this->nama_panggilan,
+            'tempat_lahir' => $this->tempat_lahir,
+            'tanggal_lahir' => $this->tanggal_lahir,
+            'alamat_asal' => $this->alamat_asal,
+            'nisn' => $this->nisn,
+            'jenis_kelamin' => $this->jenis_kelamin,
+            'anak_ke' => $this->anak_ke,
+            'jumlah_saudara' => $this->jumlah_saudara,
+            'penyakit_berat' => $this->penyakit_berat,
+            'berat_badan' => $this->berat_badan,
+            'tinggi_badan' => $this->tinggi_badan,
+            'golongan_darah' => $this->golongan_darah,
+            'hobi' => $this->hobi,
+            'cita_cita' => $this->cita_cita,
+            'program_pilihan' => $this->program_pilihan,
+            'sekolah_asal' => $this->sekolah_asal,
+            'alamat_sekolah' => $this->alamat_sekolah,
+            'npsn_sekolah' => $this->npsn_sekolah,
+            'nsm_sekolah' => $this->nsm_sekolah,
+            'nomor_ijazah' => $this->nomor_ijazah,
+            'nomor_skhu' => $this->nomor_skhu,
+            'nomor_peserta_un' => $this->nomor_peserta_un,
+            'nilai_bahasa_indonesia' => $this->nilai_bahasa_indonesia,
+            'nilai_matematika' => $this->nilai_matematika,
+            'nilai_ipa' => $this->nilai_ipa,
+            'nilai_bahasa_inggris' => $this->nilai_bahasa_inggris,
+            'nama_ayah' => $this->nama_ayah,
+            'tempat_lahir_ayah' => $this->tempat_lahir_ayah,
+            'pendidikan_ayah' => $this->pendidikan_ayah,
+            'pekerjaan_ayah' => $this->pekerjaan_ayah,
+            'no_hp_ayah' => $this->no_hp_ayah,
+            'alamat_ayah' => $this->alamat_ayah,
+            'nama_ibu' => $this->nama_ibu,
+            'tempat_lahir_ibu' => $this->tempat_lahir_ibu,
+            'pendidikan_ibu' => $this->pendidikan_ibu,
+            'pekerjaan_ibu' => $this->pekerjaan_ibu,
+            'no_hp_ibu' => $this->no_hp_ibu,
+            'alamat_ibu' => $this->alamat_ibu,
+            'ta_id' => $this->taId,
+            'photo' => null,
+        ];
+        Student::create($newStudent);
+        Auth::login($user);
+        return redirect()->intended(route('biodata'))->with('success', 'Pendaftaran berhasil');
+    }
 
     public function render()
     {
-        return view('pages.form.psb');
+        return view('pages.psb.fomulir.main');
     }
 }
+

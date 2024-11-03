@@ -49,6 +49,10 @@ class PpdbController extends Controller
         ]);
     }
 
+    // public function dashboard(){
+    //     return view('')
+    // }
+
     public function download()
     {
         $brosur = Taj::latest()->first();

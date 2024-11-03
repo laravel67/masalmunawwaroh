@@ -1,4 +1,4 @@
-<div class="bs-stepper-header table-responsive mb-5" role="tablist">
+<div class="bs-stepper-header table-responsive mb-2" role="tablist">
     <div class="step1">
         <span class="bs-stepper-circle {{ $validatedSteps['step1'] ? 'bg-success' : 'bg-secondary' }}">
             <i class="fas fa-id-card"></i>
