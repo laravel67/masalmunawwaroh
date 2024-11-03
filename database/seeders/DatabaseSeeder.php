@@ -8,18 +8,9 @@ use App\Models\Guru;
 use App\Models\Post;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\User;
-use App\Models\Mapel;
-use App\Models\Bidang;
-use App\Models\Daftar;
-use App\Models\Jabatan;
-use App\Models\Student;
 use App\Models\Category;
 use App\Models\Ekskul;
 use App\Models\Galeri;
-use App\Models\Identity;
-use App\Models\Lifeskill;
-use App\Models\Register;
-use App\Models\Sambutan;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 

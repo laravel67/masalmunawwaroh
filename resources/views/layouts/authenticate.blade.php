@@ -5,18 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{{ config('app.name') }}</title>
-    <link rel="shortcut icon" href="{{ asset('frontend/img/logo-mas-almunawwaroh-removebg-preview.png') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('logoalm.png') }}" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('adminlte/css/adminlte.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('backend/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('adminlte/auth.css') }}">
 </head>
-<body class="login-page bg-info text-dark" style="min-height: 466px;">
+<body class="login-page bg-cover text-dark" style="min-height: 466px;">
     <div class="login-box">
       <!-- /.login-logo -->
       <div class="card card-outline card-success">
         <div class="card-header text-center pb-0">
           <a href="/" class="h1 d-flex justify-content-center align-items-center">
-            <img src="{{ asset('frontend/img/logo-mas-almunawwaroh-removebg-preview.png') }}" class="img-fluid" width="35px">
+            <img src="{{ asset('logoalm.png') }}" class="img-fluid" width="35px">
             <b>{{ __('SIMAD') }}</b>
           </a>
           <p class="login-box-msg my-0 text-success">{{ __('Sistem Informasi Madrasah') }}</p>
@@ -31,9 +31,7 @@
           </div>
           {{ $slot }}
         </div>
-        <!-- /.card-body -->
       </div>
-      <!-- /.card -->
     </div>   
     <script src="{{ asset('adminlte/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('adminlte/js/bootstrap.bundle.min.js') }}"></script>

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Taj;
-use App\Models\Brosur;
 use App\Models\Student;
 
 class PpdbController extends Controller

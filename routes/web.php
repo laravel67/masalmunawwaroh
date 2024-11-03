@@ -1,9 +1,8 @@
 <?php
 
-use App\Livewire\Psb\Fomulir\Main as formulirMain;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PpdbController;
+use App\Http\Controllers\PsbController;
 use App\Http\Controllers\AdminGuruController;
 use App\Http\Controllers\AdminPostController;
 use App\Http\Controllers\AdminUserController;
@@ -22,10 +21,13 @@ use App\Http\Controllers\AdminKegiatanController;
 use App\Http\Controllers\Home\AkademikController;
 use App\Http\Controllers\AdminKesiswaanController;
 use App\Http\Controllers\Home\KesiswaanController;
+use App\Livewire\Psb\Fomulir\Main as formulirMain;
 use App\Http\Controllers\AdminAchievmentController;
 use App\Http\Controllers\AdminProfilemasController;
 use App\Http\Controllers\Home\AchievmentController;
-use App\Http\Controllers\PsbController;
+use App\Livewire\Psb\Dashboard\Profile as ProfileSiswa;
+
+
 
 Auth::routes();
 Route::get('/ppdb/test', function(){
@@ -68,21 +70,22 @@ Route::prefix('/kesiswaan')->controller(KesiswaanController::class)->group(funct
     Route::get('/kegiatan', 'Kegiatan')->name('kegiatan.siwa');
 });
 
-// Pendaftaran PPDB
-
-Route::get('/ppdb/formulir-pendaftaran', formulirMain::class)->name('formulir.psb')->middleware('guest');
-Route::get('/ppdb/biodata', \App\Livewire\Psb\Dashboard\Profile::class)->name('biodata')->middleware('auth');
+Route::prefix('/ppdb')->group(function(){
+    Route::get('/formulir-pendaftaran', formulirMain::class)->name('formulir.psb')->middleware('guest');
+    Route::get('/ppdb/biodata', ProfileSiswa::class)->name('biodata')->middleware('siswa');
+});
 
 Route::prefix('/ppdb/dashboard/')->controller(PsbController::class)->middleware(['siswa'])->group(function () {
     Route::get('/biodata', 'dashboard')->name('ppdb.profile');
     Route::get('/download/formulir/{id}', 'downloadForm')->name('downloadForm');
 });
-Route::prefix('/ppdb')->controller(PpdbController::class)->group(function () {
-    Route::get('/info-pendaftaran',  'home')->name('ppdb.home');
-    Route::get('/formulir-pendaftaran/{tahun?}',  'daftar')->name('ppdb.daftar');
-    Route::get('/downloads', 'download')->name('downloading');
-    Route::get('/download/brosur/{id}', 'downloadBrosur')->name('downloadBrosur');
-});
+
+// Route::prefix('/ppdb')->controller(PpdbController::class)->group(function () {
+//     Route::get('/info-pendaftaran',  'home')->name('ppdb.home');
+//     Route::get('/formulir-pendaftaran/{tahun?}',  'daftar')->name('ppdb.daftar');
+//     Route::get('/downloads', 'download')->name('downloading');
+//     Route::get('/download/brosur/{id}', 'downloadBrosur')->name('downloadBrosur');
+// });
 
 /** ROUTE BAGIAN DASHBOARD */
 // User dan admin
@@ -103,11 +106,9 @@ Route::prefix('/dashboard')->middleware(['middleware' => 'role'])->group(functio
 
 // Admin
 Route::prefix('/dashboard')->middleware(['auth', 'admin'])->group(function () {
-
     Route::resource('/categories', AdminCategoryController::class)->names('category');
     Route::resource('/users', AdminUserController::class)->names('user');
     Route::get('/ppdb/pengaturan',[AdminSetterController::class,'setDaftar'])->name('set.reg');
-
     Route::controller(DashboardController::class)->group(function () {
         Route::get('/ekstrakulikuler',  'lifeskill')->name('admin.lifeskill');
         Route::get('/struktural',  'struktur')->name('admin.struktur');
@@ -115,7 +116,6 @@ Route::prefix('/dashboard')->middleware(['auth', 'admin'])->group(function () {
         Route::get('/pengaturan', 'generalSetting')->name('pengaturan');
         Route::post('/pengaturan/sambutan', 'sambutan')->name('pengaturan.sambutan');
     });
-
     Route::prefix('/profile-madrasah')->controller(AdminProfilemasController::class)->group(function(){
         Route::get('/struktur', 'struktur')->name('profilemas.struktur');
         Route::get('/sambutan', 'sambutan')->name('profilemas.sambutan');
@@ -124,14 +124,12 @@ Route::prefix('/dashboard')->middleware(['auth', 'admin'])->group(function () {
         Route::get('/mars', 'mars')->name('profilemas.mars');
         Route::post('/mars/update', 'updateMars')->name('mars.update');
     });
-
     Route::prefix('/kesiswaan')->group(function(){
         Route::resource('/kegiatan', AdminKegiatanController::class)->names('akegiatan');
         Route::get('/album', [AdminKesiswaanController::class, 'album'])->name('galeri.index');
         Route::get('/ekstrakulikuler', [AdminKesiswaanController::class, 'ekskul'])->name('ekskul.index');
         Route::get('/bem', [AdminKesiswaanController::class, 'bem'])->name('bem.index');
     });
-
     Route::resource('akademik/programs', AdminProgramController::class)->names('aprogram');
     Route::resource('/akademik/guru', AdminGuruController::class)->names('guru');
     Route::resource('/akademik/prestasi', AdminAchievmentController::class)->names('prestasi');

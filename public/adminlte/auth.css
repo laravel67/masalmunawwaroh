@@ -1,0 +1,6 @@
+.bg-cover{
+    background-image: linear-gradient(rgba(4, 89, 26, 0.3), rgba(4, 104, 21, 0.643)), url('.././mas/img/ma.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
