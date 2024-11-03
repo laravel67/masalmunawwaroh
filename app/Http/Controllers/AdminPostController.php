@@ -164,27 +164,4 @@ class AdminPostController extends Controller
         return response()->json(['slug' => $slug]);
     }
 
-    // public function paginate(Request $request)
-    // {
-    //     $posts = Post::orderBy('id', 'desc')->paginate(10);
-    //     return view('dashboard.posts.pagination', compact('posts'))->render();
-    // }
-
-    // public function search(Request $request)
-    // {
-    //     $posts = Post::join('categories', 'posts.category_id', '=', 'categories.id')->where(function ($query) use ($request) {
-    //         $query->where('posts.title', 'like', '%' . $request->search_string . '%')
-    //             ->orWhere('categories.name', 'like', '%' . $request->search_string . '%');
-    //     })
-    //         ->orderBy('posts.id', 'desc')
-    //         ->paginate(10);
-
-    //     if ($posts->count() >= 1) {
-    //         return view('dashboard.posts.pagination', compact('posts'))->render();
-    //     } else {
-    //         return response()->json([
-    //             'status' => 'not_found'
-    //         ]);
-    //     }
-    // }
 }

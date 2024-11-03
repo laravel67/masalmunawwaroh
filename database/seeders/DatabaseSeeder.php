@@ -14,6 +14,7 @@ use App\Models\Daftar;
 use App\Models\Jabatan;
 use App\Models\Student;
 use App\Models\Category;
+use App\Models\Ekskul;
 use App\Models\Galeri;
 use App\Models\Identity;
 use App\Models\Lifeskill;
@@ -48,7 +49,7 @@ class DatabaseSeeder extends Seeder
         });
 
         DB::transaction(function(){
-            Lifeskill::factory(10)->create();
+            Ekskul::factory(10)->create();
         });
 
         DB::transaction(function(){

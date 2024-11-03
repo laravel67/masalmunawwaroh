@@ -1,4 +1,4 @@
-<button type="button" id="btn-copy" title="Salin link formulir" class="btn btn-outline-secondary btn-sm" style="width: 30px;
+<button type="button" id="btn-copy" title="Salin Tautan" class="btn btn-outline-secondary btn-sm" style="width: 30px;
         height: 30px;"><i class="fa-solid fa-paperclip"></i></button>
 @push('js')
 <script>

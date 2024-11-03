@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->enum('category', ['foto', 'video']);
             $table->string('link_video')->nullable();
-            $table->string('images')->nullable();
+            $table->text('images')->nullable();
             $table->text('body')->nullable();
             $table->timestamps();
         });

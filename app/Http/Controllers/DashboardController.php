@@ -14,6 +14,7 @@ use App\Models\Sambutan;
 use App\Models\Achievment;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class DashboardController extends Controller
@@ -23,11 +24,11 @@ class DashboardController extends Controller
         $users = User::where('role', 'admin')
             ->orWhere('role', 'user')
             ->count();
-        $userId = auth()->id();
+        $userId = Auth::user()->id;
         $postByUser = Post::where('user_id', $userId)->count();
         $posts = Post::count();
         $categoris = Category::count();
-        $mapel = Mapel::count();
+        // $mapel = Mapel::count();
         $guru = Guru::count();
         $sarana = Sarana::count();
         $achievment = Achievment::count();
@@ -47,7 +48,6 @@ class DashboardController extends Controller
             'postByUser' => $postByUser,
             'posts' => $posts,
             'category' => $categoris,
-            'mapel' => $mapel,
             'sarana' => $sarana,
             'guru' => $guru,
             'achievment' => $achievment,

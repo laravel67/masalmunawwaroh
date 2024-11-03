@@ -19,7 +19,9 @@ use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\Home\AkademikController;
 use App\Http\Controllers\Home\KesiswaanController;
 use App\Http\Controllers\AdminAchievmentController;
+use App\Http\Controllers\AdminGaleryController;
 use App\Http\Controllers\AdminKegiatanController;
+use App\Http\Controllers\AdminKesiswaanController;
 use App\Http\Controllers\AdminMasterdataController;
 use App\Http\Controllers\Home\AchievmentController;
 use App\Http\Controllers\AdminProfilemasController;
@@ -58,9 +60,9 @@ Route::prefix('/prestasi')->controller(AchievmentController::class)->group(funct
 });
 // Kesiswaan
 Route::prefix('/kesiswaan')->controller(KesiswaanController::class)->group(function () {
-    Route::get('/ekstrakulikuler', 'lifeskill')->name('lifeskill');
-    Route::get('/ekstrakulikuler/{slug}', 'lifeskillDetail')->name('lifeskill.detail');
-    Route::get('/bem', 'bem')->name('bem');
+    Route::get('/ekstrakulikuler', 'ekskul')->name('ekskul');
+    Route::get('/ekstrakulikuler/{slug}', 'ekskulDetail')->name('ekskul.detail');
+    Route::get('/bem', 'bem')->name('bems');
     Route::get('/album', 'album')->name('album');
     Route::get('/album/{slug}', 'albumDetail')->name('album.detail');
     Route::get('/kegiatan', 'Kegiatan')->name('kegiatan.siwa');
@@ -98,10 +100,6 @@ Route::prefix('/dashboard')->middleware(['middleware' => 'role'])->group(functio
 Route::prefix('/dashboard')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('/categories', AdminCategoryController::class)->names('category');
     Route::resource('/users', AdminUserController::class)->names('user');
-    Route::controller(AdminMasterdataController::class)->group(function(){
-        Route::get('/masterdata/jabatan',  'jabatan')->name('admin.jabatan');
-        Route::get('/masterdata/mapel',  'mapel')->name('admin.mapel');
-    });
     Route::get('/ppdb/pengaturan',[AdminSetterController::class,'setDaftar'])->name('set.reg');
     Route::controller(DashboardController::class)->group(function () {
         Route::get('/ekstrakulikuler',  'lifeskill')->name('admin.lifeskill');
@@ -119,7 +117,12 @@ Route::prefix('/dashboard')->middleware(['auth', 'admin'])->group(function () {
         Route::get('/mars', 'mars')->name('profilemas.mars');
         Route::post('/mars/update', 'updateMars')->name('mars.update');
     });
-    Route::resource('/kesiswaan/kegiatan', AdminKegiatanController::class)->names('akegiatan');
+    Route::prefix('/kesiswaan')->group(function(){
+        Route::resource('/kegiatan', AdminKegiatanController::class)->names('akegiatan');
+        Route::get('/album', [AdminKesiswaanController::class, 'album'])->name('galeri.index');
+        Route::get('/ekstrakulikuler', [AdminKesiswaanController::class, 'ekskul'])->name('ekskul.index');
+        Route::get('/bem', [AdminKesiswaanController::class, 'bem'])->name('bem.index');
+    });
 
     Route::resource('akademik/programs', AdminProgramController::class)->names('aprogram');
     Route::resource('/akademik/guru', AdminGuruController::class)->names('guru');

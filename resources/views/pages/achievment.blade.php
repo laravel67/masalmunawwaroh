@@ -9,7 +9,7 @@
                     <x-modal-import subTitle="Prestasi/Penghargaan" id="importPrestasi">
                         <form action="{{ route('import.prestasi') }}" method="post" enctype="multipart/form-data">
                             @csrf
-                            <x-input-import name="import">Pilih file Excel</x-input-import>
+                            <x-input-import title="Import Data Prestasi" name="import">Pilih file Excel</x-input-import>
                             <x-btn-import />
                         </form>
                     </x-modal-import>

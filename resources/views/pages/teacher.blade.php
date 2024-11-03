@@ -8,7 +8,7 @@
             <x-modal-import subTitle="Import Guru" id="importGuru">
                 <form action="{{ route('import.guru') }}" method="post" enctype="multipart/form-data">
                     @csrf
-                    <x-input-import name="import">{{ __('Pilih file Excels') }}</x-input-import>
+                    <x-input-import title="Import Data Guru" name="import">{{ __('Pilih file Excels') }}</x-input-import>
                     <x-btn-import />
                 </form>
             </x-modal-import>

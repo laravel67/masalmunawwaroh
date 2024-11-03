@@ -6,9 +6,9 @@ use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Lifeskill>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Ekskul>
  */
-class LifeskillFactory extends Factory
+class EkskulFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -21,7 +21,7 @@ class LifeskillFactory extends Factory
             'name' => $this->faker->word,
             'slug' => Str::slug($this->faker->name),
             'category' => $this->faker->randomElement(['fisik', 'nonfisik']),
-            'image' => '',
+            'image' => 'default.jpg', // Placeholder image, replace with actual file path if needed
             'body' => implode("\n\n", $this->faker->paragraphs(10)),
             'created_at' => now(),
             'updated_at' => now(),

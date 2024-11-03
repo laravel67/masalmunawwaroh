@@ -16,8 +16,8 @@
         <x-tbLink title="Biografi Guru" href="{{ route('biografi') }}" :active="Request::is('akademik/biografi*')"/>
     </x-tbSubLink>
     <x-tbSubLink title="Kesiswaan" :active="Request::is('kesiswaan*')">
-        <x-tbLink title="Ekstrakulikuler" href="{{ route('lifeskill') }}" :active="Request::is('kesiswaan/ekstrakulikuler*')"/>
-        <x-tbLink title="Organisasi Siswa" href="{{ route('bem') }}" :active="Request::is('kesiswaan/bem*')"/>
+        <x-tbLink title="Ekstrakulikuler" href="{{ route('ekskul') }}" :active="Request::is('kesiswaan/ekstrakulikuler*')"/>
+        <x-tbLink title="Organisasi Siswa" href="{{ route('bems') }}" :active="Request::is('kesiswaan/bem*')"/>
         <x-tbLink title="Kegiatan Siswa" href="{{ route('kegiatan.siwa') }}" :active="Request::is('kesiswaan/kegiatan*')" />
         <x-tbLink title="Galeri/Album" href="{{ route('album') }}" :active="Request::is('kesiswaan/album*')"/>
     </x-tbSubLink>

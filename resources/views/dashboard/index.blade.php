@@ -4,7 +4,6 @@
         <x-widget title="Berita" icon="newspaper" bg="secondary" value="{{ $posts ?? 0 }}" />
         <x-widget title="Postingan Anda" icon="newspaper" bg="secondary" value="{{ $postByUser ?? 0 }}" />
         <x-widget title="Kategori Berita" icon="tags" bg="purple" value="{{ $category ?? 0 }}" />
-        <x-widget title="Mata Pelajaran" icon="book" bg="danger" value="{{ $mapel ?? 0 }}" />
         <x-widget title="Guru" icon="user-tie" bg="primary" value="{{ $guru ?? 0 }}" />
         <x-widget title="Sarana Prasarana" icon="landmark" bg="warning" value="{{ $sarana ?? 0 }}" />
         <x-widget title="Prestasi" icon="medal" bg="success" value="{{ $achievment ?? 0 }}" />

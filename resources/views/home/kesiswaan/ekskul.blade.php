@@ -8,7 +8,7 @@
                 <div class="service-item">
                     <img src="{{ $row->image ? asset('storage/'.$row->image) : 'https://placehold.jp/400x350.png' }}" alt="{{ $row->name }}" class="img-fluid w-100 mb-4">
                     <h3 class="mb-3 text-start">{{ $row->name }}</h3> 
-                    <a href="{{ route('lifeskill.detail', $row->slug) }}" class="btn btn-light btn-sm">
+                    <a href="{{ route('ekskul.detail', $row->slug) }}" class="btn btn-light btn-sm">
                         <i class="fas fa-folder"></i>
                         {{ __('Detail') }}
                     </a>
@@ -25,7 +25,7 @@
                 <div class="service-item">
                     <img src="{{ $row->image ? asset('storage/'.$row->image) : 'https://placehold.jp/400x350.png' }}" alt="{{ $row->name }}" class="img-fluid w-100 mb-4">
                     <h3 class="mb-3 text-start">{{ $row->name }}</h3> 
-                    <a href="{{ route('lifeskill.detail', $row->slug) }}" class="btn btn-light btn-sm">
+                    <a href="{{ route('ekskul.detail', $row->slug) }}" class="btn btn-light btn-sm">
                         <i class="fas fa-folder"></i>
                         {{ __('Detail') }}
                     </a>

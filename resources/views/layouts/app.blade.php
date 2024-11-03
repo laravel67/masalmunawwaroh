@@ -47,8 +47,9 @@
     <script src="{{ asset('mas/lib/waypoints/waypoints.min.js') }}"></script>
     <script src="{{ asset('mas/lib/counterup/counterup.min.js') }}"></script>
     <script src="{{ asset('mas/lib/owlcarousel/owl.carousel.min.js') }}"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Main Script -->
     <script src="{{ asset('mas/js/main.js') }}"></script>
+    @stack('js')
 </body>
 </html>

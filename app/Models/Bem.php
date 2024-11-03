@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Persada extends Model
+class Bem extends Model
 {
     use HasFactory;
     protected $guarded = [];

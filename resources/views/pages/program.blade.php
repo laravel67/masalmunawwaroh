@@ -31,7 +31,7 @@
                     <x-btnAct>
                         <x-act title="Detail Program" href="{{ route('aprogram.show', $program->slug) }}" icon="book-open" />
                         <x-act title="Ubah Program" href="{{ route('aprogram.edit', $program->slug) }}" icon="edit" />
-                        <x-act title="Hapus Program" model="deleting('{{ $program->slug }}')" icon="trash" />
+                        <x-act title="Hapus Program" model="deleting('{{ $program->id }}')" icon="trash" />
                     </x-btnAct>
                   </td>
                 </tr>

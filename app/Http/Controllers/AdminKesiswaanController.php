@@ -2,18 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Galery;
 use Illuminate\Http\Request;
-use Cviebrock\EloquentSluggable\Services\SlugService;
 
-class AdminGaleryController extends Controller
+class AdminKesiswaanController extends Controller
 {
-    // public function __construct()
-    // {
-    //     return view()->share('title', 'Album Foto dan Video');
-    // }
-
-    public function index()
+    public function album()
     {
         view()->share('title', 'Album Foto dan Video');
         return view('dashboard.kesiswaan.galeri');
@@ -25,4 +18,9 @@ class AdminGaleryController extends Controller
         return view('dashboard.kesiswaan.ekskul');
     }
 
+    public function bem()
+    {
+        view()->share('title', 'Organisasi Siswa');
+        return view('dashboard.kesiswaan.bem');
+    }
 }

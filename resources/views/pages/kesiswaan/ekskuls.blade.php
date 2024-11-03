@@ -17,15 +17,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse ($lifes as $galery)
+                        @forelse ($ekskuls as $ekskul)
                             <tr>
-                                <td>{{ $galery->name }}</td>
-                                <td>{{ $galery->category == 'fisik' ? __('Fisik') : __('Non Fisik') }}</td>
+                                <td>{{ $ekskul->name }}</td>
+                                <td>{{ $ekskul->category == 'fisik' ? __('Fisik') : __('Non Fisik') }}</td>
                                 <td>
                                     <x-btnAct>
-                                        <x-act title="Preview" href="{{ route('album.detail', $galery->slug) }}" icon="book-open" />
-                                        <x-act title="Ubah" wire:click="edit({{ $galery->id }})" icon="edit" />
-                                        <x-act title="Hapus" wire:click="deleting({{ $galery->id }})" icon="trash" />
+                                        <x-act title="Preview" href="{{ route('ekskul.detail', $ekskul->slug) }}" icon="book-open" />
+                                        <x-act title="Ubah" wire:click="edit({{ $ekskul->id }})" icon="edit" />
+                                        <x-act title="Hapus" wire:click="deleting({{ $ekskul->id }})" icon="trash" />
                                     </x-btnAct>
                                 </td>
                             </tr>
@@ -34,7 +34,7 @@
                         @endforelse
                     </tbody>
                 </table>
-                <div class="px-2">{{ $lifes->links() }}</div>
+                <div class="px-2">{{ $ekskuls->links() }}</div>
             </div>
         </div>
     </div>
@@ -52,15 +52,17 @@
                     <label for="body">{{ __('Deskripsikan Ekstrakulikuler') }}</label>
                     <textarea wire:model="body" name="body" class="form-control mb-3" cols="30" rows="10"></textarea>
                     <x-input title="Upload Gambar" name="image" type="file" /> 
-        
-                    @if ($isEditing && $oldImage)
-                        <img src="{{ $oldImage }}" alt="Existing Image" class="img-thumbnail mt-2">
-                    @elseif ($image)
-                        <img src="{{ $image->temporaryUrl() }}" alt="New Image Preview" class="img-thumbnail mt-2">
+                    @if ($isEditing && $image)
+                    <img src="{{ $image->temporaryUrl() }}" alt="New Image Preview" class="img-thumbnail mt-2">
+                    @elseif ($isEditing && $oldImage)
+                    <img src="{{ asset('storage/' . $oldImage) }}" alt="Existing Image" class="img-thumbnail mt-2">
+                    @elseif (!$isEditing && $image)
+                    <img src="{{ $image->temporaryUrl() }}" alt="New Image Preview" class="img-thumbnail mt-2">
                     @endif
                 </div>
                 <div class="card-footer text-right">
-                    <button type="submit" class="btn btn-success">{{ __('Simpan Ekstrakulikuler') }}</button>
+                    <button type="button" wire:click='cancel' class="btn btn-danger">{{ __('Batal') }}</button>
+                    <button type="submit" class="btn btn-success">{{ __('Simpan') }}</button>
                 </div>
             </div>
         </form>

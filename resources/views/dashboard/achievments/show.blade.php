@@ -3,8 +3,14 @@
         <div class="card-header">
           <div class="user-block">
             <h5 class="text-success my-0">{{ $prestasi->title }}</h5>
-            <small class="text-muted">{{ \Carbon\Carbon::parse($prestasi->created_at)->locale('id')->translatedFormat('d F
-                    Y')}}</small>
+            <small class="text-muted">{{ \Carbon\Carbon::parse($prestasi->created_at)->locale('id')->translatedFormat('d F Y')}}</small> /
+            <div class="badge bg-success">
+              {{ $prestasi->tingkat }}
+            </div> /
+            <div class="badge bg-danger">
+              {{ $prestasi->category }}
+            </div> /
+
           </div>
           <div class="card-tools">
               <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -20,7 +26,6 @@
                         {!! $prestasi->body !!}
                     </article>
                 </div>
-                <x-image-draw/>
             </div>
         </div>
         <!-- /.card-body -->

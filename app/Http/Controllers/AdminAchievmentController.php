@@ -30,6 +30,7 @@ class AdminAchievmentController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'slug' => 'required|string|unique:achievments,slug',
+            'tingkat'=>'required',
             'category' => 'required',
             'body' => 'required|string',
             'image' => 'file|image|max:1024',
@@ -57,6 +58,7 @@ class AdminAchievmentController extends Controller
         $rules = [
             'title' => 'required|string|max:255',
             'slug'=> 'required|string|unique:achievments,slug,'.$prestasi->id,
+            'tingkat'=>'required',
             'category' => 'required',
             'body' => 'required|string',
             'image' => 'nullable|image|max:1024',

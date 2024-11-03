@@ -20,12 +20,14 @@ class GuruImport implements ToCollection, WithHeadingRow, WithChunkReading
     public function collection(Collection $collection)
     {
         foreach ($collection as $row) {
-            if (isset($row['nama']) && isset($row['jabatan']) && isset($row['pendidikan']) && isset($row['mulai mengajar']) && isset($row['biografi'])) {
+            if (!empty($row['nama']) && !empty($row['pendidikan']) && !empty($row['mulai mengajar']) && !empty($row['guru mapel']) && !empty($row['jabatan']) && !empty($row['biografi'])) {
                 $name = ucwords(strtolower($row['nama']));
                 $slug = Str::slug($name);
                 $pendidikan = $row['pendidikan'];
-                $deskripsi = isset($row['biografi']) ? $row['biografi'] : '';
-                $mulaiMengajar = Carbon::parse($row['mulai mengajar'])->toDateString();
+                $guruMapel = $row['guru mapel'] ?? null;
+                $jabatan = $row['jabatan'] ?? null;
+                $biografi = $row['biografi'] ?? '';
+                $mulaiMengajar = Carbon::parse($row['mulai mengajar'])->format('Y-m-d');
 
                 // Buat atau temukan entri guru
                 $guru = Guru::firstOrCreate(
@@ -34,22 +36,20 @@ class GuruImport implements ToCollection, WithHeadingRow, WithChunkReading
                         'slug' => $slug,
                         'pendidikan' => $pendidikan,
                         'mulai_mengajar' => $mulaiMengajar,
-                        'deskripsi' => $deskripsi,
+                        'guru_mapel' => $guruMapel,
+                        'jabatan' => $jabatan,
+                        'biografi' => $biografi,
                         'image' => null,
-                        'created_at' => Carbon::now(),
-                        'updated_at' => Carbon::now()
+                        'created_at' => now(),
+                        'updated_at' => now(),
                     ]
                 );
-                $jabatanName = strtoupper($row['jabatan']);
-                $jabatan = Jabatan::where('name', $jabatanName)->first();
-                if ($jabatan) {
-                    $guru->jabatans()->syncWithoutDetaching($jabatan->id);
-                }
+
                 $this->successCount++;
             }
         }
-
     }
+
 
     public function chunkSize(): int
     {

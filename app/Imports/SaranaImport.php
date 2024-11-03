@@ -22,20 +22,24 @@ class SaranaImport implements ToCollection, WithHeadingRow, WithChunkReading
             if (isset($row['nama']) && isset($row['deskripsi']) && isset($row['jumlah'])) {
                 $name = ucwords(strtolower($row['nama']));
                 $slug = Str::slug($name);
-        
+            
                 Sarana::firstOrCreate(
                     ['name' => $name],
                     [
                         'slug' => $slug,
-                        'jumlah' => $row['jumlah'],
-                        'body' => $row['deskripsi'],
+                        'jumlah_unit' => (int) $row['jumlah'],
+                        'body' => $row['deskripsi'] ?? '',
+                        'image' => null,
+                        'created_at' => now(),
+                        'updated_at' => now(), 
                     ]
                 );
-        
+
                 $this->successCount++;
             }
         }
     }
+
 
     public function chunkSize(): int
     {

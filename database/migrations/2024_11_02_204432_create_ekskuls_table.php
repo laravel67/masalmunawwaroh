@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('lifeskills', function (Blueprint $table) {
+        Schema::create('ekskuls', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
-            $table->enum('category', ['fisik', 'nonfisik']);
+            $table->enum('category', ['fisik', 'nonfisik'])->default('nonfisik');
             $table->text('body');
             $table->string('image')->nullable();
             $table->timestamps();
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('lifeskills');
+        Schema::dropIfExists('ekskuls');
     }
 };

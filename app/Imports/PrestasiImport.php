@@ -19,25 +19,32 @@ class PrestasiImport implements ToCollection, WithHeadingRow, WithChunkReading
     public function collection(Collection $collection)
     {
         foreach ($collection as $row) {
-            if (isset($row['nama']) && isset($row['kategori'])) {
-                $name = ucwords(strtolower($row['nama']));
-                $slug = Str::slug($name);
+            if (isset($row['nama']) && isset($row['kategori']) && isset($row['tingkat'])) {
+                $title = ucwords(strtolower($row['nama']));
+                $slug = Str::slug($title);
                 $category = strtolower(str_replace(' ', '', $row['kategori']));
-                $deskripsi = isset($row['deskripsi']) ? $row['deskripsi'] : '';
+                $category = in_array($category, ['akademik', 'nonakademik', 'siswa']) ? $category : 'akademik';
+                $tingkat = ucwords(strtolower($row['tingkat']));
+                $tingkat = in_array($tingkat, ['Internasional', 'Nasional', 'Provinsi', 'Kabupaten', 'Kecamatan', 'Desa', 'Sekolah']) ? $tingkat : 'Sekolah';
+                $body = $row['deskripsi'] ?? '';
+
                 Achievment::firstOrCreate(
-                    ['name' => $name],
+                    ['title' => $title],
                     [
                         'slug' => $slug,
+                        'tingkat' => $tingkat,
                         'category' => $category,
-                        'deskripsi' => $deskripsi,
-                        'created_at' => Carbon::now(),
-                        'updated_at' => Carbon::now()
+                        'body' => $body,
+                        'image' => null,
+                        'created_at' => now(),
+                        'updated_at' => now(),
                     ]
                 );
                 $this->successCount++;
             }
         }
     }
+
 
     public function chunkSize(): int
     {

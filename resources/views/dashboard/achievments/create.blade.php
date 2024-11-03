@@ -14,6 +14,15 @@
                     @csrf
                     <x-input type="text" name="title" title="Nama Prestasi" value="{{ old('title') }}"/>
                     <x-input type="text" name="slug" title="Slug Prestasi" readonly value="{{ old('slug') }}"/>
+                    <x-input-select title="Tingkat" name="tingkat" :defaultOptions="[
+                                ['value' => 'Internasional', 'label' => 'Internasional'],
+                                ['value' => 'Nasional', 'label' => 'Nasional'],
+                                ['value' => 'Provinsi', 'label' => 'Provinsi'],
+                                ['value' => 'Kabupaten', 'label' => 'Kabupaten'],
+                                ['value' => 'Kecamatan', 'label' => 'Kecamatan'],
+                                ['value' => 'Desa', 'label' => 'Desa'],
+                                ['value' => 'Sekolah', 'label' => 'Sekolah'],
+                            ]"/>
                     <x-input-select title="Kategori Prestasi" name="category" :defaultOptions="[
                                 ['value' => 'akademik', 'label' => 'Akademik'],
                                 ['value' => 'nonakademik', 'label' => 'Non Akademik'],
@@ -25,7 +34,6 @@
                     <img id="previewContainer" class="mt-3 img-fluid" width="300">
                 </form>
               </div>
-              <x-image-draw/>
             </div>
           </div>
         </div>

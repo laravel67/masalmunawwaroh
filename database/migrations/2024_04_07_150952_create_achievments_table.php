@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug')->unique();
+            $table->enum('tingkat', ['Internasional', 'Nasional', 'Provinsi', 'Kabupaten', 'Kecamatan', 'Desa', 'Sekolah']);
             $table->enum('category', ['akademik', 'nonakademik', 'siswa'])->default('akademik');
             $table->text('body')->nullable();
             $table->string('image')->nullable();

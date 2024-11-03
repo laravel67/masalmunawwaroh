@@ -10,20 +10,20 @@ class Guru extends Model
 {
     use HasFactory, Sluggable;
     protected $guarded = [''];
-    protected $with = ['mapels', 'jabatans'];
+    // protected $with = ['mapels', 'jabatans'];
 
 
 
-    public function mapels()
-    {
-        return $this->belongsToMany(Mapel::class);
-    }
+    // public function mapels()
+    // {
+    //     return $this->belongsToMany(Mapel::class);
+    // }
 
 
-    public function jabatans()
-    {
-        return $this->belongsToMany(Jabatan::class);
-    }
+    // public function jabatans()
+    // {
+    //     return $this->belongsToMany(Jabatan::class);
+    // }
 
 
     public function struktur()

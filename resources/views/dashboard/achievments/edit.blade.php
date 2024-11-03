@@ -16,6 +16,15 @@
                                 
                                 <x-input type="text" name="title" title="Nama Prestasi" value="{{ old('title', $prestasi->title) }}"/>
                                 <x-input type="text" name="slug" title="Slug Prestasi" readonly value="{{ old('slug', $prestasi->slug) }}"/>
+                                    <x-input-select title="Tingkat" name="tingkat" :selected="old('tingkat', $prestasi->tingkat)" :defaultOptions="[
+                                        ['value' => 'Internasional', 'label' => 'Internasional'],
+                                        ['value' => 'Nasional', 'label' => 'Nasional'],
+                                        ['value' => 'Provinsi', 'label' => 'Provinsi'],
+                                        ['value' => 'Kabupaten', 'label' => 'Kabupaten'],
+                                        ['value' => 'Kecamatan', 'label' => 'Kecamatan'],
+                                        ['value' => 'Desa', 'label' => 'Desa'],
+                                        ['value' => 'Sekolah', 'label' => 'Sekolah'],
+                                    ]"/>
                                 
                                 <x-input-select title="Kategori Prestasi" name="category" :selected="old('category', $prestasi->category)" :defaultOptions="[
                                     ['value' => 'akademik', 'label' => 'Akademik'],
