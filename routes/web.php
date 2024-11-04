@@ -23,6 +23,7 @@ use App\Http\Controllers\AdminKesiswaanController;
 use App\Http\Controllers\Home\KesiswaanController;
 use App\Livewire\Psb\Fomulir\Main as formulirMain;
 use App\Http\Controllers\AdminAchievmentController;
+use App\Http\Controllers\AdminAgendaController;
 use App\Http\Controllers\AdminInformasiController;
 use App\Http\Controllers\AdminProfilemasController;
 use App\Http\Controllers\Home\AchievmentController;
@@ -80,6 +81,7 @@ Route::prefix('/kesiswaan')->controller(KesiswaanController::class)->group(funct
 Route::prefix('/informasi')->controller(InformasiController::class)->group(function(){
     Route::get('/arsip', 'arsips')->name('arsips');
     Route::get('/kontak', 'kontak')->name('kontak');
+    Route::get('/agenda', 'agenda')->name('agenda');
 });
 
 Route::prefix('/ppdb')->group(function(){
@@ -150,7 +152,7 @@ Route::prefix('/dashboard')->middleware(['auth', 'admin'])->group(function () {
     Route::prefix('informasi')->controller(AdminInformasiController::class)->group(function(){
         Route::get('/arsips', 'arsip')->name('data.arsip');
     });
-
+    Route::resource('/informasi/agenda', AdminAgendaController::class)->names('acara');
     Route::prefix('/import')->controller(ImportExcelController::class)->group(function () {
         Route::post('/guru',  'guru')->name('import.guru');
         Route::post('/sarana',  'sarana')->name('import.sarana');
@@ -168,6 +170,7 @@ Route::middleware(['middleware' => 'role'])->group(function(){
     Route::get('/post/slug', [AdminPostController::class, 'slug']);
     Route::get('/achievments/slug', [AdminAchievmentController::class, 'slug']);
     Route::get('/guru/slug', [AdminGuruController::class, 'slugGuru']);
+    Route::get('/agenda/slug', [AdminAgendaController::class, 'slugAgenda']);
 });
 
 Route::fallback(function () {

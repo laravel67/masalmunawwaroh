@@ -25,10 +25,10 @@
         <x-tbLink title="Galeri/Album" href="{{ route('album') }}" :active="Request::is('kesiswaan/album*')"/>
         <x-tbLink title="Alumni" href="{{ route('alumnus') }}" :active="Request::is('kesiswaan/alumnus*')"/>
     </x-tbSubLink>
-    <x-tbSubLink title="Informasi Publik" :active="Request::is('profile*')">
+    <x-tbSubLink title="Informasi Publik" :active="Request::is('informasi*')">
         <x-tbLink title="Kontak" href="{{ route('kontak') }}" :active="Request::is('informasi/kontak*')"/>
-        <x-tbLink title="Agenda" href="{{ route('sejarah') }}" :active="Request::is('informasi/sejarah*')"/>
         <x-tbLink title="Arsip" href="{{ route('arsips') }}" :active="Request::is('informasi/arsips*')" />
-        <x-tbLink title="Pengumuman" href="{{ route('identitas') }}" :active="Request::is('profile/identitas*')" />
+        <x-tbLink title="Agenda & Acara" href="{{ route('agenda') }}" :active="Request::is('informasi/agenda*')"/>
+        {{-- <x-tbLink title="Pengumuman" href="{{ route('identitas') }}" :active="Request::is('profile/identitas*')" /> --}}
     </x-tbSubLink>
 </div>

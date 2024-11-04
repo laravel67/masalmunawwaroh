@@ -18,7 +18,6 @@
                     <x-btn-form/>
                 </form>
               </div>
-              <x-image-draw/>
             </div>
           </div>
         </div>

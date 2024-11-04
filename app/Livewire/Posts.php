@@ -75,6 +75,6 @@ class Posts extends Component
             }
             $post->delete();
         }
-        return redirect()->route('apost.index')->with('success', 'Post has been deleted!');
+        return redirect()->route('apost.index')->with('success', 'Berita!');
     }
 }

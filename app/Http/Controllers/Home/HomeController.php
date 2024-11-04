@@ -19,10 +19,10 @@ class HomeController extends Controller
         $totalPrestasi=Achievment::count();
         $posts = Post::orderBy('id', 'desc')->take(3)->get();
         $gurus = Guru::orderBy('id', 'desc')->take(4)->get();
-        $sambutan = Sambutan::latest()->first();
         $galeri = Galeri::orderBy('id', 'desc')->take(5)->get();
         $slides = Slide::orderBy('id', 'desc')->take(5)->get();
         $alumnus=Alumni::orderBy('id', 'desc')->get();
-        return view('home.homepages.index', compact('posts', 'sambutan', 'galeri', 'slides', 'totalGuru', 'totalPrestasi', 'gurus', 'alumnus'));
+        $totalAlumnus=Alumni::count();
+        return view('home.homepages.index', compact('posts','galeri', 'slides', 'totalGuru', 'totalPrestasi', 'gurus', 'alumnus', 'totalAlumnus'));
     }
 }

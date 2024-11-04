@@ -17,4 +17,9 @@ class InformasiController extends Controller
         view()->share('title', 'Kontak Kami');
         return view('home.informasi.kontak');
     }
+
+    public function agenda(){
+        view()->share('title', 'Agenda dan Acara');
+        return view('home.informasi.agenda');
+    }
 }

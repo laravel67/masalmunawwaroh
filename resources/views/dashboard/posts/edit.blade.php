@@ -18,7 +18,7 @@
                   <x-input-select title="Kategori" name="category_id" :options="$categories" :selected="old('category_id', $post->category_id)" />
                   <x-input-text-area width="400" name="body" title="Isi Berita/Artikel" value="{{ old('body', $post->body) }}"/>
                   <x-input type="file" title="Image/Gambar" name="image"  onchange="previewImage()" accept="image/*"/>
-                  <x-btn-form></x-btn-form>
+                  <x-btn-form/>
                   <img id="previewContainer" class="mt-3 img-fluid" width="300">
                   @if ($post->image)
                     <img id="previewContainer" src="{{ asset('storage/'.$post->image) }}" class="mt-3 img-fluid"

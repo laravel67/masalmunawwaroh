@@ -11,11 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('acaras', function (Blueprint $table) {
+        Schema::create('agendas', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('slug');
+            $table->enum('category',['Acara', 'Agenda'])->default('Acara');
             $table->dateTime('waktu');
             $table->string('tempat');
+            $table->text('body');
+            $table->string('image')->nullable();
             $table->boolean('status')->default(false);
             $table->timestamps();
         });
@@ -26,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('acaras');
+        Schema::dropIfExists('agendas');
     }
 };

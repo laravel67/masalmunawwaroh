@@ -61,10 +61,6 @@ class DatabaseSeeder extends Seeder
         //     Student::factory(10)->create();
         // });
 
-        // DB::transaction(function () {
-        //     Sambutan::factory(1)->create();
-        // });
-
         User::factory()->create([
             'name' => 'Murtaki',
             'username' => 'murtaki99',
