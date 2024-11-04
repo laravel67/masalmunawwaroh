@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->string('chief');
-            $table->enum('status', ['1', '0'])->default('0');
+            $table->enum('status', ['1', '0'])->default('1');
             $table->string('image')->nullable();
             $table->timestamps();
         });

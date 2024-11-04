@@ -12,7 +12,6 @@ use App\Http\Controllers\Home\PostController;
 use App\Http\Controllers\AdminSaranaController;
 use App\Http\Controllers\AdminSetterController;
 use App\Http\Controllers\ImportExcelController;
-use App\Http\Controllers\KesanAlumniController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\AdminProgramController;
 use App\Http\Controllers\AdminStudentController;
@@ -27,6 +26,7 @@ use App\Http\Controllers\AdminAchievmentController;
 use App\Http\Controllers\AdminInformasiController;
 use App\Http\Controllers\AdminProfilemasController;
 use App\Http\Controllers\Home\AchievmentController;
+use App\Http\Controllers\Home\InformasiController;
 use App\Livewire\Psb\Dashboard\Profile as ProfileSiswa;
 
 
@@ -77,6 +77,11 @@ Route::prefix('/kesiswaan')->controller(KesiswaanController::class)->group(funct
     Route::post('/sending', 'createPesanOrKesan')->name('create.kesan');
 });
 
+Route::prefix('/informasi')->controller(InformasiController::class)->group(function(){
+    Route::get('/arsip', 'arsips')->name('arsips');
+    Route::get('/kontak', 'kontak')->name('kontak');
+});
+
 Route::prefix('/ppdb')->group(function(){
     Route::get('/formulir-pendaftaran', formulirMain::class)->name('formulir.psb')->middleware('guest');
     Route::get('/ppdb/biodata', ProfileSiswa::class)->name('biodata')->middleware('siswa');
@@ -107,7 +112,7 @@ Route::prefix('/dashboard')->middleware(['middleware' => 'role'])->group(functio
     });
     Route::get('/profile', [UserProfileController::class, 'userProfile'])->name('user.profile');
     Route::get('/persada', [DashboardController::class, 'persada'])->name('admin.persada');
-    Route::post('/reset-password', [UserProfileController::class, 'updatepassword'])->name('password.update');
+    // Route::post('/reset-password', [UserProfileController::class, 'updatepassword'])->name('password.update');
     Route::post('/update/profile', [UserProfileController::class, 'updateprofile'])->name('profile.update');
 });
 

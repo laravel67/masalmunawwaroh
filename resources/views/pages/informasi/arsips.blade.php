@@ -46,7 +46,7 @@
                 </div>
                 <div class="card-body">
                     <x-input title="Nama Arsip" name="name" />
-                    <x-input title="Link Arsip" name="link" type="url" />
+                    <x-input title="Link Google Drive" name="link" type="url" />
                 </div>
                 <div class="card-footer text-right">
                     <button type="button" wire:click='cancel' class="btn btn-danger">{{ __('Batal') }}</button>

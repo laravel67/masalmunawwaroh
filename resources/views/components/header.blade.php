@@ -14,8 +14,8 @@
 
                                     <span>Madrasah</span> <span class="text-warning">Aliyah</span></h1>
                                 <h1 class="text-white h-6">Pondok Pesantren Tahfidz Al-Qur'an Wal Hadits Almunawwaroh</h1>
-                                <a href="" class="btn btn-success py-3 px-5 animated slideInRight">Hubungi</a>
-                                <a href="" class="btn btn-light py-3 px-5 animated slideInRight">PPDB</a>
+                                <a href="https://wa.me/082190516703" class="btn btn-success py-3 px-5 animated slideInRight" target="_blank">Hubungi</a>
+                                <a href="{{ route('formulir.psb') }}" class="btn btn-light py-3 px-5 animated slideInRight">PPDB</a>
                             </div>
                         </div>
                     </div>

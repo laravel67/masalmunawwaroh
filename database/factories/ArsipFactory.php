@@ -17,7 +17,8 @@ class ArsipFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->sentence(3), // contoh nama arsip
+            'link' => $this->faker->url,         // contoh link
         ];
     }
 }

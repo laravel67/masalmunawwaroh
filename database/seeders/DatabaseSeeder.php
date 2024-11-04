@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Achievment;
+use App\Models\Arsip;
 use Faker\Factory;
 use App\Models\Taj;
 use App\Models\Guru;
@@ -50,6 +51,10 @@ class DatabaseSeeder extends Seeder
 
         DB::transaction(function(){
             Achievment::factory(25)->create();
+        });
+
+        DB::transaction(function(){
+            Arsip::factory(25)->create();
         });
 
         // DB::transaction(function () {
