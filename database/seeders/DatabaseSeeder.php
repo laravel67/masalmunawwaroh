@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Achievment;
 use Faker\Factory;
 use App\Models\Taj;
 use App\Models\Guru;
@@ -36,7 +37,7 @@ class DatabaseSeeder extends Seeder
         });
 
         DB::transaction(function () {
-            Guru::factory(10)->create();
+            Guru::factory(20)->create();
         });
 
         DB::transaction(function(){
@@ -45,6 +46,10 @@ class DatabaseSeeder extends Seeder
 
         DB::transaction(function(){
             Galeri::factory(30)->create();
+        });
+
+        DB::transaction(function(){
+            Achievment::factory(25)->create();
         });
 
         // DB::transaction(function () {

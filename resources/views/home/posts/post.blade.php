@@ -33,7 +33,7 @@
                         <article align="justify" class="text-dark mb-3" style="overflow: hidden">
                             {!! $post->body !!}
                         </article>
-                        <a href="{{ route('posts') }}" class="mb-1">Kembali</a>
+                        <x-btn-back/>
                     </div>
                 </div>
                 @else

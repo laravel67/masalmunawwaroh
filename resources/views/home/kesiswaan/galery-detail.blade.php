@@ -1,6 +1,5 @@
 <x-content>
     <div class="container my-5">
-        <x-shareMedsos/>
         <div class="row justify-content-center my-md-5">
             <div class="text-center">
                 <h3 class="mb-1 text-success">{{ $galery->title }}</h3>

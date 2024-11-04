@@ -26,7 +26,6 @@
                         @else
                         <img class="img-fluid w-100" src="https://placehold.jp/1000x800.png" alt="">
                         @endif
-                        <x-shareMedsos/>
                     </div>
                     <div class="col-md-6 wow fadeIn" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeIn;">
                         <p class="mb-1">Oleh: {{ $posts[0]->author->name }}</p>

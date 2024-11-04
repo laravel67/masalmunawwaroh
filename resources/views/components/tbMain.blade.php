@@ -45,8 +45,8 @@ class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-5
             <x-tbMenu/>            
             <div class="ms-auto d-lg-flex">
                 @guest
-                <a href="#" class="btn btn-warning">{{ __('RDM') }}</a>
-                <a href="{{ route('login') }}"  class="btn btn-dark mx-1">{{ __('Login') }}</a>
+                <a href="https://rdm.kemenag.go.id/login/auth" target="_blank" class="btn btn-warning "><i class="fas fa-book-reader"></i> {{ __('Rapot Digital') }}</a>
+                {{-- <a href="{{ route('login') }}"  class="btn btn-dark mx-1">{{ __('Login') }}</a> --}}
                 @else
                 <a href="{{ route('dashboard') }}"  class="btn btn-dark mx-1">{{ __('Dashboard') }}</a>
                 <button type="button" onclick="logout()" class="btn btn-danger">{{ __('Keluar') }}</button>

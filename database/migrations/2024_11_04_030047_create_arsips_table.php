@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tajs', function (Blueprint $table) {
+        Schema::create('arsips', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
-            $table->string('chief');
-            $table->enum('status', ['1', '0'])->default('0');
-            $table->string('image')->nullable();
+            $table->string('name');
+            $table->string('link');
             $table->timestamps();
         });
     }
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tajs');
+        Schema::dropIfExists('arsips');
     }
 };

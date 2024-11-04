@@ -2,7 +2,7 @@
   <div class="container mb-5">
     <iframe width="100%" height="650" src="https://www.youtube.com/embed/ujLZeM5DMtY?autoplay=1" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
     <article align="justify" class="card-text text-dark blockquote my-5" style="line-height: 35px">
-        <p align="justify">
+      <p align="justify">
             Madrasah Aliyah Al-Munawwaroh Bangko adalah salah satu lembaga pendidikan yang berada di bawah Pondok Pesantren Tahfidz Al-Qur’an wal Hadits Al-Munawwaroh Modern Islamic Boarding school Bangko. Pendiriannya mulai Tahun 2004.
             Lokasi Kantor MAS Al-Munawwaroh berada di kampus II/ Kampus Putri yang letaknya di Jl. Lintas Sumatera Km. 3 Dusun Bangko, ± 600 m dari lokasi Kampus I (Kampus Putra) Pontren Al-Munawwaroh. 
         </p>

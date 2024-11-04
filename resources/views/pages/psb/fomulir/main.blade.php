@@ -1,5 +1,9 @@
 <div class="card card-default">
-    <div class="card-body p-5">
+    @if ($tahunAjaran)
+    <div class="text-center d-flex justify-content-center my-0">
+        <x-shareMedsos/>
+    </div>
+    <div class="card-body p-4">
         <h3 class="text-center fw-bold">{{ $titleForm }}</h3>
         <div class="bs-stepper-content">         
             @include('pages.psb.fomulir.tablist')
@@ -40,5 +44,10 @@
           
         </div>
     </div>
+    @else
+    <div class="text-center d-flex justify-content-center my-0">
+        <h5 class="m-4 text-muted">{{ __('Penerimaan Peserta Didik Baru Belum Dibuka.') }}</h5>
+    </div>
+    @endif
  </div>
  

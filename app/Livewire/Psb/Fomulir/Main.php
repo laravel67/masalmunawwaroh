@@ -112,7 +112,7 @@ class Main extends Component
     public function generateRegistrationNumber()
     {
         $ta = Taj::where('status', '1')->first();
-        $this->taId=$ta->id;
+        $this->taId=$ta->id ?? '';
 
         if ($ta) {
             $studentCount = Student::where('ta_id', $ta->id)->count();
@@ -151,12 +151,17 @@ class Main extends Component
         switch ($this->step) {
             case 1:
                 sleep(2);
+                $route=route('home');
+                $message='Selamat Anda berhasil mendafatar sebagai siswa baru di Madrasah Aliyah Pondok pesantern Al-Munawwaroh';
+                $this->dispatch('success', $message, $route);
                 $rules = array_intersect_key($this->rules, array_flip([
                     'nama_lengkap', 'nama_panggilan', 'tempat_lahir', 'tanggal_lahir', 'alamat_asal', 'nisn',
                     'jenis_kelamin', 'anak_ke', 'jumlah_saudara', 'penyakit_berat', 'berat_badan', 'tinggi_badan',
                     'golongan_darah', 'hobi', 'cita_cita', 'program_pilihan',
                 ]));
-                $this->titleForm='Data Sekolah Asal';
+                if ($this->validate($rules)) {
+                    $this->titleForm = 'Data Sekolah Asal';
+                }
                 break;
             case 2:
                 sleep(2);
@@ -165,7 +170,9 @@ class Main extends Component
                     'nomor_ijazah', 'nomor_skhu', 'nomor_peserta_un', 'nilai_bahasa_indonesia',
                     'nilai_matematika', 'nilai_ipa', 'nilai_bahasa_inggris'
                 ]));
-                $this->titleForm='Data Orang Tua/Wali';
+                if ($this->validate($rules)) {
+                    $this->titleForm='Data Orang Tua/Wali';
+                }
                 break;
                 case 3:
                     sleep(2);
@@ -173,12 +180,14 @@ class Main extends Component
                         'nama_ayah', 'tempat_lahir_ayah', 'pendidikan_ayah', 'pekerjaan_ayah', 'no_hp_ayah', 'alamat_ayah',
                         'nama_ibu', 'tempat_lahir_ibu', 'pendidikan_ibu', 'pekerjaan_ibu', 'no_hp_ibu', 'alamat_ibu'
                     ]));
-                $this->titleForm='Buat Akun';
+                    if ($this->validate($rules)) {
+                        $this->titleForm='Buat Akun';
+                    }
                     break;
                 case 4:
                         sleep(2);
                         $rules = array_intersect_key($this->rules, array_flip([
-                            'email','password','photo'
+                            'email','password'
                         ]));
                 break;
         }
@@ -247,7 +256,8 @@ class Main extends Component
 
     public function render()
     {
-        return view('pages.psb.fomulir.main');
+        $tahunAjaran=Taj::where('status', '1')->first();
+        return view('pages.psb.fomulir.main', compact('tahunAjaran'));
     }
 }
 

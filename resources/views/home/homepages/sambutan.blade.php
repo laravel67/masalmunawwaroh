@@ -3,17 +3,17 @@
         <div class="row g-0">
             <div class="col-lg-6 pt-lg-5">
                 <div class="bg-white px-3 py-5 mt-lg-8">
-                    <h1 class="display-6 mb-4 wow fadeIn text-success w-100 text-center" data-wow-delay="0.3s">Sambutan Kepala Madrasah</h1>
-                    <h4 class="text-end">السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ</h4>
+                    <h1 class="display-6 mb-4 wow fadeIn text-success w-100 text-center" data-wow-delay="0.3s">Informasi PPDB</h1>
+                    <h4 class="text-end"></h4>
                     <article align="justify" class="mb-4 wow fadeIn" data-wow-delay="0.4s">
-                        <p>
+                        {{-- <p>
                             Alhamdulillah, segala puji bagi Allah SWT yang telah memberikan rahmat dan karunia-Nya kepada kita semua. Shalawat serta salam semoga senantiasa tercurahkan kepada junjungan kita, Nabi Muhammad SAW, beserta keluarga, sahabat, dan umatnya hingga akhir zaman.
                         </p>
                         <p>
                             Selamat datang di halaman web resmi Madrasah Tsanawiyah Pondok Pesantren Al-Munawwaroh. Sebuah kebanggaan bagi kami untuk bisa memperkenalkan lembaga pendidikan yang berperan penting dalam mencetak generasi muda yang berilmu, berakhlak mulia, serta berpegang teguh pada nilai-nilai Islam.
-                        </p>
+                        </p> --}}
                     </article>
-                    <a class="btn btn-success py-3 px-5 wow fadeIn" data-wow-delay="0.5s" href="">Selengkapnya</a>
+                    <a href="{{ route('formulir.psb') }}" class="btn btn-success py-3 px-5 wow fadeIn" data-wow-delay="0.5s" href="">Formulir Pendaftaran</a>
                 </div>
             </div>
             <div class="col-lg-6">

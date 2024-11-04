@@ -34,7 +34,7 @@
                         <article align="justify" class="text-dark mb-3" style="overflow: hidden">
                             {!! $sarana->body !!}
                         </article>
-                        <a href="{{ route('sarana') }}" class="mb-1">Kembali</a>
+                        <x-btn-back/>
                     </div>
                 </div>
                 @else

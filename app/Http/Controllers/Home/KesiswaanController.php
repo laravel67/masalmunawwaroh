@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers\Home;
 
-use App\Models\Galeri;
-use App\Http\Controllers\Controller;
+use DB;
 use App\Models\Bem;
+use App\Models\Alumni;
 use App\Models\Ekskul;
+use App\Models\Galeri;
+use App\Models\Persada;
 use App\Models\Kegiatan;
 use App\Models\Lifeskill;
-use App\Models\Persada;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Intervention\Image\Colors\Rgb\Channels\Red;
 
 class KesiswaanController extends Controller
 {
@@ -63,4 +67,45 @@ class KesiswaanController extends Controller
         $kegiatans=Kegiatan::all();
         return view('home.kesiswaan.kegiatan', compact('kegiatans'));
     }
+
+    public function alumnus(){
+        view()->share('title', 'Pesan dan Kesan Alumni');
+        $kesans=Alumni::latest()->get();
+        return view('home.kesiswaan.alumnus', compact('kesans'));
+    }
+
+    public function createPesanOrKesan(Request $request)
+    {
+        // Validate the form input
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'status' => 'required|in:kerja,pendidikan',
+            'tempat' => 'required|string|max:255',
+            'angkatan' => 'required|integer|min:1|max:50',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Optional image
+            'message' => 'required|string',
+        ]);
+
+        // Handle file upload if an image is uploaded
+        $imagePath = null;
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('alumnus', 'public');
+        }
+
+        // Save data to the alumnis table
+        Alumni::create([
+            'name' => $request->input('name'),
+            'status' => $request->input('status'),
+            'tempat' => $request->input('tempat'),
+            'angkat' => $request->input('angkatan'),
+            'image' => $imagePath,
+            'pesan_kesan' => $request->input('message'),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        return redirect()->back()->with('success', 'Pesan dan Kesan berhasil dikirim.');
+    }
+
+
+
 }

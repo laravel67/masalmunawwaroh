@@ -39,9 +39,10 @@
     <x-asideSubMenu title="Informasi" icon="bullhorn" :active="request()->is('dashboard/informasi*')">
         <x-linkSub title="Agenda/Acara" href="{{ route('guru.index') }}" :active="request()->is('dashboard/informasi/guru*')" />
         <x-linkSub title="Pengumuman" href="{{ route('prestasi.index') }}" :active="request()->is('dashboard/informasi/prestasi*')" />
+        <x-linkSub title="Arsip" href="{{ route('data.arsip') }}" :active="request()->is('dashboard/informasi/arsips*')" />
     </x-asideSubMenu>
-    <x-asideSubMenu title="Pengaturan" icon="cog" :active="request()->is('dashboard/informasi*')">
+    {{-- <x-asideSubMenu title="Pengaturan" icon="cog" :active="request()->is('dashboard/informasi*')">
         <x-linkSub title="Slide/Corousal" href="{{ route('guru.index') }}" :active="request()->is('dashboard/informasi/guru*')" />
-    </x-asideSubMenu>
+    </x-asideSubMenu> --}}
     <x-link onclick="logout()" icon="sign-out-alt" title="Keluar"/><x-logout/>
 </ul>

@@ -18,27 +18,26 @@
         <div class="navbar-wrapper container">
             <div class="navbar-content sidenav-horizontal" id="layout-sidenav">
                 <ul class="nav pcoded-inner-navbar sidenav-inner">
+                    <li class="nav-item py-2 text-end">
+                        <a href="{{ route('home') }}" type="button" class="nav-link pcoded-mtext">Beranda</a>
+                    </li>
                     @auth
                     <li class="nav-item py-2 text-end">
-                      <button onclick="logout()" type="button" class="nav-link border-0 pcoded-mtext"><i class="fas fa-sign-out-alt"></i> Keluar</button>
+                      <a href="#" onclick="logout()" type="button" class="nav-link pcoded-mtext"><i class="fas fa-sign-out-alt"></i> Keluar</a>
                     </li>
                     <x-logout/>
+                    @else
+                    <li class="nav-item py-2 text-end">
+                        <a href="{{ route('login') }}" class="nav-link pcoded-mtext"><i class="fas fa-sign-in-alt"></i> Masuk</a>
+                    </li>
                     @endauth
                 </ul>
             </div>
         </div>
     </nav>
     <header class="navbar pcoded-header navbar-expand-lg navbar-light header-dark">
-        <div class="container">
-            <div class="m-header">
-                <a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a>
-                <a href="#!" class="b-brand">
-                    <img src="{{ asset('logoalm.png') }}" alt="" class="logo" width="40">
-                </a>
-            </div>
-            <div class="collapse navbar-collapse">
-                
-            </div>
+        <div class="container d-flex justify-content-center align-items-center">
+            <h5 class="text-light text-center">PPDB <span class="text-warning">MAS</span> AL-MUNAWWAROH</h5>
         </div>
     </header>
     <div class="pcoded-main-container">
@@ -51,9 +50,14 @@
                                 <div class="page-block">
                                     <div class="row align-items-center">
                                         <div class="col-md-12">
-                                            <div class="page-header-title">
-                                                <h3 class="m-b-10">{{ $title }}</h3>
-                                            </div>
+                                                @if (Auth::check() && Auth::user()->role == 'siswa')
+                                                    <div class="page-header-title">
+                                                        <h5 class="m-b-10 text-center">{{ $title }}</h5>
+                                                    </div>
+                                                @else
+                                                    <livewire:psb.title />
+                                                @endif
+
                                         </div>
                                     </div>
                                 </div>
@@ -66,7 +70,22 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    @stack('js')
+    <script>
+        document.addEventListener('success', function(event) {
+                const { route, message } = event.detail[0] || {};
+
+                Swal.fire({
+                    title: 'Sukses!',
+                    icon: 'success',
+                    text: message,
+                    confirmButtonColor: '#00b554',
+                }).then((result) => {
+                    if (result.isConfirmed && route) {
+                        Livewire.navigate(route);
+                    }
+                });
+        });
+    </script>
     @livewireScripts
 </body>
 </html>

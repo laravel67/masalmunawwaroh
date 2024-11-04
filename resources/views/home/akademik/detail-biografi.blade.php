@@ -17,7 +17,6 @@
                 <article align="justify" class="mb-3">
                     {!! $guru->biografi !!}
                 </article>
-                <x-shareMedsos/>
             </div>
         </div>
         <x-btn-back/>

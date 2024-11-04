@@ -12,6 +12,7 @@ use App\Http\Controllers\Home\PostController;
 use App\Http\Controllers\AdminSaranaController;
 use App\Http\Controllers\AdminSetterController;
 use App\Http\Controllers\ImportExcelController;
+use App\Http\Controllers\KesanAlumniController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\AdminProgramController;
 use App\Http\Controllers\AdminStudentController;
@@ -23,6 +24,7 @@ use App\Http\Controllers\AdminKesiswaanController;
 use App\Http\Controllers\Home\KesiswaanController;
 use App\Livewire\Psb\Fomulir\Main as formulirMain;
 use App\Http\Controllers\AdminAchievmentController;
+use App\Http\Controllers\AdminInformasiController;
 use App\Http\Controllers\AdminProfilemasController;
 use App\Http\Controllers\Home\AchievmentController;
 use App\Livewire\Psb\Dashboard\Profile as ProfileSiswa;
@@ -33,9 +35,11 @@ Auth::routes();
 Route::get('/ppdb/test', function(){
     return view('ppdb.psb');
 });
+
 Route::get('/', [HomeController::class, 'home'])->name('home');
 Route::get('/berita', [PostController::class, 'index'])->name('posts');
 Route::get('/berita/{slug}', [PostController::class, 'show'])->name('post');
+
 // Profile
 Route::prefix('/profile')->controller(ProfileController::class)->group(function () {
     Route::get('/identitas', 'identitas')->name('identitas');
@@ -68,6 +72,9 @@ Route::prefix('/kesiswaan')->controller(KesiswaanController::class)->group(funct
     Route::get('/album', 'album')->name('album');
     Route::get('/album/{slug}', 'albumDetail')->name('album.detail');
     Route::get('/kegiatan', 'Kegiatan')->name('kegiatan.siwa');
+    
+    Route::get('/alumnus', 'alumnus')->name('alumnus');
+    Route::post('/sending', 'createPesanOrKesan')->name('create.kesan');
 });
 
 Route::prefix('/ppdb')->group(function(){
@@ -135,12 +142,17 @@ Route::prefix('/dashboard')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('/akademik/prestasi', AdminAchievmentController::class)->names('prestasi');
     Route::resource('/akademik/sarana', AdminSaranaController::class)->names('asarana');
 
+    Route::prefix('informasi')->controller(AdminInformasiController::class)->group(function(){
+        Route::get('/arsips', 'arsip')->name('data.arsip');
+    });
+
     Route::prefix('/import')->controller(ImportExcelController::class)->group(function () {
         Route::post('/guru',  'guru')->name('import.guru');
         Route::post('/sarana',  'sarana')->name('import.sarana');
         Route::post('/prestasi',  'prestasi')->name('import.prestasi');
         Route::post('/ekskul',  'ekskul')->name('import.ekskul');
     });
+
 
 });
 
