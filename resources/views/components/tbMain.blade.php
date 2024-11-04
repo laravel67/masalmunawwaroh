@@ -34,12 +34,17 @@ class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-5
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-white py-lg-0 px-lg-4">
         <a href="/" class="navbar-brand d-lg-none">
-            <h4 class="text-warning m-0">{{ __('MAS') }}<span class="text-success">{{__('ALMUNAWWAROH')}}</span></h4>
+            <span class="d-none d-lg-block">
+                <h4 class="text-warning m-0">{{ __('MAS') }}<span class="text-success">{{__('ALMUNAWWAROH')}}</span></h4>
+            </span>
+            <span class="d-lg-none">
+                <h5 class="text-warning m-0">{{ __('MAS') }}<span class="text-success">{{__('ALMUNAWWAROH')}}</span></h5>
+            </span>
         </a>
         <button type="button" class="navbar-toggler me-0 border-0" data-bs-toggle="collapse"
             data-bs-target="#navbarCollapse">
-            <i class="fas fa-menu"></i>
-            <span class="navbar-toggler-icon text-success"></span>
+            <i class="fas fa-bars"></i>
+            {{-- <span class="navbar-toggler-icon text-success"></span> --}}
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <x-tbMenu/>            

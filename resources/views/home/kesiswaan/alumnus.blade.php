@@ -15,7 +15,7 @@
                 <div class="accordion-item">
                   <h2 class="accordion-header" id="flush-headingOne">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                      {{ __('Klik disini Untuk memngirim pesan dan pesan adan sebagai alumni MAS AL-Munawwaroh') }}
+                      {{ __('Klik disini Untuk memngirim pesan dan kesan anda sebagai alumni MAS AL-Munawwaroh') }}
                     </button>
                   </h2>
                   <div id="flush-collapseOne" class="accordion-collapse collapse active" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">

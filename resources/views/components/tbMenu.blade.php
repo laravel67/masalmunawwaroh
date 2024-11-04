@@ -1,5 +1,5 @@
 <div class="navbar-nav">
-    <a href="/" class="nav-item nav-link text-uppercase">{{ __('Beranda') }}</a>
+    <a href="/" class="nav-item nav-link text-uppercase {{ Request::is('/') ? 'text-success': '' }}">{{ __('Beranda') }}</a>
     <x-tbSubLink title="Profile Madrasah" :active="Request::is('profile*')">
         <x-tbLink title="Sambutan" href="{{ route('sambutan') }}" :active="Request::is('profile/sambutan*')"/>
         <x-tbLink title="Sejarah" href="{{ route('sejarah') }}" :active="Request::is('profile/sejarah*')"/>
@@ -7,7 +7,7 @@
         <x-tbLink title="Struktur Organisasi" href="{{ route('struktur') }}" :active="Request::is('profile/struktur-organisasi*')"/>
         <x-tbLink title="Visi & Misi" href="{{ route('visi') }}" :active="Request::is('profile/visi-misi*')"/>
     </x-tbSubLink>
-    <a href="{{ route('posts') }}" class="nav-item nav-link text-uppercase">{{ __('Berita') }}</a>
+    <a href="{{ route('posts') }}" class="nav-item nav-link text-uppercase {{ Request::is('berita*') ? 'text-success': '' }}">{{ __('Berita') }}</a>
     <x-tbSubLink title="Akademik" :active="Request::is('akademik*')">
         <x-tbLink title="Program Unggulan" href="{{ route('pronggul') }}" :active="Request::is('akademik/program-unggulan*')"/>
         <x-tbLink title="Sarana Prasarana" href="{{ route('sarana') }}" :active="Request::is('akademik/sarpras*')"/>

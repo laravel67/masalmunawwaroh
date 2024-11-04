@@ -54,7 +54,7 @@ class DatabaseSeeder extends Seeder
         });
 
         DB::transaction(function(){
-            Arsip::factory(25)->create();
+            Arsip::factory(15)->create();
         });
 
         // DB::transaction(function () {

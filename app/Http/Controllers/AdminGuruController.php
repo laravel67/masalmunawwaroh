@@ -23,9 +23,7 @@ class AdminGuruController extends Controller
 
     public function create()
     {
-        $mapels = Mapel::all();
-        $jabatans = Jabatan::all();
-        return view('dashboard.teachers.create', compact('mapels', 'jabatans'));
+        return view('dashboard.teachers.create');
     }
 
     public function store(Request $request)
