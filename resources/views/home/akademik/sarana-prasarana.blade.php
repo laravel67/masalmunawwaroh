@@ -1,8 +1,8 @@
 <x-content>
-    <div class="container my-5">
+    <div class="container my-5 justify-content-around">
         <div class="row">
             @forelse ($saranas as $sarana)
-            <div class="col-lg-6 col-md-6 mb-4 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="col-lg-4 col-md-4 mb-4 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="service-item">
                     <div class="btn btn-sm btn-success w-100">
                         <i class="fas fa-tag"></i>

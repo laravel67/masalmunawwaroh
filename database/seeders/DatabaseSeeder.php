@@ -2,17 +2,18 @@
 
 namespace Database\Seeders;
 
-use App\Models\Achievment;
-use App\Models\Arsip;
 use Faker\Factory;
 use App\Models\Taj;
 use App\Models\Guru;
 use App\Models\Post;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\User;
-use App\Models\Category;
+use App\Models\Arsip;
+// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Ekskul;
 use App\Models\Galeri;
+use App\Models\Student;
+use App\Models\Category;
+use App\Models\Achievment;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -20,10 +21,27 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
+        User::factory()->create([
+            'name' => 'Murtaki',
+            'username' => 'murtaki99',
+            'email' => 'admin@gmail.com',
+            'phone' => '082279761815',
+            'password' => bcrypt('123'),
+            'role' => 'admin',
+        ]);
+
+        DB::transaction(function () {
+            Student::factory(3)->create();
+        });
+
+        DB::transaction(function () {
+            User::factory(3)->create();
+        });
+
         // Seeder in smaller batches
-        // DB::transaction(function () {
-        //     Taj::factory()->create(['name' => '2024-2025', 'chief' => 'Murtaki Shihab']);
-        // });
+        DB::transaction(function () {
+            Taj::factory()->create(['name' => '2024-2025', 'chief' => 'Murtaki Shihab']);
+        });
 
         // DB::transaction(function () {
         //     User::factory(4)->create();
@@ -61,13 +79,5 @@ class DatabaseSeeder extends Seeder
         //     Student::factory(10)->create();
         // });
 
-        User::factory()->create([
-            'name' => 'Murtaki',
-            'username' => 'murtaki99',
-            'email' => 'admin@gmail.com',
-            'phone' => '082279761815',
-            'password' => bcrypt('123'),
-            'role' => 'admin',
-        ]);
     }
 }

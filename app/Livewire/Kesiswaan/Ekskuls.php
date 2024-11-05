@@ -102,6 +102,7 @@ class Ekskuls extends Component
         ]);
 
         $ekskul = Ekskul::findOrFail($this->idLs);
+        
         $ekskul->fill([
             'name' => $this->name,
             'category' => $this->category,

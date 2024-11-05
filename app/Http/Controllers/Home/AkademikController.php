@@ -60,6 +60,11 @@ class AkademikController extends Controller
         $prestasi=Achievment::latest()->get();
         return view('home.akademik.prestasi', compact('prestasi'));
     }
+    public function prestasiDetail($slug){
+        $prestasi = Achievment::where('slug', $slug)->firstOrFail();
+        view()->share('title', 'Prestasi '.$prestasi->category);
+        return view('home.akademik.prestasi-detail', compact('prestasi'));
+    }
 
     public function informasiPsb(){
         $info=Taj::where('status', '1')->first();

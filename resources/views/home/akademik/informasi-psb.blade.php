@@ -1,5 +1,5 @@
 <x-content>
-    <div class="container my-5">
+    <div class="container my-5 col-md-6">
         
         <div class="row wow fadeInUp mb-5" data-wow-delay="0.1s">
             <div class="col-md-12">

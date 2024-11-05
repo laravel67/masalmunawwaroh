@@ -1,13 +1,10 @@
 <x-content>
-    <div class="container">
+    <div class="container my-5 col-md-6">
         <div class="row wow fadeInUp mb-5" data-wow-delay="0.1s">
             <div class="col-md-12">
                 @if ($sarana)
                 <div class="row g-5 align-items-center justify-content-center mb-1">
                     <div class="col-md-10 wow fadeIn" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeIn;">
-                        <div class="mb-2">
-                            <x-shareMedsos/>
-                        </div>
                         @if ($sarana->image)
                         <img class="img-fluid w-100" src="{{ asset('storage/'.$sarana->image) }}" alt="">
                         @else
@@ -42,6 +39,5 @@
                 @endif
             </div>
         </div>
-        <x-btn-back/>
     </div>
 </x-content>

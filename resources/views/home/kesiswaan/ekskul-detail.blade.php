@@ -5,9 +5,6 @@
                 @if ($ekskul)
                 <div class="row g-5 align-items-center justify-content-center mb-1">
                     <div class="col-md-6 wow fadeIn" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeIn;">
-                        <div class="mb-2">
-                            <x-shareMedsos/>
-                        </div>
                         @if ($ekskul->image)
                         <img class="img-fluid w-100" src="{{ asset('storage/'.$ekskul->image) }}" alt="">
                         @else

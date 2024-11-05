@@ -41,9 +41,9 @@
                         <td>{{ $sarana->slug }}</td>
                         <td>
                             <x-btnAct>
-                                <x-act title="Detail Prestasi" href="{{ route('asarana.show', $sarana->slug) }}" icon="book-open" />
-                                <x-act title="Ubah Prestasi" href="{{ route('asarana.edit', $sarana->slug) }}" icon="edit" />
-                                <x-act title="Hapus Prestasi" model="deleting('{{ $sarana->slug }}')" icon="trash" />
+                                <x-act title="Detail" href="{{ route('asarana.show', $sarana->slug) }}" icon="book-open" />
+                                <x-act title="Ubah" href="{{ route('asarana.edit', $sarana->slug) }}" icon="edit" />
+                                <x-act title="Hapus" model="deleting('{{ $sarana->slug }}')" icon="trash" />
                             </x-btnAct>
                         </td>
                     </tr>

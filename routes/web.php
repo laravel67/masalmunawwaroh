@@ -54,19 +54,20 @@ Route::prefix('/akademik')->controller(AkademikController::class)->group(functio
     Route::get('/program-unggulan','programUnggulan')->name('pronggul');
     Route::get('/sarpras', 'sarana')->name('sarana');
     Route::get('/kurikulum', 'kurikulum')->name('kurikulum');
-    Route::get('/daftar-prestasi', 'prestasi')->name('prestasi.aliyah');
+    Route::get('/prestasi', 'prestasi')->name('prestasi.aliyah');
+    Route::get('/prestasi/{slug}', 'prestasiDetail')->name('prestasi.detail');
     Route::get('/sarpras/{slug}', 'saranaDetail')->name('sarana.detail');
     Route::get('/biografi', 'biografi')->name('biografi');
     Route::get('/biografi/{slug}', 'guruDetail')->name('guru.detail');
     Route::get('/informasi-ppdb', 'informasiPsb')->name('informasi.psb');
 });
 // Achievment/Prestasi
-Route::prefix('/prestasi')->controller(AchievmentController::class)->group(function () {
-    Route::get('/akademik', 'akademik')->name('akademik');
-    Route::get('/nonakademik', 'nonakademik')->name('nonakademik');
-    Route::get('/santri', 'student')->name('students.prestasi');
-});
-// Kesiswaan
+// Route::prefix('/prestasi')->controller(AchievmentController::class)->group(function () {
+//     Route::get('/akademik', 'akademik')->name('akademik');
+//     Route::get('/nonakademik', 'nonakademik')->name('nonakademik');
+//     Route::get('/santri', 'student')->name('students.prestasi');
+// });
+// // Kesiswaan
 Route::prefix('/kesiswaan')->controller(KesiswaanController::class)->group(function () {
     Route::get('/ekstrakulikuler', 'ekskul')->name('ekskul');
     Route::get('/ekstrakulikuler/{slug}', 'ekskulDetail')->name('ekskul.detail');

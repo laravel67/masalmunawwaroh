@@ -33,7 +33,6 @@ class UserFactory extends Factory
                 $username = Str::of($faker->name)->explode(' ')[0] . Str::of($faker->name)->explode(' ')[1];
                 // Periksa apakah username sudah ada dalam database
                 while (User::where('username', $username)->exists()) {
-                    // Jika sudah ada, buat ulang username baru
                     $username = Str::of($faker->name)->explode(' ')[0] . Str::of($faker->name)->explode(' ')[1];
                 }
                 return $username;
@@ -41,7 +40,7 @@ class UserFactory extends Factory
             'email' => $faker->unique()->safeEmail,
             'phone' => $faker->phoneNumber,
             'email_verified_at' => now(),
-            'role' => $faker->randomElement(['user', 'admin']),
+            'role' =>'siswa',
             'password' => bcrypt('password'), // Gunakan bcrypt untuk mengenkripsi password
             'remember_token' => Str::random(10),
         ];

@@ -6,18 +6,19 @@ use Livewire\Component;
 use App\Models\Slide as Sld;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 class Slide extends Component
 {
     use WithPagination, WithFileUploads;
+
     public $isEditing = false;
     public $slideId, $caption, $image, $oldImage;
 
     protected $listeners = [
         'deleteConfirmed' => 'delete'
     ];
+
     public function render()
     {
         $slides = Sld::orderBy('id', 'desc')->paginate(5);
@@ -30,20 +31,19 @@ class Slide extends Component
             'caption' => 'required|max:100|unique:slides,caption',
             'image' => 'required|image|max:1024',
         ]);
+
         $slide = new Sld();
+        $slide->caption = $this->caption;
+
         if ($this->image) {
             $slide->image = $this->image->store('slides', 'public');
         }
-        $slide->fill([
-            'caption' => $this->caption,
-            'image' => $this->image,
-        ]);
+
         $slide->save();
         Storage::disk('local')->deleteDirectory('livewire-tmp');
-    
+
         return redirect()->route('pengaturan.slider')->with('success', 'Slide baru berhasil ditambahkan!');
     }
-    
 
     public function edit($id)
     {
@@ -54,7 +54,6 @@ class Slide extends Component
         $this->isEditing = true;
     }
 
-
     public function update()
     {
         $this->validate([
@@ -63,29 +62,24 @@ class Slide extends Component
         ]);
 
         $slide = Sld::findOrFail($this->slideId);
+        $slide->caption = $this->caption;
+
         if ($this->image) {
-            if ($slide->image) {
-                Storage::disk('public')->delete($slide->image);
+            if ($this->oldImage) {
+                Storage::disk('public')->delete($this->oldImage);
             }
             $slide->image = $this->image->store('slides', 'public');
         }
 
-        $slide->update([
-            'caption' => $this->caption,
-            'image' => $this->oldImage
-        ]);
+        $slide->save();
         Storage::disk('local')->deleteDirectory('livewire-tmp');
 
         return redirect()->route('pengaturan.slider')->with('success', 'Slide berhasil diperbarui!');
     }
 
-
     public function cancel()
     {
-        $this->slideId = '';
-        $this->caption = '';
-        $this->oldImage = '';
-        $this->isEditing = false;
+        $this->reset(['slideId', 'caption', 'image', 'oldImage', 'isEditing']);
     }
 
     public function deleting($id)
@@ -98,7 +92,6 @@ class Slide extends Component
     {
         $slide = Sld::where('id', $this->slideId)->first();
         if ($slide) {
-            dd($slide->image);
             if ($slide->image) {
                 Storage::disk('public')->delete($slide->image);
             }
