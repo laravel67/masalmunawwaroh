@@ -42,15 +42,12 @@ class CreateStruktur extends Component
             'periode'=>'required|unique:strukturs,periode|max:9',
             'image'=>'required|image|max:1024'
         ]);
-
-        $imageName='';
         if($this->image){
-            $imageName='struktur-mas-'.$this->periode . '.' .$this->image->getClientOriginalExtension();
-            $this->image->storeAs('struktur', $imageName, 'public');
+            $imagePath = $this->image->store('strukturs', 'public');
         }
         $struktur=[
             'periode'=> $this->periode,
-            'image'=> $imageName,
+            'image'=> $imagePath,
         ];
         Struktur::create($struktur);
         Storage::disk('local')->deleteDirectory('livewire-tmp');
@@ -73,22 +70,17 @@ class CreateStruktur extends Component
         ]);
 
         $struktur = Struktur::findOrFail($this->idStruktur);
-
-        $imageName = $this->oldImage; // Default to old image
-
+        $data=[
+            'periode' => $this->periode,
+        ];
         if ($this->image) {
             if ($this->oldImage) {
-                Storage::delete('struktur/' . $this->oldImage);
+                Storage::delete($this->oldImage);
             }
-            $imageName = 'struktur-mas-' . $this->periode . '.' . $this->image->getClientOriginalExtension();
-            $this->image->storeAs('struktur', $imageName, 'public');
+            $imagePath = $this->image->store('strukturs', 'public');
+            $data['image'] = $imagePath;
         }
-
-        // Update model with new data
-        $struktur->update([
-            'periode' => $this->periode,
-            'image' => $imageName
-        ]);
+        $struktur->update($data);
         Storage::disk('local')->deleteDirectory('livewire-tmp');
         return redirect()->route('profilemas.struktur')->with('success', "Struktur Organisasi masa jabatan {$this->periode} berhasil diubah");
     }
@@ -105,7 +97,7 @@ class CreateStruktur extends Component
         $struktur = Struktur::where('id', $this->idStruktur)->first();
         if ($struktur) {
             if ($struktur->image) {
-                Storage::delete('struktur/' . $struktur->image);
+                Storage::delete($struktur->image);
             }
             $struktur->delete();
         }

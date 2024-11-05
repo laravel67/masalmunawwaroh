@@ -55,7 +55,8 @@ class ProfileController extends Controller
 
     public function struktur(){
         view()->share('title', 'Struktur Organisasi');
-        return view('home.profile.struktur');
+        $struktur = Struktur::latest()->first();
+        return view('home.profile.struktur', compact('struktur'));
     }
 
     public function sejarah()
@@ -67,7 +68,8 @@ class ProfileController extends Controller
     public function visi()
     {
         view()->share('title', 'Visi, Misi dan Motto');
-        return view('home.profile.visi-misi');
+        $visimisi = Profile::latest()->first();
+        return view('home.profile.visi-misi',compact('visimisi'));
     }
 
     public function sambutan()

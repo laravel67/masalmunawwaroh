@@ -21,41 +21,41 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // Seeder in smaller batches
-        DB::transaction(function () {
-            Taj::factory()->create(['name' => '2024-2025', 'chief' => 'Murtaki Shihab']);
-        });
+        // DB::transaction(function () {
+        //     Taj::factory()->create(['name' => '2024-2025', 'chief' => 'Murtaki Shihab']);
+        // });
 
         // DB::transaction(function () {
         //     User::factory(4)->create();
         // });
 
-        DB::transaction(function () {
-            Post::factory(10)->create();
-        });
+        // DB::transaction(function () {
+        //     Post::factory(10)->create();
+        // });
 
-        DB::transaction(function () {
-            Category::factory(5)->create();
-        });
+        // DB::transaction(function () {
+        //     Category::factory(5)->create();
+        // });
 
-        DB::transaction(function () {
-            Guru::factory(20)->create();
-        });
+        // DB::transaction(function () {
+        //     Guru::factory(20)->create();
+        // });
 
-        DB::transaction(function(){
-            Ekskul::factory(10)->create();
-        });
+        // DB::transaction(function(){
+        //     Ekskul::factory(10)->create();
+        // });
 
-        DB::transaction(function(){
-            Galeri::factory(30)->create();
-        });
+        // DB::transaction(function(){
+        //     Galeri::factory(30)->create();
+        // });
 
-        DB::transaction(function(){
-            Achievment::factory(25)->create();
-        });
+        // DB::transaction(function(){
+        //     Achievment::factory(25)->create();
+        // });
 
-        DB::transaction(function(){
-            Arsip::factory(15)->create();
-        });
+        // DB::transaction(function(){
+        //     Arsip::factory(15)->create();
+        // });
 
         // DB::transaction(function () {
         //     Student::factory(10)->create();

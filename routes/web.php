@@ -25,6 +25,7 @@ use App\Http\Controllers\AdminAchievmentController;
 use App\Http\Controllers\AdminAgendaController;
 use App\Http\Controllers\AdminInformasiController;
 use App\Http\Controllers\AdminProfilemasController;
+use App\Http\Controllers\AdminSetterController;
 use App\Http\Controllers\Home\AchievmentController;
 use App\Http\Controllers\Home\InformasiController;
 use App\Livewire\Psb\Dashboard\Profile as ProfileSiswa;
@@ -136,8 +137,6 @@ Route::prefix('/dashboard')->middleware(['auth', 'admin'])->group(function () {
         Route::get('/sambutan', 'sambutan')->name('profilemas.sambutan');
         Route::get('/visi-misi', 'visiMisi')->name('profilemas.visimisi');
         Route::post('/visi-misi/update', 'updateVisi')->name('visimisi.update');
-        Route::get('/mars', 'mars')->name('profilemas.mars');
-        Route::post('/mars/update', 'updateMars')->name('mars.update');
     });
     Route::prefix('/kesiswaan')->group(function(){
         Route::resource('/kegiatan', AdminKegiatanController::class)->names('akegiatan');
@@ -153,6 +152,7 @@ Route::prefix('/dashboard')->middleware(['auth', 'admin'])->group(function () {
     Route::prefix('informasi')->controller(AdminInformasiController::class)->group(function(){
         Route::get('/arsips', 'arsip')->name('data.arsip');
     });
+
     Route::resource('/informasi/agenda', AdminAgendaController::class)->names('acara')->except('show','destroy');
 
     Route::prefix('/import')->controller(ImportExcelController::class)->group(function () {
@@ -160,6 +160,10 @@ Route::prefix('/dashboard')->middleware(['auth', 'admin'])->group(function () {
         Route::post('/sarana',  'sarana')->name('import.sarana');
         Route::post('/prestasi',  'prestasi')->name('import.prestasi');
         Route::post('/ekskul',  'ekskul')->name('import.ekskul');
+    });
+
+    Route::prefix('/pengaturan')->controller(AdminSetterController::class)->group(function(){
+        Route::get('/slider', 'slider')->name('pengaturan.slider');      
     });
 
 

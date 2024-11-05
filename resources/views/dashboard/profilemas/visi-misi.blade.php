@@ -13,7 +13,7 @@
                       <x-input-text-area 
                           title="Visi & Misi" 
                           name="visimisi" 
-                          width="200" 
+                          width="500" 
                           value="{!! old('visimisi', $visimisi) !!}" 
                       />
                       <x-btn-form/>

@@ -37,12 +37,11 @@ class Sambutan extends Component
         $this->validate();
         $profile = Profile::first() ?? new Profile();
         if ($this->image) {
-            $imageName = 'kamad-mas-' . uniqid() . '.' . $this->image->getClientOriginalExtension();
             if ($this->oldImage) {
-                Storage::disk('public')->delete('profiles/' . $this->oldImage);
+                Storage::disk('public')->delete($this->oldImage);
             }
-            $this->image->storeAs('profiles', $imageName, 'public');
-            $profile->image = $imageName;
+            $imagePath= $this->image->store('profiles', 'public');
+            $profile->image = $imagePath;
         } else {
             $profile->image = $this->oldImage;
         }

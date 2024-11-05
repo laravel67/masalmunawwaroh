@@ -21,7 +21,7 @@ class Slide extends Component
     public function render()
     {
         $slides = Sld::orderBy('id', 'desc')->paginate(5);
-        return view('livewire.pengaturan.slide', compact('slides'));
+        return view('pages.pengaturan.slide', compact('slides'));
     }
 
     public function store()
@@ -29,20 +29,21 @@ class Slide extends Component
         $this->validate([
             'caption' => 'required|max:100|unique:slides,caption',
             'image' => 'required|image|max:1024',
-       ]);
-        $imgName = '';
-        if ($this->image) {
-            $imgName = 'slide-' . uniqid() . '.' . $this->image->getClientOriginalExtension();
-            $this->image->storeAs('slides', $imgName, 'public');
-        }
-
-        Sld::create([
-            'caption' => $this->caption,
-            'image' => $imgName,
         ]);
-        File::deleteDirectory(storage_path('app/public/livewire-tmp'));
-        return redirect()->route('pengaturan')->with('success', 'Slide baru berhasil ditambahkan!');
+        $slide = new Sld();
+        if ($this->image) {
+            $slide->image = $this->image->store('slides', 'public');
+        }
+        $slide->fill([
+            'caption' => $this->caption,
+            'image' => $this->image,
+        ]);
+        $slide->save();
+        Storage::disk('local')->deleteDirectory('livewire-tmp');
+    
+        return redirect()->route('pengaturan.slider')->with('success', 'Slide baru berhasil ditambahkan!');
     }
+    
 
     public function edit($id)
     {
@@ -56,30 +57,28 @@ class Slide extends Component
 
     public function update()
     {
-       $this->validate([
+        $this->validate([
             'caption' => 'required|max:100|unique:slides,caption,' . $this->slideId,
-            'image' => 'required|image|max:1024',
+            'image' => 'nullable|image|max:1024',
         ]);
 
         $slide = Sld::findOrFail($this->slideId);
-        $imgName = '';
         if ($this->image) {
             if ($slide->image) {
-                Storage::disk('public')->delete('slides/' . $slide->image);
+                Storage::disk('public')->delete($slide->image);
             }
-            $imgName = 'slide-' . uniqid() . '.' . $this->image->getClientOriginalExtension();
-            $this->image->storeAs('slides', $imgName, 'public');
-        } else {
-            $imgName = $slide->image;
+            $slide->image = $this->image->store('slides', 'public');
         }
+
         $slide->update([
             'caption' => $this->caption,
-            'image' => $imgName
+            'image' => $this->oldImage
         ]);
+        Storage::disk('local')->deleteDirectory('livewire-tmp');
 
-        File::deleteDirectory(storage_path('app/public/livewire-tmp'));
-        return redirect()->route('pengaturan')->with('success', 'Slide baru berhasil ditambahkan!');
+        return redirect()->route('pengaturan.slider')->with('success', 'Slide berhasil diperbarui!');
     }
+
 
     public function cancel()
     {
@@ -99,11 +98,12 @@ class Slide extends Component
     {
         $slide = Sld::where('id', $this->slideId)->first();
         if ($slide) {
+            dd($slide->image);
             if ($slide->image) {
-                Storage::disk('public')->delete('slides/' . $slide->image);
+                Storage::disk('public')->delete($slide->image);
             }
             $slide->delete();
         }
-        return redirect()->route('pengaturan')->with('success', 'Slide Berhasil dihapus!');
+        return redirect()->route('pengaturan.slider')->with('success', 'Slide Berhasil dihapus!');
     }
 }

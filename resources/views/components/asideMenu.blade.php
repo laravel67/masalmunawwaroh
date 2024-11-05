@@ -12,7 +12,6 @@
         <x-linkSub title="Struktural" href="{{ route('profilemas.struktur') }}" :active="request()->is('dashboard/profile-madrasah/struktur*')" />
         <x-linkSub title="Sambutan" href="{{ route('profilemas.sambutan') }}" :active="request()->is('dashboard/profile-madrasah/sambutan*')" />
         <x-linkSub title="Visi & Misi" href="{{ route('profilemas.visimisi') }}" :active="request()->is('dashboard/profile-madrasah/visi-misi*')" />
-        <x-linkSub title="Mars" href="{{ route('profilemas.mars') }}" :active="request()->is('dashboard/profile-madrasah/mars*')" />
     </x-asideSubMenu>
     <x-asideSubMenu title="Akademik" icon="book-reader" :active="request()->is('dashboard/akademik*')">
         <x-linkSub title="Data Guru" href="{{ route('guru.index') }}" :active="request()->is('dashboard/akademik/guru*')" />
@@ -30,5 +29,10 @@
         <x-linkSub title="Agenda/Acara" href="{{ route('acara.index') }}" :active="request()->is('dashboard/informasi/agenda*')" />
         <x-linkSub title="Arsip" href="{{ route('data.arsip') }}" :active="request()->is('dashboard/informasi/arsips*')" />
     </x-asideSubMenu>
+
+    <x-asideSubMenu title="Pengaturan" icon="cog" :active="request()->is('dashboard/pengaturan*')">
+        <x-linkSub title="Slider" href="{{ route('pengaturan.slider') }}" :active="request()->is('dashboard/pengaturan/slider*')" />
+    </x-asideSubMenu>
+    
     <x-link onclick="logout()" icon="sign-out-alt" title="Keluar"/><x-logout/>
 </ul>

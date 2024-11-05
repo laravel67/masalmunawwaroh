@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 
 class AdminSetterController extends Controller
 {
-    public function setDaftar()
+    public function slider()
     {
-        view()->share('title', 'Pengaturan Pendaftaran');
-        return view('dashboard.settings.setting-register');
+        view()->share('title', 'Slide Heade Web');
+        return view('dashboard.pengaturan.slide');
     }
 }

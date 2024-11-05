@@ -16,7 +16,6 @@ return new class extends Migration
             $table->text('sambutan')->nullable();
             $table->text('sejarah')->nullable();
             $table->text('visimisi')->nullable();
-            $table->text('mars')->nullable();
             $table->string('image')->nullable();
             $table->timestamps();
         });

@@ -29,11 +29,7 @@ class AdminProfilemasController extends Controller
         return view('dashboard.profilemas.visi-misi', compact('visimisi'));
     }
 
-    public function mars(){
-        $profile=Profile::first();
-        $mars = $profile ? $profile->mars : "";
-        return view('dashboard.profilemas.mars', compact('mars'));
-    }
+
 
     public function updateVisi(Request $request)
     {

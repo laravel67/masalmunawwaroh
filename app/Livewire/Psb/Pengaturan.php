@@ -31,13 +31,13 @@ class Pengaturan extends Component
         $this->resetPage();
     }
 
-    public function updatedName($value)
-    {
-        if (strlen($value) == 4 && is_numeric($value)) {
-            $nextYear = str_pad((int)$value + 1, 4, '0', STR_PAD_LEFT);
-            $this->name = $value . '-' . $nextYear;
-        }
-    }
+    // public function updatedName($value)
+    // {
+    //     if (strlen($value) == 4 && is_numeric($value)) {
+    //         $nextYear = str_pad((int)$value + 1, 4, '0', STR_PAD_LEFT);
+    //         $this->name = $value . '-' . $nextYear;
+    //     }
+    // }
 
     public function store()
     {

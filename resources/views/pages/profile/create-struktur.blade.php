@@ -13,7 +13,7 @@
                   <button wire:click='cancel' type="button" class="btn btn-danger">{{ __('Batal') }}</button>
                   <button type="submit" class="btn btn-success">{{ __('Simpan') }}</button>
               </div>
-                <img src="{{ $image ? $image->temporaryUrl() : asset('storage/struktur/'.$oldImage) }}" alt="" srcset="" class="img-fluid">
+                <img src="{{ $image ? $image->temporaryUrl() : asset('storage/'.$oldImage) }}" alt="" srcset="" class="img-fluid">
             </form>
         </div>
       </div>
@@ -39,7 +39,7 @@
                   @forelse ($strukturs as $struktur)
                       <tr>
                           <td>
-                              <img src="{{ asset('storage/struktur/'. $struktur->image) }}" alt="Struktur Image">
+                              <img src="{{ asset('storage/'. $struktur->image) }}" alt="Struktur Image">
                           </td>
                           <td>{{ $struktur->periode }}</td>
                           <td>

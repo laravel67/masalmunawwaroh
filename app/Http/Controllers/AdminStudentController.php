@@ -83,6 +83,6 @@ class AdminStudentController extends Controller
 
     public function pengaturan(){
         view()->share('title', 'Pengaturan PPDB');
-        return view('dashboard.pengaturan-psb');
+        return view('dashboard.pengaturan.psb');
     }
 }
