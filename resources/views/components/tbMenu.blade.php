@@ -14,9 +14,7 @@
         <x-tbLink title="Kurikulum Madrasah" href="{{ route('kurikulum') }}" :active="Request::is('akademik/kurikulum*')"/>
         <x-tbLink title="Prestasi" href="{{ route('prestasi.aliyah') }}" :active="Request::is('akademik/daftar-prestasi*')" />
         <x-tbLink title="Biografi Guru" href="{{ route('biografi') }}" :active="Request::is('akademik/biografi*')"/>
-        @guest
-        <x-tbLink title="PPDB" href="{{ route('formulir.psb') }}"/>
-        @endguest
+        <x-tbLink title="PPDB" href="{{ route('informasi.psb') }}" :active="Request::is('akademik/informasi-ppdb*')"/>
     </x-tbSubLink>
     <x-tbSubLink title="Kesiswaan" :active="Request::is('kesiswaan*')">
         <x-tbLink title="Ekstrakulikuler" href="{{ route('ekskul') }}" :active="Request::is('kesiswaan/ekstrakulikuler*')"/>

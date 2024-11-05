@@ -52,4 +52,12 @@ class Agendas extends Component
         return redirect()->route('acara.index')->with('success', 'Agenda / Acara Berhasil dihapus!');
     }
 
+    public function end($id)
+    {
+        $acara = Agenda::findOrFail($id);
+        $acara->status = true;
+        $acara->save();
+        return redirect()->route('acara.index')->with('success', 'Acara atau agenda telah dilaksanakan');
+    }
+
 }

@@ -53,7 +53,18 @@
                     </table>
                 </div>
                 <div class="col-md-4">
-                    <livewire:setting.create>  
+                    <form wire:submit.prevent='{{ $isEditing ? 'update':'store' }}'>
+                        <x-input title="Tahun ajaran" name="name" type="text"/>
+                        <x-input title="Katua Panitia" name="chief" type="text"/>
+                        <x-inputArea title="Deskiripsi" name="body"/>
+                        <x-input title="Gambar Brosur" name="image" type="file"/>
+                        @if ($image)
+                        <img style="width: 200px; height: 200px" src="{{ $image->temporaryUrl() }}">
+                        @elseif ($isEditing && $oldImage)
+                        <img style="width: 200px; height: 200px" src="{{ asset('storage/'.$oldImage) }}">
+                        @endif
+                        <x-btn-form/>
+                    </form>
                 </div>
             </div>
           <div class="m-2">

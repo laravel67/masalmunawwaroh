@@ -1,34 +1,50 @@
-<div class="container-fluid py-5">
+<div class="container-fluid feature mt-5 wow fadeInUp" data-wow-delay="0.1s">
     <div class="container">
-        <div class="row g-5">
-            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-                <h1 class="display-6 mb-4">Informasi PPDB</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue, iaculis id elit eget, ultrices pulvinar tortor. Quisque vel lorem porttitor, malesuada arcu quis, fringilla risus. Pellentesque eu consequat augue.</p>
-                <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tellus augue, iaculis id elit eget, ultrices pulvinar tortor.</p>
-                <div class="d-flex align-items-start wow fadeIn" data-wow-delay="0.3s">
-                    <div class="icon-box-primary">
-                        <i class="bi bi-geo-alt text-dark fs-1"></i>
-                    </div>
-                    <div class="ms-3">
-                        <h5>Office Address</h5>
-                        <span>123 Street, New York, USA</span>
-                    </div>
-                </div>
-                <hr>
-                <div class="d-flex align-items-start wow fadeIn" data-wow-delay="0.4s">
-                    <div class="icon-box-primary">
-                        <i class="bi bi-clock text-dark fs-1"></i>
-                    </div>
-                    <div class="ms-3">
-                        <h5>Office Time</h5>
-                        <span>Mon-Sat 09am-5pm, Sun Closed</span>
-                    </div>
+        <div class="row g-0">
+            <div class="col-lg-6 pt-lg-5">
+                <div class="bg-white px-3 py-5 mt-lg-8">
+                    <h1 class="display-6 mb-4 wow fadeIn text-success w-100 text-center" data-wow-delay="0.3s">Informasi PPDB</h1>
+                    <h4 class="text-end"></h4>
+                    <div>
+                        @if ($info)
+                            <img src="{{ asset('storage/'.$info->image) }}" alt="Gambar PSB" style="max-width: 100%; height: auto;">
+                            <article style="line-height: 30px" align="justify" class="my-2 text-dark">
+                                {!! Str::limit($info->body, 400, '...') !!}
+                                <a href="{{ route('informasi.psb') }}">Selengkapnya</a>
+                            </article>
+                        @else
+                            <p>Data tidak tersedia.</p>
+                        @endif
+                    </div>                    
+                    <a href="{{ route('formulir.psb') }}" class="btn btn-success py-3 px-5 wow fadeIn" data-wow-delay="0.5s">{{ __('Formulir Pendaftaran') }}</a>
                 </div>
             </div>
-            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
-                <h2 class="mb-4">Online Appoinment</h2>
-                <div class="row g-3">
-                    <img src="/img/Biru Oranye Modern Formal PPDB Spanduk.png" alt="" srcset="" class="img-fluid">
+            <div class="col-lg-6">
+                <div class="row h-100 align-items-end">
+                    <div class="col-12 wow fadeIn" data-wow-delay="0.3s">
+                        <div class="d-flex align-items-center justify-content-center" style="min-height: 300px;">
+                            <button type="button" class="btn-play" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <span></span>
+                            </button>
+                            <div class="modal modal-video fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-lg">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="exampleModalLabel">{{ __('Informasi PPDB Al-Munawwaroh') }}</h5>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <iframe width="100%" height="500" 
+                                        src="https://www.youtube.com/embed/ujLZeM5DMtY?autoplay=1" 
+                                        frameborder="0" 
+                                        allow="encrypted-media" 
+                                        allowfullscreen></iframe>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

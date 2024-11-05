@@ -80,4 +80,9 @@ class AdminStudentController extends Controller
         Student::where('id', $student->id)->update($validated);
         return redirect(route('daftar.index'))->with('success', 'Student has been updated!');
     }
+
+    public function pengaturan(){
+        view()->share('title', 'Pengaturan PPDB');
+        return view('dashboard.pengaturan-psb');
+    }
 }

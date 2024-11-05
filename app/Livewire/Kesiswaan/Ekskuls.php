@@ -70,8 +70,6 @@ class Ekskuls extends Component
         if ($this->image) {
             $ekskul->image = $this->image->store('ekskuls', 'public');
         }
-
-
         $ekskul->save();
         $this->resetForm();
         Storage::disk('local')->deleteDirectory('livewire-tmp');

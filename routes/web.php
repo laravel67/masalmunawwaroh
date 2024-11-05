@@ -10,7 +10,6 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\Home\PostController;
 use App\Http\Controllers\AdminSaranaController;
-use App\Http\Controllers\AdminSetterController;
 use App\Http\Controllers\ImportExcelController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\AdminProgramController;
@@ -58,6 +57,7 @@ Route::prefix('/akademik')->controller(AkademikController::class)->group(functio
     Route::get('/sarpras/{slug}', 'saranaDetail')->name('sarana.detail');
     Route::get('/biografi', 'biografi')->name('biografi');
     Route::get('/biografi/{slug}', 'guruDetail')->name('guru.detail');
+    Route::get('/informasi-ppdb', 'informasiPsb')->name('informasi.psb');
 });
 // Achievment/Prestasi
 Route::prefix('/prestasi')->controller(AchievmentController::class)->group(function () {
@@ -73,7 +73,6 @@ Route::prefix('/kesiswaan')->controller(KesiswaanController::class)->group(funct
     Route::get('/album', 'album')->name('album');
     Route::get('/album/{slug}', 'albumDetail')->name('album.detail');
     Route::get('/kegiatan', 'Kegiatan')->name('kegiatan.siwa');
-    
     Route::get('/alumnus', 'alumnus')->name('alumnus');
     Route::post('/sending', 'createPesanOrKesan')->name('create.kesan');
 });
@@ -82,6 +81,7 @@ Route::prefix('/informasi')->controller(InformasiController::class)->group(funct
     Route::get('/arsip', 'arsips')->name('arsips');
     Route::get('/kontak', 'kontak')->name('kontak');
     Route::get('/agenda', 'agenda')->name('agenda');
+    Route::get('/agenda/{slug}', 'detailAgenda')->name('detail.agenda');
 });
 
 Route::prefix('/ppdb')->group(function(){
@@ -111,6 +111,7 @@ Route::prefix('/dashboard')->middleware(['middleware' => 'role'])->group(functio
         Route::get('/siswa/{student}/show',  'show')->name('appdb.show');
         Route::get('/siswa/{student}/edit',  'edit')->name('appdb.edit');
         Route::put('/siswa/{student}/update',  'update')->name('appdb.update');
+        Route::get('/pengaturan', 'pengaturan')->name('pengaturan.psb');
     });
     Route::get('/profile', [UserProfileController::class, 'userProfile'])->name('user.profile');
     Route::get('/persada', [DashboardController::class, 'persada'])->name('admin.persada');
@@ -122,7 +123,7 @@ Route::prefix('/dashboard')->middleware(['middleware' => 'role'])->group(functio
 Route::prefix('/dashboard')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('/categories', AdminCategoryController::class)->names('category');
     Route::resource('/users', AdminUserController::class)->names('user');
-    Route::get('/ppdb/pengaturan',[AdminSetterController::class,'setDaftar'])->name('set.reg');
+    // Route::get('/ppdb/pengaturan',[AdminSetterController::class,'setDaftar'])->name('set.reg');
     Route::controller(DashboardController::class)->group(function () {
         Route::get('/ekstrakulikuler',  'lifeskill')->name('admin.lifeskill');
         Route::get('/struktural',  'struktur')->name('admin.struktur');
@@ -152,7 +153,8 @@ Route::prefix('/dashboard')->middleware(['auth', 'admin'])->group(function () {
     Route::prefix('informasi')->controller(AdminInformasiController::class)->group(function(){
         Route::get('/arsips', 'arsip')->name('data.arsip');
     });
-    Route::resource('/informasi/agenda', AdminAgendaController::class)->names('acara');
+    Route::resource('/informasi/agenda', AdminAgendaController::class)->names('acara')->except('show','destroy');
+
     Route::prefix('/import')->controller(ImportExcelController::class)->group(function () {
         Route::post('/guru',  'guru')->name('import.guru');
         Route::post('/sarana',  'sarana')->name('import.sarana');

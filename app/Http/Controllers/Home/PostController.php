@@ -8,6 +8,7 @@ use App\Models\Category;
 use Jorenvh\Share\Share;
 use App\Http\Controllers\Controller;
 use App\Models\Acara;
+use App\Models\Agenda;
 
 class PostController extends Controller
 {
@@ -29,7 +30,7 @@ class PostController extends Controller
         }
         $posts = Post::latest()->filter(request(['search', 'category', 'author']))->paginate(7)->withQueryString();
         $categories = Category::latest()->get();
-        $jadwal = Acara::where('status', false)->orderBy('id', 'desc')->get();
+        $jadwal = Agenda::where('status', false)->orderBy('id', 'desc')->get();
         return view('home.posts.posts', [
             'posts' => $posts,
             'subtitle' => $title,

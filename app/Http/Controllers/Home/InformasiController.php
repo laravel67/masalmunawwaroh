@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
+use App\Models\Agenda;
 use App\Models\Arsip;
 
 class InformasiController extends Controller
@@ -20,6 +21,13 @@ class InformasiController extends Controller
 
     public function agenda(){
         view()->share('title', 'Agenda dan Acara');
-        return view('home.informasi.agenda');
+        $agendas=Agenda::latest()->where('status', false)->get();
+        return view('home.informasi.agenda', compact('agendas'));
+    }
+
+    public function detailAgenda($slug){
+        $agenda=Agenda::where('slug', $slug)->first();
+        view()->share('title', $agenda->category);
+        return view('home.informasi.agenda-detail', compact('agenda'));
     }
 }

@@ -16,10 +16,10 @@
     </div>
     <div class="container">
         <div class="row wow fadeInUp mb-5" data-wow-delay="0.1s">
-            <div class="col-md-10">
+            <div class="col-md-9">
                 @if (!$posts->isEmpty())
                 <div class="row g-5 align-items-center mb-1">
-                    <div class="col-md-6 wow fadeIn" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeIn;">
+                    <div class="col-md-7 wow fadeIn" data-wow-delay="0.3s" style="visibility: visible; animation-delay: 0.3s; animation-name: fadeIn;">
                         <h3 class="mb-3">{{ $posts[0]->title }}</h3> 
                         @if ($posts[0]->image)
                         <img class="img-fluid w-100" src="{{ asset('storage/'.$posts[0]->image) }}" alt="">
@@ -27,7 +27,7 @@
                         <img class="img-fluid w-100" src="https://placehold.jp/1000x800.png" alt="">
                         @endif
                     </div>
-                    <div class="col-md-6 wow fadeIn" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeIn;">
+                    <div class="col-md-4 px-0 wow fadeIn" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeIn;">
                         <p class="mb-1">Oleh: {{ $posts[0]->author->name }}</p>
                         <p class="mb-2">Diposting : {{ $posts[0]->created_at->diffForHumans() }}</p>
                         <article align="justify" class="text-dark mb-3" style="overflow: hidden">
@@ -40,16 +40,49 @@
                   <p>{{ __('Berita tidak ditemukan.') }}</p>  
                 @endif
             </div>
-            <div class="col-md-2">
-                <div class="list-group">
+            <div class="col-md-3">
+                <div class="list-group list-group-flush mb-lg4">
                     <div class="list-group-item list-group-item-action bg-success text-light fw-bold" aria-current="true">
-                      {{ __('Kategori Berita/Artikel') }}
+                      {{ __('Kategori Berita') }}
                     </div>
                     @forelse ($categories as $category)
                     <a href="{{ route('posts', ['category' => $category->slug]) }}" class="list-group-item">{{ $category->name }}</a>
                     @empty
                         <span>{{ __('Kategori tidak ditemukan.') }}</span>
                     @endforelse
+                </div>
+                <div class="accordion accordion-flush mt-lg-3" id="accordionFlushExample">
+                    <h6 class="bg-success text-light px-2">Agenda & Acara Terbaru</h6>
+                        @forelse ($jadwals as $jadwal)
+                        <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                            {{ $jadwal->name }} asansb
+                            </button>
+                        </h2>
+                        <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <ul>
+                                    <li class="my-2">
+                                        <small>
+                                            <label for="" class="text-dark">Tempat:</label>
+                                            {{ $jadwal->tempat }}
+                                        </small>
+                                    </li>
+                                    <li class="my-2">
+                                        <small>
+                                            <label for="" class="text-dark">Waktu:</label>
+                                            {{ \Carbon\Carbon::parse($jadwal->waktu)->translatedFormat('l, d F Y H:i') }}
+                                        </small>                                        
+                                    </li>
+                                    <a href="{{ route('detail.agenda', $jadwal->slug) }}">{{ __('Baca informasi') }}</a>
+                                </ul>
+                            </div>
+                        </div>
+                        </div>    
+                        @empty  
+                        <p>{{ __('Belum ada acara terbaru.') }}</p> 
+                        @endforelse
                   </div>
             </div>
         </div>

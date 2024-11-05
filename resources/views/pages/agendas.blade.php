@@ -37,15 +37,17 @@
                     @if ($agenda->status==false)
                         <span class="text-muted">Menunggu</span>
                     @else
-                        <span class="tetx-success">Selesai</span>
+                        <span class="text-success">Selesai</span>
                     @endif
                   </td>
                   <td>
                     <x-btnAct>
-                        <x-act title="Detail" href="{{ route('acara.show', $agenda->slug) }}" icon="book-open" />
+                        {{-- <x-act title="Detail" href="{{ route('acara.show', $agenda->slug) }}" icon="book-open" /> --}}
                         <x-act title="Ubah" href="{{ route('acara.edit', $agenda->slug) }}" icon="edit" />
                         <x-act title="Hapus" model="deleting('{{ $agenda->slug }}')" icon="trash" />
+                        <x-act title="Tutup" model="end('{{ $agenda->id }}')" icon="check" />
                     </x-btnAct>
+                    <a href="{{ route('detail.agenda', $agenda->slug) }}">Preview</a>
                   </td>
                 </tr>
                 @empty

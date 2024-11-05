@@ -7,6 +7,7 @@ use App\Models\Achievment;
 use App\Models\Guru;
 use App\Models\Program;
 use App\Models\Sarana;
+use App\Models\Taj;
 use Illuminate\Http\Request;
 
 class AkademikController extends Controller
@@ -58,6 +59,12 @@ class AkademikController extends Controller
         view()->share('title', 'Daftar Prestasi');
         $prestasi=Achievment::latest()->get();
         return view('home.akademik.prestasi', compact('prestasi'));
+    }
+
+    public function informasiPsb(){
+        $info=Taj::where('status', '1')->first();
+        view()->share('title', 'Informasi PPDB');
+        return view('home.akademik.informasi-psb', compact('info'));
     }
 
 }
