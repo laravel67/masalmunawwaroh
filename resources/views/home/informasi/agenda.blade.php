@@ -14,7 +14,7 @@
                   </div>
             </div>
             @empty
-                
+            <p class="text-center">{{ __('Data belum dimuat') }}</p>
             @endforelse
         </div>
     </div>

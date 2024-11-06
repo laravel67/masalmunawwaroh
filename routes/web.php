@@ -61,13 +61,7 @@ Route::prefix('/akademik')->controller(AkademikController::class)->group(functio
     Route::get('/biografi/{slug}', 'guruDetail')->name('guru.detail');
     Route::get('/informasi-ppdb', 'informasiPsb')->name('informasi.psb');
 });
-// Achievment/Prestasi
-// Route::prefix('/prestasi')->controller(AchievmentController::class)->group(function () {
-//     Route::get('/akademik', 'akademik')->name('akademik');
-//     Route::get('/nonakademik', 'nonakademik')->name('nonakademik');
-//     Route::get('/santri', 'student')->name('students.prestasi');
-// });
-// // Kesiswaan
+
 Route::prefix('/kesiswaan')->controller(KesiswaanController::class)->group(function () {
     Route::get('/ekstrakulikuler', 'ekskul')->name('ekskul');
     Route::get('/ekstrakulikuler/{slug}', 'ekskulDetail')->name('ekskul.detail');
@@ -96,15 +90,6 @@ Route::prefix('/ppdb/dashboard/')->controller(PsbController::class)->middleware(
     Route::get('/download/formulir/{id}', 'downloadForm')->name('downloadForm');
 });
 
-// Route::prefix('/ppdb')->controller(PpdbController::class)->group(function () {
-//     Route::get('/info-pendaftaran',  'home')->name('ppdb.home');
-//     Route::get('/formulir-pendaftaran/{tahun?}',  'daftar')->name('ppdb.daftar');
-//     Route::get('/downloads', 'download')->name('downloading');
-//     Route::get('/download/brosur/{id}', 'downloadBrosur')->name('downloadBrosur');
-// });
-
-/** ROUTE BAGIAN DASHBOARD */
-// User dan admin
 Route::prefix('/dashboard')->middleware(['middleware' => 'role'])->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('/posts', AdminPostController::class)->names('apost');
@@ -117,7 +102,7 @@ Route::prefix('/dashboard')->middleware(['middleware' => 'role'])->group(functio
     });
     Route::get('/profile', [UserProfileController::class, 'userProfile'])->name('user.profile');
     Route::get('/persada', [DashboardController::class, 'persada'])->name('admin.persada');
-    // Route::post('/reset-password', [UserProfileController::class, 'updatepassword'])->name('password.update');
+    Route::post('/reset-password', [UserProfileController::class, 'updatepassword'])->name('password.update');
     Route::post('/update/profile', [UserProfileController::class, 'updateprofile'])->name('profile.update');
 });
 
@@ -125,13 +110,8 @@ Route::prefix('/dashboard')->middleware(['middleware' => 'role'])->group(functio
 Route::prefix('/dashboard')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('/categories', AdminCategoryController::class)->names('category');
     Route::resource('/users', AdminUserController::class)->names('user');
-    // Route::get('/ppdb/pengaturan',[AdminSetterController::class,'setDaftar'])->name('set.reg');
     Route::controller(DashboardController::class)->group(function () {
-        Route::get('/ekstrakulikuler',  'lifeskill')->name('admin.lifeskill');
-        Route::get('/struktural',  'struktur')->name('admin.struktur');
-        Route::get('/data/bidang',  'bidang')->name('admin.bidang');
-        Route::get('/pengaturan', 'generalSetting')->name('pengaturan');
-        Route::post('/pengaturan/sambutan', 'sambutan')->name('pengaturan.sambutan');
+        Route::get('/pengaturan/slider', 'slider')->name('pengaturan.slider');
     });
     Route::prefix('/profile-madrasah')->controller(AdminProfilemasController::class)->group(function(){
         Route::get('/struktur', 'struktur')->name('profilemas.struktur');
@@ -162,12 +142,6 @@ Route::prefix('/dashboard')->middleware(['auth', 'admin'])->group(function () {
         Route::post('/prestasi',  'prestasi')->name('import.prestasi');
         Route::post('/ekskul',  'ekskul')->name('import.ekskul');
     });
-
-    Route::prefix('/pengaturan')->controller(AdminSetterController::class)->group(function(){
-        Route::get('/slider', 'slider')->name('pengaturan.slider');      
-    });
-
-
 });
 
 Route::middleware(['middleware' => 'role'])->group(function(){

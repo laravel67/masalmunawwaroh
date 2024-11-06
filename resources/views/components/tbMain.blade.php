@@ -5,7 +5,8 @@ class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-5
 <div class="container-fluid d-flex d-lg-flex">
 <div class="container d-flex align-items-center pt-2">
     <marquee onmouseover="this.stop();" onmouseout="this.start();">
-        <h4 class="text-success">{{ __("Selamat datang di website resmi Madrasah Aliyah Pondok Pesantren Tahfidz Al-Qur'an Wal Hadits Almunawwaroh") }}</h4>   
+        <h4 class="text-success d-none d-md-block">{{ __("Selamat datang di website resmi Madrasah Aliyah Pondok Pesantren Tahfidz Al-Qur'an Wal Hadits Almunawwaroh") }}</h4>
+        <p class="text-success d-md-none d-lg-none">{{ __("Selamat datang di website resmi Madrasah Aliyah Pondok Pesantren Tahfidz Al-Qur'an Wal Hadits Almunawwaroh") }}</p>   
     </marquee>
 </div>
 </div>

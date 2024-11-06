@@ -12,7 +12,7 @@
                  </a>
              </div>
              @empty
-             <p>{{ __('Tidak ada data') }}</p>
+             <p class="text-center">{{ __('Data belum dimuat') }}</p>
              @endforelse
          </div>
          <d class="d-flex my-5 justify-content-center">

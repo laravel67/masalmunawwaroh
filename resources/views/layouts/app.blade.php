@@ -19,7 +19,6 @@
     <x-tbMain />
     <x-header />
     {{ $slot }}
-    
     <x-footer />
     <button class="btn btn-lg btn-success btn-square rounded-circle back-to-top" onclick="topFunction()" id="backToTopBtn">
         <i class="fas fa-arrow-up"></i>

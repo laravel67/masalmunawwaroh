@@ -12,7 +12,7 @@
         <x-tbLink title="Program Unggulan" href="{{ route('pronggul') }}" :active="Request::is('akademik/program-unggulan*')"/>
         <x-tbLink title="Sarana Prasarana" href="{{ route('sarana') }}" :active="Request::is('akademik/sarpras*')"/>
         <x-tbLink title="Kurikulum Madrasah" href="{{ route('kurikulum') }}" :active="Request::is('akademik/kurikulum*')"/>
-        <x-tbLink title="Prestasi" href="{{ route('prestasi.aliyah') }}" :active="Request::is('akademik/daftar-prestasi*')" />
+        <x-tbLink title="Prestasi" href="{{ route('prestasi.aliyah') }}" :active="Request::is('akademik/prestasi*')" />
         <x-tbLink title="Biografi Guru" href="{{ route('biografi') }}" :active="Request::is('akademik/biografi*')"/>
         <x-tbLink title="PPDB" href="{{ route('informasi.psb') }}" :active="Request::is('akademik/informasi-ppdb*')"/>
     </x-tbSubLink>
@@ -25,7 +25,7 @@
     </x-tbSubLink>
     <x-tbSubLink title="Informasi Publik" :active="Request::is('informasi*')">
         <x-tbLink title="Kontak" href="{{ route('kontak') }}" :active="Request::is('informasi/kontak*')"/>
-        <x-tbLink title="Arsip" href="{{ route('arsips') }}" :active="Request::is('informasi/arsips*')" />
+        <x-tbLink title="Arsip" href="{{ route('arsips') }}" :active="Request::is('informasi/arsip*')" />
         <x-tbLink title="Agenda & Acara" href="{{ route('agenda') }}" :active="Request::is('informasi/agenda*')"/>
         {{-- <x-tbLink title="Pengumuman" href="{{ route('identitas') }}" :active="Request::is('profile/identitas*')" /> --}}
     </x-tbSubLink>

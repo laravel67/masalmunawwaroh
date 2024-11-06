@@ -55,68 +55,10 @@ class DashboardController extends Controller
         ]);
     }
 
-    
-
-    public function struktur()
+    public function slider()
     {
-        view()->share('title', 'Kelola Struktur Depati Agung');
-        return view('dashboard.struktur');
+        view()->share('title', 'Slide Heade Web');
+        return view('dashboard.pengaturan.slide');
     }
 
-    public function bidang()
-    {
-        view()->share('title', 'Data Bidang');
-        return view('dashboard.bidang');
-    }
-
-    
-
-    public function Persada()
-    {
-        view()->share('title', 'Data Persada Depati Agung');
-        return view('dashboard.kesiswaan.persada');
-    }
-
-    public function lifeskill()
-    {
-        view()->share('title', 'Data Ekstra Kulikuler');
-        return view('dashboard.kesiswaan.lifeskill');
-    }
-
-    public function setDaftar()
-    {
-        view()->share('title', 'Pengaturan Pendaftaran');
-        return view('dashboard.settings.setting-register');
-    }
-
-    public function generalSetting()
-    {
-        view()->share('title', 'Pengaturan');
-        $sambutan = Sambutan::first();
-        return view('dashboard.settings.setting-general', compact('sambutan'));
-    }
-
-    public function sambutan(Request $request)
-    {
-        $dataValidated = $request->validate([
-            'body' => 'required|string',
-            'image' => 'nullable|image|max:1024',
-        ]);
-        $sambutan = Sambutan::first();
-
-        if ($request->file('image')) {
-            if ($sambutan && $sambutan->image) {
-                Storage::delete($sambutan->image);
-            }
-            $dataValidated['image'] = $request->file('image')->store('sambutan');
-        }
-        $dataValidated['excerpt'] = Str::limit(strip_tags($dataValidated['body']), 200);
-
-        if ($sambutan) {
-            $sambutan->update($dataValidated);
-        } else {
-            Sambutan::create($dataValidated);
-        }
-        return redirect()->route('pengaturan')->with('success', 'Kata sambutan berhasil diperbarui!');
-    }
 }

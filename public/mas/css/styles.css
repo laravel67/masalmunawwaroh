@@ -223,7 +223,7 @@
 }
 
 .page-header {
-    background: linear-gradient(rgba(0, 0, 0, 0.789), rgba(0, 0, 0, 0.492)), url(../img/banner_header.jpg) center center no-repeat;
+    background: linear-gradient(rgba(0, 0, 0, 0.789), rgba(0, 0, 0, 0.492)), url('../../img/banner_header.jpg') center center no-repeat;
     background-size: cover;
 }
 
@@ -240,7 +240,7 @@
 
 /*** Features ***/
 .feature {
-    background: linear-gradient(rgba(4, 89, 26, 0.3), rgb(0, 170, 91)), url('../img/1800927182.jpg') left center no-repeat;
+    background: linear-gradient(rgba(4, 89, 26, 0.3), rgb(0, 170, 91)), url('../../img/banner_header.jpg') left center no-repeat;
     background-size: cover;
 }
 
@@ -494,7 +494,7 @@
 
 /*** Testimonial ***/
 .testimonial {
-    background: linear-gradient(rgba(3, 78, 25, 0.3), rgba(1, 184, 4, 0.3)), url('../img/ma.jpg') left center no-repeat;
+    background: linear-gradient(rgba(3, 78, 25, 0.3), rgba(1, 184, 4, 0.3)), url('../../img/ma.jpg') left center no-repeat;
     background-size: cover;
 }
 
@@ -554,7 +554,7 @@
 
 /*** Footer ***/
 .footer {
-    background: linear-gradient(rgba(3, 27, 78, .3), rgba(3, 27, 78, .3)), url(./../../img/footer.png) center center no-repeat;
+    background: linear-gradient(rgba(3, 27, 78, .3), rgba(3, 27, 78, .3)), url('../../img/footer.png') center center no-repeat;
     background-size: contain;
 }
 

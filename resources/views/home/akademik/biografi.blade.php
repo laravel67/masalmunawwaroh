@@ -21,7 +21,7 @@
                 </div>
             </div>
             @empty
-            <p>Tidak ada</p>
+            <p class="text-center">{{ __('Data belum dimuat') }}</p>
             @endforelse 
         </div>
     </div>
